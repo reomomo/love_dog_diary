@@ -10,7 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_11_000910) do
+ActiveRecord::Schema.define(version: 2023_04_11_062720) do
+
+  create_table "diaries", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.date "diary_date", null: false
+    t.string "memo"
+    t.integer "appetite"
+    t.integer "excreta"
+    t.integer "age"
+    t.integer "human_age"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "dogs", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "name", null: false
+    t.integer "dog_type", null: false
+    t.date "birthdate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "diary_id", null: false
+    t.string "title"
+    t.string "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.string "stroll_id", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "strolls", force: :cascade do |t|
+    t.string "diary_id", null: false
+    t.string "road"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "distance"
+    t.integer "speed"
+    t.string "vitality_condition"
+    t.string "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
