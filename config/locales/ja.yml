@@ -1,0 +1,30 @@
+ja:
+  enums:
+    diary:
+      appetite:
+        a_little: "少ない"
+        slightly_less: "やや少ない"
+        usually: "普通"
+        good: "やや多い"
+        excellent: "多い"
+
+      excreta:
+        a_little: "少ない"
+        slightly_less: "やや少ない"
+        usually: "普通"
+        good: "やや多い"
+        excellent: "多い"
+
+    dog:
+      dog_type:
+        large_scale_dog: "大型犬"
+        medium_size_dog: "中型犬"
+        small_size_dog: "小型犬"
+
+    stroll:
+      vitality_condition:
+        slowly: "のんびり"
+        a_little_slowly: "ややのんびり"
+        usually: "普通"
+        a_little_vitality: "ちょっと元気"
+        quite_vitality: "すごく元気"
