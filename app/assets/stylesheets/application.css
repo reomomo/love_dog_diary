@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sign_up {
+  background-image: url(https://sozai-good.com/download?id=82514&type=2&subnumber=0&extention=png);
+}
+
+.text-box {
+  background-color: rgba(255,255,255,0.5);
+}
