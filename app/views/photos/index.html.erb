@@ -1,2 +1,24 @@
-<h1>写真一覧（新規登録画面含む）</h1>
-<p>Find me in app/views/photos/index.html.erb</p>
+<h1>写真一覧</h1>
+<% @photos.each do |photo| %>
+  <div>
+    <p>写真</p>
+  　<%= image_tag photo.get_image(100,100) %>
+  　<p>タイトル</p>
+    <span><%= photo.title %></span>
+    <p>コメント</p>
+    <span><%= photo.body %></span>
+  </div>
+<% end %>
+<%= form_with model: @photo do |f| %>
+  <div>
+    <p>タイトル</p>
+    <%= f.text_field :title %>
+    <p>コメント</p>
+    <%= f.text_area :body %>
+    <p>写真</p>
+    <%= f.file_field :image, accept: "image/*" %>
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+
+

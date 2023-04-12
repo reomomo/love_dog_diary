@@ -6,6 +6,7 @@ class DiariesController < ApplicationController
   end
 
   def show
+    @photo = Photo.new
   end
 
   def edit

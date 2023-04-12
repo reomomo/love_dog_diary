@@ -1,2 +1,18 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<h1>Loveドッグダイアリーはこんなサイト</h1>
+<span>Loveドッグダイアリーでは、<br>
+わんちゃんとのお散歩ルートや距離、散歩時間、速度<br>
+その時に撮った写真、その日の健康状態などを<br>
+日記として登録できます</span>
+
+<li>
+  <%= link_to "新規登録", new_user_registration_path %>
+</li>
+<li>
+  <%= link_to "ログイン", new_user_session_path %>
+</li>
+<li>
+  <%= link_to "地図見本", my_page_path %>
+</li>
+<li>
+  <%= link_to "日記見本", my_page_path %>
+</li>

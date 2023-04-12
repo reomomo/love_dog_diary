@@ -1,2 +1,8 @@
-<h1>写真詳細（コメント表示）</h1>
-<p>Find me in app/views/photos/show.html.erb</p>
+<h1>写真詳細</h1>
+<%= image_tag @photo.get_image(100,100) %>
+<p>コメント</p>
+<p><%= @photo.body %></p>
+
+<%= link_to "編集する", edit_photo_path(@photo.id) %>
+<%= link_to "削除", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<%= link_to "写真一覧画面へ", photos_path(@photo.id) %>

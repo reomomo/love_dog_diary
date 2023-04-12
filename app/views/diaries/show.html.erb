@@ -1,2 +1,14 @@
 <h1>〇月〇日の日記</h1>
 <p>Find me in app/views/diaries/show.html.erb</p>
+
+<% form_with model: @photo do |f| %>
+  <div>
+    <p>タイトル</p>
+    <%= f.text_field :title %>
+    <p>コメント</p>
+    <%= f.text_area :body %>
+    <p>写真</p>
+    <%= f.file_field :image, accept: "image/*" %>
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
