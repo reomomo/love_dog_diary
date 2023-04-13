@@ -1,6 +1,3 @@
-<h1>カレンダー</h1><br>
 <%= month_calendar do |date| %>
-  <%= date.day %>
-
-
+    <%= link_to date.day, diary_path(date, diary_date: date.strftime("%Y年%-m月%-d日")) %>
 <% end %>

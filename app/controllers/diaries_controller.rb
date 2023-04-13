@@ -3,10 +3,12 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @diaries = current_user.diaries.all
+
   end
 
   def show
+    @diary_date = params[:diary_date]
+    # @diary = Diary.find(params[:id])
     @photo = Photo.new
   end
 

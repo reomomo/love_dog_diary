@@ -7,3 +7,35 @@
 }
 
 @import "simple_calendar";
+
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    color: red;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+    color: blue;
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month a {
+    display: none;
+  }
+  .next-month a {
+    display: none;
+  }
+  .current-month {}
+
+  .has-events {}
+}
