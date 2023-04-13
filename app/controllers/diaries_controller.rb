@@ -3,6 +3,7 @@ class DiariesController < ApplicationController
   end
 
   def index
+    @diaries = current_user.diaries.all
   end
 
   def show
@@ -11,4 +12,5 @@ class DiariesController < ApplicationController
 
   def edit
   end
+
 end

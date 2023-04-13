@@ -15,8 +15,8 @@ ja:
         good: "やや多い"
         excellent: "多い"
 
-    dog:
-      dog_type:
+    my_dog:
+      size:
         large_scale_dog: "大型犬"
         medium_size_dog: "中型犬"
         small_size_dog: "小型犬"
@@ -28,3 +28,7 @@ ja:
         usually: "普通"
         a_little_vitality: "ちょっと元気"
         quite_vitality: "すごく元気"
+
+  simple_calendar:
+    previous: "前月"
+    next: "翌月"

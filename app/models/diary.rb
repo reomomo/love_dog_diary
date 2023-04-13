@@ -28,5 +28,9 @@ class Diary < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  def diary_show
+    @day_params = params[:format]
+  end  
 
 end
