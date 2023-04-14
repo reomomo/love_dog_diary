@@ -1,9 +1,17 @@
-<h1><%= @diary_date %>の日記</h1>
+<h1><%= @diary.diary_date %>の日記</h1>
+
+<p>コメント</p>
+<%= @diary.memo %>
+<p>食欲</p>
+<%= @diary.appetite_i18n %>
+<p>排せつ</p>
+<%= @diary.excreta_i18n %>
+<%= @diary.age %>
+<%= MyDog.name %>
 
 
-
-
-<% form_with model: @photo do |f| %>
+<h4>写真の追加</h4>
+<%= form_with model: @photo do |f| %>
   <div>
     <p>タイトル</p>
     <%= f.text_field :title %>
