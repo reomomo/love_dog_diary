@@ -1,6 +1,6 @@
 ja:
   enums:
-    dog_diary:
+    diary:
       appetite:
         a_little: "少ない"
         slightly_less: "やや少ない"

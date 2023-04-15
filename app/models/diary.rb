@@ -17,10 +17,8 @@ class Diary < ApplicationRecord
   }, _suffix: true
 
   belongs_to :user
+  belongs_to :my_dog
   has_many :photos, dependent: :destroy
   has_many :strolls, dependent: :destroy
-  has_many :dog_diaries, dependent: :destroy
-  # has_many :my_dogs, through: :dog_diaries, dependent: :destroy
-  # accepts_nested_attributes_for :dog_diaries, allow_destroy: true
-
+  
 end

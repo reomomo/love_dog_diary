@@ -8,6 +8,6 @@ class Stroll < ApplicationRecord
   }
 
   belongs_to :diary
+  belongs_to :my_dog
   has_many :pins, dependent: :destroy
-  has_many :dog_strolls, dependent: :destroy
 end

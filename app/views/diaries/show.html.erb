@@ -1,14 +1,10 @@
 <h1><%= @diary.diary_date %>の日記</h1>
 
 <p>今日のひとこと</p>
+<%= @diary.my_dog.name %>
 <%= @diary.memo %>
-<% current_user.my_dogs.each do |my_dog| %>
-  <%= my_dog.name %>
-  <%= form_with model: @dog_diary do |f| %>
-    
-    <%= f.submit "保存" %>
-  <% end %>
-<% end %>
+<%= @diary.appetite %>
+<%= @diary.excreta %>
 
 
 
