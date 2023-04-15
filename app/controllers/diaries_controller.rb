@@ -22,15 +22,20 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = Diary.find(params[:id])
+    @diary = current_user.diaries.find(params[:id])
     current_user.my_dogs
-
-
-    @diary_new = Diary.new
     @photo = Photo.new
   end
 
   def edit
+  end
+
+  def update
+    diary = current_user.diaries.find(params[:id])
+    diary.user_id = current_user.id
+    diary.update(diary_params)
+    redirect_to diary_path(diary.id)
+
   end
 
   private
