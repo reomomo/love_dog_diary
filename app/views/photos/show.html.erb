@@ -1,8 +1,15 @@
 <h1>写真詳細</h1>
+<%= @photo.my_dog.name %>
+<p>撮影日</p>
+<%= link_to diary_path(@photo.diary.id) do %>
+  <%= @photo.diary.diary_date %>
+<% end %>
 <%= image_tag @photo.get_image(100,100) %>
+<p>タイトル</p>
+<p><%= @photo.title %></p>
 <p>コメント</p>
 <p><%= @photo.body %></p>
 
-<%= link_to "編集する", edit_photo_path(@photo.id) %>
+<%= link_to "内容を変更する", edit_photo_path(@photo.id) %>
 <%= link_to "削除", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <%= link_to "写真一覧画面へ", photos_path(@photo.id) %>

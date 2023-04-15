@@ -1,7 +1,10 @@
-<%= month_calendar do |date| %>
-  <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日")).exists? %>
-    <%= link_to date.day, diary_path(Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) %>
-  <% else %>
-    <%= link_to date.day, new_diary_path(date: date.strftime("%Y年%-m月%-d日")) %>
+<% @my_dogs.each do |my_dog| %>
+  <%= my_dog.name %>
+  <%= month_calendar do |date| %>
+    <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
+      <%= link_to date.day, diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) %>
+    <% else %>
+      <%= link_to date.day, new_diary_path(date: date.strftime("%Y年%-m月%-d日")) %>
+    <% end %>
   <% end %>
 <% end %>

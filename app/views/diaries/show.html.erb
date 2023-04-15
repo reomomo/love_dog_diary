@@ -1,20 +1,31 @@
 <h1><%= @diary.diary_date %>の日記</h1>
 
-<p>今日のひとこと</p>
 <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
 <%= @diary.my_dog.name %>
+<p>今日のひとこと</p>
 <%= @diary.memo %>
+<p>食欲</p>
 <%= @diary.appetite_i18n %>
+<p>排せつ</p>
 <%= @diary.excreta_i18n %>
 
-<%= form_with model: @diary do |f| %>
-  <%= f.select :appetites, options_for_select(Diary.appetites_i18n.invert, { :selected => @diary.appetite }) %>
+<%= link_to "内容を変更する", edit_diary_path(@diary.id) %>
 
-  <%= f.submit "変更" %>
+
+<p>写真一覧</p>
+<% if @photos.present? %>
+  <% @photos.each do |photo| %>
+    <%= link_to photo_path(photo.id) do %>
+      <%= image_tag photo.get_image(100,100) %>
+      <%= photo.title %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>写真がありません</p>
 <% end %>
 
 
-<h4>写真の追加</h4>
+<p>写真の追加</p>
 <%= form_with model: @photo do |f| %>
   <div>
     <p>タイトル</p>
@@ -23,6 +34,8 @@
     <%= f.text_area :body %>
     <p>写真</p>
     <%= f.file_field :image, accept: "image/*" %>
+    <%= f.hidden_field :diary_id, :value => @diary.id %>
+    <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
     <%= f.submit "保存" %>
   </div>
 <% end %>

@@ -57,3 +57,7 @@ ja:
       - 11月
       - 12月
 
+  activerecord:
+  errors:
+    messages:
+      record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -18,16 +18,20 @@ class DiariesController < ApplicationController
   end
 
   def index
-
+    @my_dogs = current_user.my_dogs
   end
 
   def show
     @diary = current_user.diaries.find(params[:id])
     current_user.my_dogs
     @photo = Photo.new
+    @photos = @diary.photos.all
   end
 
   def edit
+    @diary = current_user.diaries.find(params[:id])
+    @appetites = Diary.appetites
+    @excreta = Diary.excreta
   end
 
   def update
@@ -41,6 +45,6 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:my_dog_id, :diary_date, :memo, :appetite, :excreta)
+    params.require(:diary).permit(:user_id, :my_dog_id, :diary_date, :memo, :appetite, :excreta)
   end
 end

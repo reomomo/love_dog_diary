@@ -3,14 +3,13 @@ class PhotosController < ApplicationController
 
   def index
     @photos = current_user.photos.all
-    @photo = Photo.new
   end
 
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
-    @photo.save!
-    redirect_to photos_path
+    @photo.save
+    redirect_to diary_path(@photo.diary.id)
   end
 
   def show
@@ -24,7 +23,7 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     @photo.user_id = current_user.id
-    @photo.update
+    @photo.update(photo_params)
     redirect_to photo_path(@photo.id)
   end
 
@@ -37,7 +36,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:title, :body, :image)
+    params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)
   end
 
 end
