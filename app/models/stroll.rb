@@ -9,4 +9,5 @@ class Stroll < ApplicationRecord
 
   belongs_to :diary
   has_many :pins, dependent: :destroy
+  has_many :dog_strolls, dependent: :destroy
 end

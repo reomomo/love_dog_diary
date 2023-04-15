@@ -5,10 +5,10 @@
 <% @my_dogs.each do |my_dog| %>
   <%= my_dog.name %>
   <p>食欲</p>
-  <%= @diary.appetite_i18n %>
+  <%= my_dog.dog_diaries.appetite.find_by(appetite: @diary.appetite) %>
   <p>排せつ</p>
-  <%= @diary.excreta_i18n %>
-  <%= @diary.age %>
+  <%= dog_diary.excreta_i18n %>
+  <%= dog_diary.age %>
 <% end %>
 
 

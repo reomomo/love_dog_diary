@@ -6,8 +6,8 @@ class MyDog < ApplicationRecord
   }
 
   belongs_to :user
-  has_many :dog_diaries, dependent: :destroy
-  has_many :dog_strolls, dependent: :destroy
+  has_many :diaries, through: :dog_diaries, dependent: :destroy
+  has_many :strolls, through: :dog_strolls, dependent: :destroy
 
   has_one_attached :dog_image
 

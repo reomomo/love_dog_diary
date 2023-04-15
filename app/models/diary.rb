@@ -3,7 +3,8 @@ class Diary < ApplicationRecord
   belongs_to :user
   has_many :photos, dependent: :destroy
   has_many :strolls, dependent: :destroy
-  has_many :dog_diaries, dependent: :destroy
+  has_many :my_dogs, through: :dog_diaries, dependent: :destroy
+  # accepts_nested_attributes_for :dog_diaries, allow_destroy: true
 
   has_one_attached :image
 
