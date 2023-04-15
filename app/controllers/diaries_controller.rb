@@ -4,9 +4,7 @@ class DiariesController < ApplicationController
   def new
     @date = params[:date]
     @diary = Diary.new
-    @diary.dog_diaries.build
-    @appetites = DogDiary.appetites
-    @appetites_i18n = DogDiary.appetites_i18n
+    @my_dogs = current_user.my_dogs.all
   end
 
   def create
@@ -22,9 +20,18 @@ class DiariesController < ApplicationController
   end
 
   def show
+    @diary = Diary.find(params[:id])
+    @my_dog = MyDog.find(params[:diary][:my_dog_id])
+    if DogDiary.where(diary_id: @diary).nil?
+      @dog_diary = DogDiary.new
+    # else
+    #   @dog_diary = DogDiary.find_by(diary_id: @diary)
+    end
+    @appetites = DogDiary.appetites
+    @excreta = DogDiary.excreta
     @my_dogs = current_user.my_dogs.all
     @dog_diary = DogDiary.new
-    @diary = Diary.find(params[:id])
+
     @diary_new = Diary.new
     @photo = Photo.new
   end
@@ -35,6 +42,6 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:diary_date, :memo)
+    params.require(:diary).permit(:diary_date, :memo, :appetite, :excreta)
   end
 end

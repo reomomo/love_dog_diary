@@ -1,36 +1,35 @@
 <h1><%= @date %>の日記</h1>
-<p>散歩情報などは次のページから登録フォームに進めます</p>
+<p>散歩、愛犬の健康管理などは次のページから登録フォームに進めます</p>
 
 <%= form_with model: @diary do |f| %>
   <div>
-    <p>コメント</p>
+    <p>愛犬</p>
+    <%= f.select :my_dog_id, options_from_collection_for_select(@my_dogs, :id, :name) %>
+    <p>今日のひとこと</p>
     <%= f.text_area :memo %>
+    <p>食欲</p>
+    <%= f.radio_button :appetite, appetites.key(0) %>
+    <%= f.label :a_little, appetites_i18n[:a_little] %><br />
+    <%= f.radio_button :appetite, appetites.key(1) %>
+    <%= f.label :slightly_less, appetites_i18n[:slightly_less] %><br />
+    <%= f.radio_button :appetite, appetites.key(2) %>
+    <%= f.label :usually, appetites_i18n[:usually] %><br />
+    <%= f.radio_button :appetite, appetites.key(3) %>
+    <%= f.label :good, appetites_i18n[:good] %><br />
+    <%= f.radio_button :appetite, appetites.key(4) %>
+    <%= f.label :excellent, appetites_i18n[:excellent] %><br />
+    <p>排せつ</p>
+    <%= f.radio_button :excreta, excreta.key(0) %>
+    <%= f.label :a_little, excreta_i18n[:a_little] %><br />
+    <%= f.radio_button :excreta, excreta.key(1) %>
+    <%= f.label :slightly_less, excreta_i18n[:slightly_less] %><br />
+    <%= f.radio_button :excreta, excreta.key(2) %>
+    <%= f.label :usually, excreta_i18n[:usually] %><br />
+    <%= f.radio_button :excreta, excreta.key(3) %>
+    <%= f.label :good, excreta_i18n[:good] %><br />
+    <%= f.radio_button :excreta, excreta.key(4) %>
+    <%= f.label :excellent, excreta_i18n[:excellent] %><br />
     <%= f.hidden_field :diary_date, :value => @date %>
-    <%= f.fields_for :dog_diaries do |dog_diary| %>
-      <p>食欲</p>
-      <%= dog_diary.radio_button :appetite, @appetites.key(0) %>
-      <%= dog_diary.label :a_little, @appetites_i18n[:a_little] %><br />
-      <%= dog_diary.radio_button :appetite, @appetites.key(1) %>
-      <%= dog_diary.label :slightly_less, DogDiary.appetites_i18n[:slightly_less] %><br />
-      <%= dog_diary.radio_button :appetite, @appetites.key(2) %>
-      <%= dog_diary.label :usually, DogDiary.appetites_i18n[:usually] %><br />
-      <%= dog_diary.radio_button :appetite, @appetites.key(3) %>
-      <%= dog_diary.label :good, DogDiary.appetites_i18n[:good] %><br />
-      <%= dog_diary.radio_button :appetite, @appetites.key(4) %>
-      <%= dog_diary.label :excellent, DogDiary.appetites_i18n[:excellent] %><br />
-      <p>排せつ</p>
-      <%= dog_diary.radio_button :excreta, DogDiary.excreta.key(0) %>
-      <%= dog_diary.label :a_little, DogDiary.excreta_i18n[:a_little] %><br />
-      <%= dog_diary.radio_button :excreta, DogDiary.excreta.key(1) %>
-      <%= dog_diary.label :slightly_less, DogDiary.excreta_i18n[:slightly_less] %><br />
-      <%= dog_diary.radio_button :excreta, DogDiary.excreta.key(2) %>
-      <%= dog_diary.label :usually, DogDiary.excreta_i18n[:usually] %><br />
-      <%= dog_diary.radio_button :excreta, DogDiary.excreta.key(3) %>
-      <%= dog_diary.label :good, DogDiary.excreta_i18n[:good] %><br />
-      <%= dog_diary.radio_button :excreta, DogDiary.excreta.key(4) %>
-      <%= dog_diary.label :excellent, DogDiary.excreta_i18n[:excellent] %><br />
-      <%= dog_diary.hidden_field :age, :value => 1 %>
-    <% end %>
     <%= f.submit "保存" %>
   </div>
 <% end %>

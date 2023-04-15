@@ -6,7 +6,8 @@ class MyDog < ApplicationRecord
   }
 
   belongs_to :user
-  has_many :diaries, through: :dog_diaries, dependent: :destroy
+  has_many :dog_diaries, dependent: :destroy
+  # has_many :diaries, through: :dog_diaries, dependent: :destroy
   has_many :strolls, through: :dog_strolls, dependent: :destroy
 
   has_one_attached :dog_image
@@ -18,4 +19,16 @@ class MyDog < ApplicationRecord
     end
     dog_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def dog_age
+    (Date.today.strftime("%Y%m%d").to_i - current_user.my_dog.birthdate.strftime("%Y%m%d").to_i)/10000
+  end
+
+  # def dog_human_age
+  #   if MyDog.size == large_scale_dog && dog_age <= 1
+  #     dog_age
+  #   else
+
+  #   end
+  # end
 end

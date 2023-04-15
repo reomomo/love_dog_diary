@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_15_001418) do
+ActiveRecord::Schema.define(version: 2023_04_13_045412) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,26 +42,11 @@ ActiveRecord::Schema.define(version: 2023_04_15_001418) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "my_dog_id", null: false
     t.string "diary_date", null: false
     t.string "memo"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "dog_diaries", force: :cascade do |t|
-    t.integer "my_dog_id", null: false
-    t.integer "diary_id", null: false
     t.integer "appetite"
     t.integer "excreta"
-    t.integer "age"
-    t.integer "human_age"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "dog_strolls", force: :cascade do |t|
-    t.integer "my_dog_id", null: false
-    t.integer "stroll_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,6 +56,8 @@ ActiveRecord::Schema.define(version: 2023_04_15_001418) do
     t.string "name", null: false
     t.integer "size", null: false
     t.date "birthdate"
+    t.integer "age"
+    t.integer "human_age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,6 +65,7 @@ ActiveRecord::Schema.define(version: 2023_04_15_001418) do
   create_table "photos", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "diary_id", null: false
+    t.integer "my_dog_id", null: false
     t.string "title"
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
@@ -94,6 +82,7 @@ ActiveRecord::Schema.define(version: 2023_04_15_001418) do
 
   create_table "strolls", force: :cascade do |t|
     t.integer "diary_id", null: false
+    t.integer "my_dog_id", null: false
     t.string "road"
     t.time "start_time"
     t.time "end_time"
