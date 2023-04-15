@@ -1,0 +1,2 @@
+module DogDiariesHelper
+end

@@ -19,7 +19,7 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary_date = params[:diary_date]
+    @my_dogs = MyDog.all
     @diary = Diary.find(params[:id])
     @diary_new = Diary.new
     @photo = Photo.new

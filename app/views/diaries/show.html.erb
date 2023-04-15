@@ -2,12 +2,16 @@
 
 <p>コメント</p>
 <%= @diary.memo %>
-<p>食欲</p>
-<%= @diary.appetite_i18n %>
-<p>排せつ</p>
-<%= @diary.excreta_i18n %>
-<%= @diary.age %>
-<%= MyDog.name %>
+<% @my_dogs.each do |my_dog| %>
+  <%= my_dog.name %>
+  <p>食欲</p>
+  <%= @diary.appetite_i18n %>
+  <p>排せつ</p>
+  <%= @diary.excreta_i18n %>
+  <%= @diary.age %>
+<% end %>
+
+
 
 
 <h4>写真の追加</h4>
