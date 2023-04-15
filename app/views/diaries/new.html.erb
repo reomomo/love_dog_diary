@@ -1,10 +1,8 @@
 <h1><%= @date %>の日記</h1>
-<p>散歩、愛犬の健康管理などは次のページから登録フォームに進めます</p>
+<p>散歩情報、写真は次のページから登録フォームに進めます</p>
 
 <%= form_with model: @diary do |f| %>
   <div>
-    <p>愛犬</p>
-    <%= f.select :my_dog_id, options_from_collection_for_select(@my_dogs, :id, :name) %>
     <p>今日のひとこと</p>
     <%= f.text_area :memo %>
     <p>食欲</p>
@@ -30,6 +28,7 @@
     <%= f.radio_button :excreta, @excreta.key(4) %>
     <%= f.label :excellent, Diary.excreta_i18n[:excellent] %><br />
     <%= f.hidden_field :diary_date, :value => @date %>
+    <%= f.hidden_field :my_dog_id, :value => @dog_id %>
     <%= f.submit "保存" %>
   </div>
 <% end %>

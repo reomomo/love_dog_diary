@@ -3,6 +3,7 @@ class DiariesController < ApplicationController
 
   def new
     @date = params[:date]
+    @dog_id = params[:dog_id]
     @diary = Diary.new
     @my_dogs = current_user.my_dogs.all
     @appetites = Diary.appetites
