@@ -6,8 +6,6 @@
   box-sizing: border-box;
 }
 
-// @import "simple_calendar";
-// @import "~simple_calendar/app/assets/stylesheets/simple_calendar";
 .simple-calendar {
   table {
     -webkit-border-horizontal-spacing: 0px;
@@ -17,7 +15,7 @@
     border-collapse: collapse;
     box-sizing: border-box;
     max-width: 100%;
-    width: 100%;
+    width: 90%;
   }
 
   tr {
@@ -32,7 +30,6 @@
     border-right: 1px solid rgb(221, 221, 221);
     border-top: 0px none rgb(51, 51, 51);
     box-sizing: border-box;
-    text-align: left;
   }
 
   td {
@@ -56,19 +53,33 @@
   }
 
   .day {
-    height: 80px;
+    height: 100px;
   }
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
+  .wday-0 {
+    color: #FF367F;
+  }
+  .wday-1 {
+    color: #000000;
+  }
+  .wday-2 {
+    color: #000000;
+  }
+  .wday-3 {
+    color: #000000;
+  }
+  .wday-4 {
+    color: #000000;
+  }
+  .wday-5 {
+    color: #000000;
+  }
+  .wday-6 {
+    color: #2C7CFF;
+  }
 
   .today {
-    background: #FFFFC0
+    background: #FFBEDA;
   }
 
   .past {}
@@ -77,42 +88,14 @@
   .start-date {}
 
   .prev-month {
-    background: #DDD;
+    background: #EEEEEE;
   }
   .next-month {
-    background: #DDD;
+    background: #EEEEEE;
   }
-  .current-month {}
+  .current-month {
+    background: #FFD5EC
+  }
 
   .has-events {}
 }
-// .simple-calendar
-//   .day
-
-//   .wday-0
-//     color: red
-
-//   .wday-1
-//   .wday-2
-//   .wday-3
-//   .wday-4
-//   .wday-5
-//   .wday-6
-//     color: blue
-
-
-//   .today
-//   .past
-//   .future
-
-//   .start-date
-
-//   .prev-month a
-//     display: none
-
-//   .next-month a
-//     display: none
-
-//   .current-month
-
-//   .has-events
