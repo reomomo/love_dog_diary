@@ -1,3 +1,15 @@
+<% @strolls.each do |stroll| %>
+  <%= stroll.start_time.strftime("%H:%M") %>
+  <%= stroll.end_time.strftime("%H:%M") %>
+  <%= stroll.vitality_condition_i18n %>
+  <%# stroll.my_dog %>
+  <!--ちゃん-->
+  <%= stroll.road %>
+  <%= stroll.distance %>m
+  <%= stroll.speed %>m/分
+  <%= stroll.memo %>
+<% end %>
+
 <h1><%= @diary.diary_date %>の日記</h1>
 
 <%= image_tag @diary.my_dog.get_dog_image(80,80) %>

@@ -15,7 +15,6 @@ class DiariesController < ApplicationController
     @diary.user_id = current_user.id
     @diary.save
     redirect_to diary_path(@diary.id)
-
   end
 
   def index
@@ -27,6 +26,7 @@ class DiariesController < ApplicationController
     current_user.my_dogs
     @photo = Photo.new
     @photos = @diary.photos.all
+    @strolls = @diary.strolls.all
   end
 
   def edit
