@@ -19,7 +19,7 @@ class MyDogsController < ApplicationController
   def update
     my_dog = MyDog.find(params[:id])
     my_dog.user_id = current_user.id
-    my_dog.update
+    my_dog.update(my_dog_params)
     redirect_to my_page_path(current_user.id)
   end
 

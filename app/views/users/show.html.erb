@@ -9,12 +9,80 @@
 
 <% @my_dogs.each do |my_dog| %>
   <%= image_tag my_dog.get_dog_image(100,100) %>
-  <%= my_dog.name %>
+  <p>わんちゃんの名前</p>
+  <%= my_dog.name %>ちゃん
+  <p>わんちゃんの誕生日</p>
   <%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %>
-  <%= my_dog.age %>
+  <p>わんちゃんの年齢</p>
+  <!--わんちゃんの年齢計算-->
+  <% dog_age = (@date - my_dog.birthdate.strftime("%Y%m%d").to_i)/10000 %>
+  <% if dog_age < 0.08333333 %>
+    <p>生後1ヶ月未満</p>
+  <% elsif dog_age < 0.16666666 %>
+    <p>生後1ヶ月</p>
+  <% elsif dog_age < 0.25 %>
+    <p>生後2ヶ月</p>
+  <% elsif dog_age < 0.3333333 %>
+    <p>生後3ヶ月</p>
+  <% elsif dog_age < 0.4166666 %>
+    <p>生後4ヶ月</p>
+  <% elsif dog_age < 0.5 %>
+    <p>生後5ヶ月</p>
+  <% elsif dog_age < 0.5833333 %>
+    <p>生後6ヶ月</p>
+  <% elsif dog_age < 0.6666666 %>
+    <p>生後7ヶ月</p>
+  <% elsif dog_age < 0.75 %>
+    <p>生後8ヶ月</p>
+  <% elsif dog_age < 0.8333333 %>
+    <p>生後9ヶ月</p>
+  <% elsif dog_age < 0.9166666 %>
+    <p>生後10ヶ月</p>
+  <% elsif dog_age < 1 %>
+    <p>生後11ヶ月</p>
+  <% else %>
+    <%= dog_age %>歳
+  <% end %>
+  <p>わんちゃんのサイズ</p>
   <%= my_dog.size_i18n %>
-  <%= my_dog.human_age %>
+  <p>わんちゃんの人間年齢</p>
+  <!--大型犬で1歳未満-->
+  <% if my_dog.size == @size && dog_age < 1 %>
+    <p>12歳未満</p>
+  <!--大型犬で1歳以上-->
+  <% elsif my_dog.size == @size && dog_age >= 1 %>
+    <p><%= (dog_age - 1)*7 +12 %>歳から<%= (dog_age - 1)*7 +19 %>歳ぐらい</p>
+  <!--小型・中型犬で生後1ヶ月以下-->
+  <% elsif my_dog.size != @size && dog_age < 0.08333333 %>
+    <p>1歳未満</p>
+  <!--小型・中型犬で生後3ヶ月以下-->
+  <% elsif my_dog.size != @size && dog_age <= 0.25 %>
+    <p>1歳から5歳ぐらい</p>
+  <!--小型・中型犬で生後6ヶ月以下-->
+  <% elsif my_dog.size != @size && dog_age <= 0.5 %>
+    <p>5歳から9歳ぐらい</p>
+  <!--小型・中型犬で生後9ヶ月以下-->
+  <% elsif my_dog.size != @size && dog_age <= 0.75 %>
+    <p>9歳から13歳ぐらい</p>
+  <!--小型・中型犬で1歳以下-->
+  <% elsif my_dog.size != @size && dog_age <= 1 %>
+    <p>13歳から17歳ぐらい</p>
+  <!--小型・中型犬で1歳6ヶ月以下-->
+  <% elsif my_dog.size != @size && dog_age <= 1.5 %>
+    <p>17歳から20歳ぐらい</p>
+  <!--小型・中型犬で2歳以下-->
+  <% elsif my_dog.size != @size && dog_age <= 2 %>
+    <p>20歳から24歳ぐらい</p>
+  <!--小型・中型犬で3歳以上-->
+  <% else %>
+    <p><%= (dog_age - 2)*4 +24 %>歳から<%= (dog_age - 2)*4 +28 %>歳ぐらい</p>
+  <% end %>
+
   <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id) %>
 <% end %>
 
 <%= link_to "愛犬情報を追加する", new_my_dog_path %>
+
+<span>愛犬年齢が1歳未満の場合は、1年を12で割っていますので多少誤差があります<br>
+人間年齢は、「犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）」を参考にしています</span>
+

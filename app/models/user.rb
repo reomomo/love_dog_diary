@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :my_dogs, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :diaries, dependent: :destroy
+
 end
