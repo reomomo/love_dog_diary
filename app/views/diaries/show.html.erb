@@ -15,6 +15,7 @@
 <p>写真一覧</p>
 <% if @photos.present? %>
   <% @photos.each do |photo| %>
+  <!--写真詳細画面へ遷移する-->
     <%= link_to photo_path(photo.id) do %>
       <%= image_tag photo.get_image(100,100) %>
       <%= photo.title %>

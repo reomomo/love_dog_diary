@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/information/edit' => 'users#edit'
   patch '/information' => 'users#update'
   get '/unsubscribe' => 'users#unsubscribe'
+  delete '/information' => 'users#destroy', as: 'destroy_user'
 
   resources :my_dogs, only: [:new, :create, :edit, :update]
   resources :diaries, only: [:new, :create, :index, :show, :edit, :update]

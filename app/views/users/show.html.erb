@@ -1,1 +1,20 @@
 <h2>マイページ</h2>
+<%= link_to "会員情報を変更する", information_edit_path(@user.id) %>
+<p>氏名</p>
+<%= @user.last_name %><%= @user.first_name %>
+<p>ユーザーネーム</p>
+<%= @user.user_name %>
+<p>メールアドレス</p>
+<%= @user.email %>
+
+<% @my_dogs.each do |my_dog| %>
+  <%= image_tag my_dog.get_dog_image(100,100) %>
+  <%= my_dog.name %>
+  <%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %>
+  <%= my_dog.age %>
+  <%= my_dog.size_i18n %>
+  <%= my_dog.human_age %>
+  <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id) %>
+<% end %>
+
+<%= link_to "愛犬情報を追加する", new_my_dog_path %>
