@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @my_dogs = current_user.my_dogs.all
-    @date = Date.today.strftime("%Y%m%d").to_i
+    @date = Date.current
     @size = MyDog.sizes.key(0)
   end
 

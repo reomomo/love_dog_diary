@@ -9,10 +9,14 @@
   <%= month_calendar do |date| %>
     <!--カレンダーで選択した日付に日記があればその日記ページへ-->
     <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
+      <%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite %>
+
       <%= link_to date.day, diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) %>
+
     <% else %>
     <!--日記が無ければ新規登録ページへ（カレンダーで選択した日付データも送信する）-->
       <%= link_to date.day, new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) %>
     <% end %>
+
   <% end %>
 <% end %>
