@@ -23,7 +23,6 @@ class DiariesController < ApplicationController
 
   def show
     @diary = current_user.diaries.find(params[:id])
-    current_user.my_dogs
     @photo = Photo.new
     @photos = @diary.photos.all
     @strolls = @diary.strolls.all

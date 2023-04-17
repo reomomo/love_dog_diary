@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   resources :diaries, only: [:new, :create, :index, :show, :edit, :update]
   resources :strolls, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :photos, only: [:create, :index, :show, :edit, :update, :destroy]
-  resources :pins, only: [:create, :update, :destroy]
+  resources :pins, only: [:new, :create, :update, :destroy]
 
 end

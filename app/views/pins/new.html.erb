@@ -1,0 +1,10 @@
+<%= form_with model: @pin do |f| %>
+  <div>
+    <%= f.label :latitude, "緯度" %>
+    <%= f.text_field :latitude, :placeholder =>"緯度", id: :latitude %>
+    <%= f.label :longitude, "経度" %>
+    <%= f.text_field :longitude, :placeholder =>"経度", id: :longitude %>
+    <%= f.hidden_field :stroll_id, :value => @stroll_id %>
+    <%= f.submit %>
+  </div>
+<% end %>
