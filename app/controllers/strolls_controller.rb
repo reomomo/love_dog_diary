@@ -14,10 +14,18 @@ class StrollsController < ApplicationController
   end
 
   def index
+    @lat_c = 40.774102
+    @lng_c = -73.971734
+    @lat = 40.7767644
+    @lng = -73.9761399
+    @lat_m = 40.77976635908304
+    @lng_m = -73.96337236616391
   end
 
   def edit
     @stroll = Stroll.find(params[:id])
+    @pins = @stroll.pins.all
+    @pin = @stroll.pins.where(updated_at: :desc).limit(1)
   end
 
   def updated
