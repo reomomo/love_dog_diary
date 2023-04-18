@@ -1,39 +1,39 @@
-<head>
-    <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;
-        width: 600px;
-       }
-    </style>
-  </head>
-  <body>
-    <!--The div elements for the map and message -->
-    <div id="map"></div>
-    <div id="msg"></div>
-    <script>
+<style>
+   /* Set the size of the div element that contains the map */
+  #map {
+    height: 400px;
+    width: 500px;
+   }
+</style>
+
+<!--The div elements for the map and message -->
+<div id="map"></div>
+<div id="msg"></div>
+<script>
 // Initialize and add the map
 var map;
 function initMap() {
   // The map, centered on Central Park
-  const center = {lat: 40.774102, lng: -73.971734};
+  const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
   const options = {zoom: 15, scaleControl: true, center: center};
   map = new google.maps.Map(
       document.getElementById('map'), options);
   // Locations of landmarks
-  const dakota = {lat: 40.7767644, lng: -73.9761399};
-  const frick = {lat: 40.771209, lng: -73.9673991};
+  let road_pin
+  <% @pins.each do |pin| %>
+    road_pin = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
+
   // The markers for The Dakota and The Frick Collection
-  var mk1 = new google.maps.Marker({position: dakota, map: map});
-  var mk2 = new google.maps.Marker({position: frick, map: map});
+    new google.maps.Marker({position: road_pin, map: map});
+  <% end %>
+  new google.maps.Polyline({path: [road_pin, road_pin], map: map});
 }
-    </script>
+</script>
     <!--Load the API from the specified URL --
     <remember to replace YOUR_API_KEY-->
-    <script src="https://maps.googleapis.com/maps/api/js?
+<script src="https://maps.googleapis.com/maps/api/js?
 key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
 </script>
-  </body>
 
 
 
@@ -48,14 +48,7 @@ key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
   <%= stroll.speed %>m/分
   <%= stroll.memo %>
 
-      <% stroll.pins.each do |pin|%>
-      ( function() {
-        let markerLatLng = { lat: <%= pin.latitude %>, lng: <%= pin.longitude %> }; // 緯度経度のデータ作成
-        let marker = new google.maps.Marker({
-          position: markerLatLng,
-          map: map
-        });
-      <% end %>
+
 
   <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
 <% end %>

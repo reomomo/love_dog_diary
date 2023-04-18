@@ -7,7 +7,7 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.new(pin_params)
-    @pin.stroll.diary.user.id = current_user.id
+    @pin.stroll.diary.user_id = current_user.id
     @pin.save
     redirect_to diary_path(@pin.stroll.diary.id)
   end

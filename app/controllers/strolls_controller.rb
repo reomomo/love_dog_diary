@@ -25,7 +25,7 @@ class StrollsController < ApplicationController
   def edit
     @stroll = Stroll.find(params[:id])
     @pins = @stroll.pins.all
-    @pin = @stroll.pins.where(updated_at: :desc).limit(1)
+    @pin = @stroll.pins.order(updated_at: :desc).first
   end
 
   def updated
