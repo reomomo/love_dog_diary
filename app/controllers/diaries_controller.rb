@@ -25,6 +25,8 @@ class DiariesController < ApplicationController
     @stroll = Stroll.find(params[:id])
     @pins = @stroll.pins.all
     @pin = @stroll.pins.order(updated_at: :desc).first
+    @pin_2 = @stroll.pins.order(updated_at: :desc).second
+
     @diary = current_user.diaries.find(params[:id])
     @photo = Photo.new
     @photos = @diary.photos.all

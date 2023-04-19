@@ -20,13 +20,14 @@ function initMap() {
       document.getElementById('map'), options);
   // Locations of landmarks
   let road_pin
-  <% @pins.each do |pin| %>
+  <% @pins.each_with_index do |pin,index| %>
     road_pin = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
 
   // The markers for The Dakota and The Frick Collection
     new google.maps.Marker({position: road_pin, map: map});
+    new google.maps.Polyline({path: [road_pin, road_pin], map: map});
   <% end %>
-  new google.maps.Polyline({path: [road_pin, road_pin], map: map});
+
 }
 </script>
     <!--Load the API from the specified URL --
