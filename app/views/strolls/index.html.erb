@@ -51,37 +51,19 @@ function initMap() {
   // Draw a line showing the straight distance between the markers
   var line = new google.maps.Polyline({path: [dakota, frick], map: map});
 
-  let directionsService = new google.maps.DirectionsService();
-  let directionsRenderer = new google.maps.DirectionsRenderer();
-  directionsRenderer.setMap(map); // Existing map object displays directions
-  // Create route from existing points used for markers
-  const route = {
-      origin: dakota,
-      destination: frick,
-      travelMode: 'DRIVING'
-  }
+  //mapをクリックしたときのイベントを設定
+       google.maps.event.addListener(map, 'click', mylistener);
 
-  directionsService.route(route,
-    function(response, status) { // anonymous function to capture directions
-      if (status !== 'OK') {
-        window.alert('Directions request failed due to ' + status);
-        return;
-      } else {
-        directionsRenderer.setDirections(response); // Add route to the map
-        var directionsData = response.routes[0].legs[0];
-      // Get data about the mapped route
-        if (!directionsData) {
-          window.alert('Directions request failed');
-          return;
-        }
-        else {
-          document.getElementById('msg').innerHTML +=
-      " Driving distance is " + directionsData.distance.text +
-      " (" + directionsData.duration.text + ").";
-        }
-      }
-    });
-
+       //クリックしたときの処理
+       function mylistener(event){
+              //marker作成
+              var marker = new google.maps.Marker();
+              //markerの位置を設定
+              //event.latLng.lat()でクリックしたところの緯度を取得
+              marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+              //marker設置
+              marker.setMap(map);
+       }
 }
 </script>
 

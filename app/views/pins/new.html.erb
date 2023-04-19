@@ -10,68 +10,38 @@
 </style>
 
 <script>
-//初期マップの設定
-let map
-let marker
-function initMap(){
-  geocoder = new google.maps.Geocoder()
+// Initialize and add the map
+var map;
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
-    zoom: 15,
+function initMap() {
+  // 初期マップの設定
+  const center = {lat: 35.6803997, lng:139.7690174};
+  const options = {zoom: 15, scaleControl: true, center: center};
+  map = new google.maps.Map(
+      document.getElementById('map'), options);
+  //mapをクリックしたときのイベントを設定
+  google.maps.event.addListener(map, 'click', mylistener);
 
-  });
+  //クリックしたときの処理
+  function mylistener(event){
+    //marker作成
+    var marker = new google.maps.Marker();
+    //markerの位置を設定
+    //event.latLng.lat()でクリックしたところの緯度を取得
+    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+    //marker設置
+    marker.setMap(map);
+  }
+  // マーカー間にポリラインを描く
+  var line = new google.maps.Polyline({path: [marker, marker], map: map});
 }
-
-//検索後のマップ作成
-let geocoder
-let aft
-function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-        //マーカーが複数できないようにする
-        if (aft == true){
-            marker.setMap(null);
-        }
-
-        //新しくマーカーを作成する
-        map.setCenter(results[0].geometry.location);
-            marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            draggable: true	// ドラッグ可能にする
-        });
-
-        //二度目以降か判断
-        aft = true
-
-        //検索した時に緯度経度を入力する
-        document.getElementById('lat').value = results[0].geometry.location.lat();
-        document.getElementById('lng').value = results[0].geometry.location.lng();
-
-        // マーカーのドロップ（ドラッグ終了）時のイベント
-        google.maps.event.addListener( marker, 'dragend', function(ev){
-            // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('lat').value = ev.latLng.lat();
-            document.getElementById('lng').value = ev.latLng.lng();
-        });
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });
-}
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 
-
 <%= form_with model: @pin do |f| %>
   <div>
-    <%= f.label :latitude, "緯度" %>
-    <%= f.text_field :latitude, :placeholder =>"緯度", id: :latitude %>
-    <%= f.label :longitude, "経度" %>
-    <%= f.text_field :longitude, :placeholder =>"経度", id: :longitude %>
+    <%= f.hidden_field :latitude, :placeholder =>"緯度", id: :latitude %>
+    <%= f.hidden_field :longitude, :placeholder =>"経度", id: :longitude %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
     <%= f.submit %>
   </div>
