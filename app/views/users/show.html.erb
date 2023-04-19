@@ -1,0 +1,69 @@
+<h2>マイページ</h2>
+<%= link_to "会員情報を変更する", information_edit_path(@user.id) %>
+<p>氏名</p>
+<%= @user.last_name %><%= @user.first_name %>
+<p>ユーザーネーム</p>
+<%= @user.user_name %>
+<p>メールアドレス</p>
+<%= @user.email %>
+
+<% @my_dogs.each do |my_dog| %>
+  <%= image_tag my_dog.get_dog_image(100,100) %>
+  <p>わんちゃんの名前</p>
+  <%= my_dog.name %>ちゃん
+  <p>わんちゃんの誕生日</p>
+  <%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %>
+  <p>わんちゃんの年齢</p>
+  <!--わんちゃんの年齢計算-->
+  <% months_old = (@date - my_dog.birthdate).to_i/30.416 %>
+  <% years_old = (@date.strftime("%Y%m%d").to_i - my_dog.birthdate.strftime("%Y%m%d").to_i)/10000 %>
+  <% if months_old < 1 %>
+    <p>生後1ヶ月未満</p>
+  <% elsif years_old < 1 %>
+    <p>生後<%= months_old.to_i %>ヶ月</p>
+  <% else %>
+    <%= years_old %>歳
+  <% end %>
+  <p>わんちゃんのサイズ</p>
+  <%= my_dog.size_i18n %>
+  <p>わんちゃんの人間年齢</p>
+  <!--大型犬で1歳未満-->
+  <% if my_dog.size == @size && years_old < 1 %>
+    <p>12歳未満</p>
+  <!--大型犬で1歳以上-->
+  <% elsif my_dog.size == @size && years_old >= 1 %>
+    <p><%= (years_old - 1)*7 +12 %>歳から<%= (years_old - 1)*7 +19 %>歳ぐらい</p>
+  <!--小型・中型犬で生後1ヶ月以下-->
+  <% elsif my_dog.size != @size && months_old <= 1 %>
+    <p>1歳未満</p>
+  <!--小型・中型犬で生後3ヶ月以下-->
+  <% elsif my_dog.size != @size && months_old <= 3 %>
+    <p>1歳から5歳ぐらい</p>
+  <!--小型・中型犬で生後6ヶ月以下-->
+  <% elsif my_dog.size != @size && months_old <= 6 %>
+    <p>5歳から9歳ぐらい</p>
+  <!--小型・中型犬で生後9ヶ月以下-->
+  <% elsif my_dog.size != @size && months_old <= 9 %>
+    <p>9歳から13歳ぐらい</p>
+  <!--小型・中型犬で1歳以下-->
+  <% elsif my_dog.size != @size && years_old <= 1 %>
+    <p>13歳から17歳ぐらい</p>
+  <!--小型・中型犬で1歳6ヶ月以下-->
+  <% elsif my_dog.size != @size && months_old <= 18 %>
+    <p>17歳から20歳ぐらい</p>
+  <!--小型・中型犬で2歳以下-->
+  <% elsif my_dog.size != @size && years_old <= 2 %>
+    <p>20歳から24歳ぐらい</p>
+  <!--小型・中型犬で3歳以上-->
+  <% else %>
+    <p><%= (years_old - 2)*4 +24 %>歳から<%= (years_old - 2)*4 +28 %>歳ぐらい</p>
+  <% end %>
+
+  <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id) %>
+<% end %>
+
+<%= link_to "愛犬情報を追加する", new_my_dog_path %>
+
+<span>愛犬年齢が1歳未満の場合は、365日を30.416で割っていますので多少誤差があります<br>
+人間年齢は、「犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）」を参考にしています</span>
+

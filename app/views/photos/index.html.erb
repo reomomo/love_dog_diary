@@ -1,0 +1,16 @@
+<h1>写真一覧</h1>
+<% @photos.each do |photo| %>
+  <div>
+    <!--それぞれの写真詳細画面へ遷移する-->
+    <%= link_to photo_path(photo.id) do %>
+      <p>写真</p>
+    　<%= image_tag photo.get_image(100,100) %>
+    　<p>タイトル</p>
+      <span><%= photo.title %></span>
+    <% end %>
+  </div>
+<% end %>
+
+<p>写真の追加は、撮影日の日記から登録できます</p>
+
+
