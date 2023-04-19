@@ -5,23 +5,21 @@
 <style>
 #map {
   height: 600px;
-  width: 600px;
+  width: 1000px;
 }
 </style>
 
 <script>
-// Initialize and add the map
+// 初期マップの設定
 var map;
-
 function initMap() {
-  // 初期マップの設定
-  const center = {lat: 35.6803997, lng:139.7690174};
+  // 東京駅中心に表示
+  const center = {lat: 35.68143661184076, lng:139.7671569811205};
   const options = {zoom: 15, scaleControl: true, center: center};
   map = new google.maps.Map(
-      document.getElementById('map'), options);
+    document.getElementById('map'), options);
   //mapをクリックしたときのイベントを設定
   google.maps.event.addListener(map, 'click', mylistener);
-
   //クリックしたときの処理
   function mylistener(event){
     //marker作成
@@ -32,8 +30,8 @@ function initMap() {
     //marker設置
     marker.setMap(map);
   }
-  // マーカー間にポリラインを描く
-  var line = new google.maps.Polyline({path: [marker, marker], map: map});
+  // marker間にポリラインを描く
+  var line = new google.maps.Polyline({path: [marker.fist()], map: map});
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
