@@ -1,0 +1,2 @@
+module MyDogsHelper
+end

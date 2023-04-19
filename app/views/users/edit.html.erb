@@ -1,0 +1,12 @@
+<h2>会員情報編集</h2>
+
+<%= form_with model: @user, url: information_path do |f| %>
+  <p>氏名</p>
+  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  <p>ユーザーネーム</p>
+  <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
+  <p>メールアドレス</p>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= f.submit "保存する" %>
+<% end %>

@@ -1,0 +1,27 @@
+<% if current_user.my_dogs.length >= 2 %>
+  <p>愛犬ごとにカレンダーが表示されます</p>
+  <p>それぞれのカレンダーの日付を選択して、日記を作成してください</p>
+<% end %>
+
+<!--愛犬ごとのカレンダー表示-->
+<% @my_dogs.each do |my_dog| %>
+  <span class="h3"><%= my_dog.name %>ちゃんのカレンダー</span>
+  <%= month_calendar do |date| %>
+    <!--カレンダーで選択した日付に日記があればその日記ページへ-->
+    <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
+      <%= link_to diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) do %>
+        <span class="text-dark"><%= date.day %></span>
+        <span class="text-dark"><%= image_tag('food.png') %>
+        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
+        <span class="text-dark"><%= image_tag('dooky.png') %></span>
+        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).excreta_i18n %></span>
+      <% end %>
+    <% else %>
+    <!--日記が無ければ新規登録ページへ（カレンダーで選択した日付データも送信する）-->
+      <%= link_to new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) do %>
+        <span class="text-dark"><%= date.day %></span>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>

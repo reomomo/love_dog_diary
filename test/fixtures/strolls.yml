@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  diary_id: MyString
+  road: MyString
+  start_time: 
+  distance: 1
+  speed: 1
+  vitality_condition: MyString
+  memo: MyString
+
+two:
+  diary_id: MyString
+  road: MyString
+  start_time: 
+  distance: 1
+  speed: 1
+  vitality_condition: MyString
+  memo: MyString

@@ -1,0 +1,20 @@
+<h1>愛犬情報の登録</h1>
+<%= form_with model: @my_dog do |f| %>
+  <p>愛犬の名前</p>
+  <%= f.text_field :name %>
+  <p>サイズ</p>
+<!--小型犬-->
+  <%= f.radio_button :size, "small_size_dog" %>
+  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
+<!--中型犬-->
+  <%= f.radio_button :size, "medium_size_dog" %>
+  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
+<!--大型犬-->
+  <%= f.radio_button :size, "large_scale_dog" %>
+  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
+  <p>愛犬の誕生日(不明な場合は選択せず登録してください)</p>
+  <%= f.date_field :birthdate %>
+  <p>愛犬の写真</p>
+  <%= f.file_field :dog_image, accept: "image/*" %>
+  <%= f.submit '登録' %>
+<% end %>

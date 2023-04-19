@@ -1,0 +1,63 @@
+ja:
+  enums:
+    diary:
+      appetite:
+        a_little: "少ない"
+        slightly_less: "やや少ない"
+        usually: "普通"
+        good: "やや多い"
+        excellent: "多い"
+
+      excreta:
+        a_little: "少ない"
+        slightly_less: "やや少ない"
+        usually: "普通"
+        good: "やや多い"
+        excellent: "多い"
+
+    my_dog:
+      size:
+        large_scale_dog: "大型犬"
+        medium_size_dog: "中型犬"
+        small_size_dog: "小型犬"
+
+    stroll:
+      vitality_condition:
+        slowly: "のんびり"
+        a_little_slowly: "ややのんびり"
+        usually: "普通"
+        a_little_vitality: "ちょっと元気"
+        quite_vitality: "すごく元気"
+
+  simple_calendar:
+    previous: "前月"
+    next: "翌月"
+
+  date:
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+    month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+
+  activerecord:
+  errors:
+    messages:
+      record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -1,0 +1,34 @@
+<h1><%= @date %>の日記</h1>
+<p>散歩情報、写真は次のページから登録フォームに進めます</p>
+
+<%= form_with model: @diary do |f| %>
+  <div>
+    <p>今日のひとこと</p>
+    <%= f.text_area :memo %>
+    <p>食欲</p>
+    <%= f.radio_button :appetite, @appetites.key(0) %>
+    <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
+    <%= f.radio_button :appetite, @appetites.key(1) %>
+    <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
+    <%= f.radio_button :appetite, @appetites.key(2) %>
+    <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
+    <%= f.radio_button :appetite, @appetites.key(3) %>
+    <%= f.label :good, Diary.appetites_i18n[:good] %><br />
+    <%= f.radio_button :appetite, @appetites.key(4) %>
+    <%= f.label :excellent, Diary.appetites_i18n[:excellent] %><br />
+    <p>排せつ</p>
+    <%= f.radio_button :excreta, @excreta.key(0) %>
+    <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
+    <%= f.radio_button :excreta, @excreta.key(1) %>
+    <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
+    <%= f.radio_button :excreta, @excreta.key(2) %>
+    <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
+    <%= f.radio_button :excreta, @excreta.key(3) %>
+    <%= f.label :good, Diary.excreta_i18n[:good] %><br />
+    <%= f.radio_button :excreta, @excreta.key(4) %>
+    <%= f.label :excellent, Diary.excreta_i18n[:excellent] %><br />
+    <%= f.hidden_field :diary_date, :value => @date %>
+    <%= f.hidden_field :my_dog_id, :value => @dog_id %>
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
