@@ -28,13 +28,22 @@ function initMap() {
     drawOneLine(event.latLng);
   });
 }
+
 function drawOneLine(latLng) {
   var path = clickedLines.getPath();
   if ( path.length == 0 ) {
     createMarker(latLng);
-    document.getElementById('txtLatLng').value = latLng;
+    document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
-    document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng;
+    document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + ":" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_txtLatLng').value = document.getElementById('txtLatLng').value + ":" + latLng.lat() + "," + latLng.lng();
+
+    path[path.length] // 一番新しい地点
+    path[path.length - 1] // 一つ前の地点
+    var distance = haversine_distance(path[path.length], path[path.length - 1]);
+    document.getElementById('pin_distances').value = distance + ":" + distance
+
   }
   path.push(latLng);
     clickedLines.setMap(map);
@@ -65,16 +74,19 @@ function deleteAllLines() {
       clickedLines.setMap(null);
     }
 }
-
-<%# form_with model: @pin do |f| %>
-  // let <%# lat %>,<%# lng %> = latLng;
-  <%# f.hidden_field :latitude, :value => lat %>
-  <%# f.hidden_field :longitude, :value => lng %>
-  <%# f.hidden_field :stroll_id, :value => @stroll_id %>
-  <%# f.submit "散歩ルートを登録" %>
-<%# end %>
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+
+<div>
+  <%= form_with model: @pin do |f| %>
+    <%= f.hidden_field :txtLatLng  %>
+    <%= f.hidden_field :distances  %>
+    <%= f.hidden_field :stroll_id, :value => @stroll_id %>
+    <p>タイトル</p>
+    <%= f.text_field :title, placeholder: "お散歩ルート識別の名前" %>
+    <%= f.submit "散歩ルートを登録" %>
+  <% end %>
+</div>
 
 <div id="map_canvas"></div>
 <br />

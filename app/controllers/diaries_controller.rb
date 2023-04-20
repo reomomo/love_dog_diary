@@ -22,10 +22,11 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @stroll = Stroll.find(params[:id])
-    @pins = @stroll.pins.all
-    @pin = @stroll.pins.order(updated_at: :desc).first
-    @pin_2 = @stroll.pins.order(updated_at: :desc).second
+    # @stroll = Stroll.find(1)
+
+    # @pins = @stroll.pins.all
+    # @pin = @stroll.pins.order(updated_at: :desc).first
+    # @pin_2 = @stroll.pins.order(updated_at: :desc).second2
 
     @diary = current_user.diaries.find(params[:id])
     @photo = Photo.new
@@ -44,7 +45,12 @@ class DiariesController < ApplicationController
     diary.user_id = current_user.id
     diary.update(diary_params)
     redirect_to diary_path(diary.id)
+  end
 
+  def destroy
+    pins = current_user.strolls.pins.all
+    cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   private

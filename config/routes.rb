@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :my_dogs, only: [:new, :create, :edit, :update]
   resources :diaries, only: [:new, :create, :index, :show, :edit, :update]
-  resources :strolls, only: [:new, :create, :index, :edit, :update, :destroy]
+  resources :strolls, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :photos, only: [:create, :index, :show, :edit, :update, :destroy]
   resources :pins, only: [:new, :create, :update, :destroy]
 

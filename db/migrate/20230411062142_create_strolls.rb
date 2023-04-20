@@ -6,7 +6,6 @@ class CreateStrolls < ActiveRecord::Migration[6.1]
       t.string :road
       t.time :start_time
       t.time :end_time
-      t.integer :distance
       t.integer :speed
       t.integer :vitality_condition
       t.string :memo

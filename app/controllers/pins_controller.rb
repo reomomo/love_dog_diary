@@ -8,10 +8,17 @@ class PinsController < ApplicationController
   end
 
   def create
-    @form = Form::PinCollection.new(pin_collection_params)
-    if  @form.save
-    redirect_to diaries_path
+    lat_langs = params[:pin][:txtLatLng].split(":")
+
+    lat_langs.each do |latLng|
+      pin = Pin.new
+      pin.stroll_id = params[:pin][:stroll_id]
+      pin.latitude = latLng.split(",")[0]
+      pin.longitude = latLng.split(",")[1]
+      pin.save
     end
+
+    redirect_to diaries_path
   end
 
   def destroy
@@ -21,7 +28,7 @@ class PinsController < ApplicationController
 
   private
 
-  def pin_collection_params
-    params.require(:form_pin_collection).permit(pins_attributes: Form::Pin::REGISTRABLE_ATTRIBUTES)
+  def pin_params
+    params.require(:pin).permit(:latitude, :longitude, :stroll_id)
   end
 end

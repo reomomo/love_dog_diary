@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(version: 2023_04_13_045412) do
 
   create_table "pins", force: :cascade do |t|
     t.integer "stroll_id", null: false
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
+    t.decimal "latitude", precision: 10, scale: 6, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.integer "distance", null: false
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -86,7 +88,6 @@ ActiveRecord::Schema.define(version: 2023_04_13_045412) do
     t.string "road"
     t.time "start_time"
     t.time "end_time"
-    t.integer "distance"
     t.integer "speed"
     t.integer "vitality_condition"
     t.string "memo"

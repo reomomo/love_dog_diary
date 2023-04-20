@@ -1,21 +1,23 @@
 class StrollsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @stroll = Stroll.new
     @vitality_conditions = Stroll.vitality_conditions
-    @diary_id = 1
-    @dog_id = 2
+    @diary_id = params[:diary_id]
+    @dog_id = params[:dog_id]
   end
 
   def create
     @stroll = Stroll.new(stroll_params)
-    @stroll.my_dog.user.id = current_user.id
+    @stroll.diary.user.id = current_user.id
     @stroll.save
     redirect_to diary_path(1)
   end
 
-  def index
+  def show
+        # current_user's saishin no diary no pins
+    @latest_stroll = STr
     @lat_c = 40.774102
     @lng_c = -73.971734
     @lat = 40.7767644
@@ -40,7 +42,7 @@ class StrollsController < ApplicationController
   private
 
   def stroll_params
-    params.require(:stroll).permit(:diary_id, :my_dog_id, :road, :start_time, :end_time, :distance, :speed, :vitality_condition, :memo)
+    params.require(:stroll).permit(:diary_id, :my_dog_id, :road, :start_time, :end_time, :speed, :vitality_condition, :memo)
 
   end
 end
