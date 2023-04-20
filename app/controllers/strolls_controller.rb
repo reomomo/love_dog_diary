@@ -1,4 +1,6 @@
 class StrollsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @stroll = Stroll.new
     @vitality_conditions = Stroll.vitality_conditions
