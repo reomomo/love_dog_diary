@@ -8,13 +8,15 @@ class PinsController < ApplicationController
   end
 
   def create
-    lat_langs = params[:pin][:txtLatLng].split(":")
+    lat_langs = params[:pin][:txtLatLng].split("\n")
+    distance = params[:pin][:distances].split(":")
 
     lat_langs.each do |latLng|
       pin = Pin.new
       pin.stroll_id = params[:pin][:stroll_id]
       pin.latitude = latLng.split(",")[0]
       pin.longitude = latLng.split(",")[1]
+      pin.distance = distance
       pin.save
     end
 

@@ -10,6 +10,23 @@
 var map;
 var clickedLines;
 var marker;
+// 距離計算の関数
+function haversine_distance(mk1, mk2) {
+    var R = 6371.0710; // Radius of the Earth in kilometers
+    var rlat1 = mk1.position.lat() * (Math.PI/180);
+     // Convert degrees to radians
+    var rlat2 = mk2.position.lat() * (Math.PI/180);
+     // Convert degrees to radians
+    var difflat = rlat2-rlat1; // Radian difference (latitudes)
+    var difflon = (mk2.position.lng()-mk1.position.lng())
+                * (Math.PI/180); // Radian difference (longitudes)
+
+    var d = 2 * R
+    * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
+    +Math.cos(rlat1)*Math.cos(rlat2)
+    *Math.sin(difflon/2)*Math.sin(difflon/2)));
+    return d;
+}
 function initMap() {
   // 東京駅中心に表示
   const center = {lat: 35.68143661184076, lng:139.7671569811205};
@@ -36,14 +53,14 @@ function drawOneLine(latLng) {
     document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
     document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
-    document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + ":" + latLng.lat() + "," + latLng.lng();
-    document.getElementById('pin_txtLatLng').value = document.getElementById('txtLatLng').value + ":" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
 
     path[path.length] // 一番新しい地点
     path[path.length - 1] // 一つ前の地点
-    var distance = haversine_distance(path[path.length], path[path.length - 1]);
-    document.getElementById('pin_distances').value = distance + ":" + distance
-
+    // var distance = haversine_distance(path[path.length], path[path.length - 1]);
+    // document.getElementById('pin_distances').value = distance() + ":" + distance();
+// 距離の出し方を検討中,porirainが消える問題あり
   }
   path.push(latLng);
     clickedLines.setMap(map);

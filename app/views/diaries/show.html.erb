@@ -1,12 +1,13 @@
 <%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id) %>
 
+<% @sum = 0 %>
 <% @strolls.each do |stroll| %>
   <%= stroll.my_dog.name%>ちゃんの散歩
   <%= stroll.start_time.strftime("%H:%M") %>
   <%= stroll.end_time.strftime("%H:%M") %>
   <%= stroll.vitality_condition_i18n %>
   <%= stroll.my_dog.name%>ちゃん
-  <%= stroll.road %>
+  <%= stroll.pins.distances.sum %>km
   <%= stroll.speed %>m/分
   <%= stroll.memo %>
   <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>

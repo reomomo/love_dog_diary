@@ -57,7 +57,6 @@ function initMap() {
 </script>
 
 <%= link_to "散歩ルートを削除する", pin_path(@pin.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<!--ここまで-->
 
     <!--Load the API from the specified URL --
     <remember to replace YOUR_API_KEY-->
@@ -66,7 +65,7 @@ key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
 </script>
 
 
-
+<!--ここまで-->
 
 
 
