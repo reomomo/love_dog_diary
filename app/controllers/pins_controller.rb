@@ -12,6 +12,11 @@ class PinsController < ApplicationController
     redirect_to diary_path(@pin.stroll.diary.id)
   end
 
+  def destroy 
+    
+  end
+  
+  
   private
 
   def pin_params
