@@ -8,8 +8,11 @@ class MyDogsController < ApplicationController
   def create
     @my_dog = MyDog.new(my_dog_params)
     @my_dog.user_id = current_user.id
-    @my_dog.save
-    redirect_to my_page_path(current_user.id)
+    if @my_dog.save
+      redirect_to my_page_path(current_user.id)
+    else
+      render :new
+    end
   end
 
   def edit

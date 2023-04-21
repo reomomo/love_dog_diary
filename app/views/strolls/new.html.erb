@@ -1,5 +1,4 @@
 <h1>散歩情報の登録</h1>
-
 <%= form_with model: @stroll do |f| %>
   <p>散歩開始時間</p>
   <%= f.time_field :start_time %>
@@ -7,7 +6,7 @@
   <%= f.time_field :end_time %>
   <p>散歩メモ</p>
   <%= f.text_area :memo %>
-  <p>散歩中の元気具合</p>
+  <p>散歩中の元気の良さ</p>
   <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
   <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
   <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
@@ -20,7 +19,5 @@
   <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
   <%= f.hidden_field :diary_id, :value => @diary_id %>
   <%= f.hidden_field :my_dog_id, :value => @dog_id %>
-  <%= f.hidden_field :road, :value => 1 %>
-  <%= f.hidden_field :speed, :value => 1 %>
   <%= f.submit "保存" %>
 <% end %>

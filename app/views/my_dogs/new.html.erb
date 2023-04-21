@@ -1,4 +1,18 @@
 <h1>愛犬情報の登録</h1>
+<!--「先に愛犬情報を登録してください」のメッセージ-->
+<div>
+　<%= flash[:notice] %>
+</div>
+<!--名前かサイズが空白だった場合にエラー表示-->
+<% if @my_dog.errors.any? %>
+   <%= @my_dog.errors.count %>件のエラーが発生しました
+   <ul>
+      <% @my_dog.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+      <% end %>
+   </ul>
+<% end %>
+
 <%= form_with model: @my_dog do |f| %>
   <p>愛犬の名前</p>
   <%= f.text_field :name %>

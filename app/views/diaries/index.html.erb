@@ -1,3 +1,7 @@
+<div>
+　<%= flash[:notice] %>
+</div>
+
 <% if current_user.my_dogs.length >= 2 %>
   <p>愛犬ごとにカレンダーが表示されます</p>
   <p>それぞれのカレンダーの日付を選択して、日記を作成してください</p>
@@ -25,3 +29,5 @@
 
   <% end %>
 <% end %>
+
+<%= paginate @diaries %>

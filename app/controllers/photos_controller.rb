@@ -2,7 +2,12 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @photos = current_user.photos.all
+    if current_user.my_dogs.nil?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @photos = current_user.photos.all
+    end
   end
 
   def create
@@ -13,11 +18,21 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    if current_user.my_dogs.nil?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @photo = Photo.find(params[:id])
+    end
   end
 
   def edit
-    @photo = Photo.find(params[:id])
+    if current_user.my_dogs.nil?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @photo = Photo.find(params[:id])
+    end
   end
 
   def update

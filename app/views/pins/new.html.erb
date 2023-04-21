@@ -12,7 +12,7 @@ var clickedLines;
 var marker;
 // 距離計算の関数
 function haversine_distance(mk1, mk2) {
-    var R = 6371.0710; // Radius of the Earth in kilometers
+    var R = 6371071.0; // Radius of the Earth in meters
     var rlat1 = mk1.position.lat() * (Math.PI/180);
      // Convert degrees to radians
     var rlat2 = mk2.position.lat() * (Math.PI/180);
@@ -60,7 +60,7 @@ function drawOneLine(latLng) {
     path[path.length - 1] // 一つ前の地点
     // var distance = haversine_distance(path[path.length], path[path.length - 1]);
     // document.getElementById('pin_distances').value = distance() + ":" + distance();
-// 距離の出し方を検討中,porirainが消える問題あり
+// 距離の出し方を検討中,ポリラインが消える問題あり
   }
   path.push(latLng);
     clickedLines.setMap(map);

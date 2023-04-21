@@ -1,24 +1,6 @@
-<%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id) %>
-
-<% @sum = 0 %>
-<% @strolls.each do |stroll| %>
-  <%= stroll.my_dog.name%>ちゃんの散歩
-  <%= stroll.start_time.strftime("%H:%M") %>
-  <%= stroll.end_time.strftime("%H:%M") %>
-  <%= stroll.vitality_condition_i18n %>
-  <%= stroll.my_dog.name%>ちゃん
-  <%= stroll.pins.distances.sum %>km
-  <%= stroll.speed %>m/分
-  <%= stroll.memo %>
-  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
-<% end %>
-
-
-
-<h1><%= @diary.diary_date %>の日記</h1>
-
+<!--日記-->
+<h1><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
 <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
-<%= @diary.my_dog.name %>ちゃん
 <p>今日のひとこと</p>
 <%= @diary.memo %>
 <%= image_tag('food.png') %>
@@ -44,6 +26,8 @@
   <p>写真がありません</p>
 <% end %>
 
+<%= paginate @photos %>
+
 
 <p>写真の追加</p>
 <%= form_with model: @photo do |f| %>
@@ -58,4 +42,31 @@
     <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
     <%= f.submit "保存" %>
   </div>
+<% end %>
+
+<%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id) %>
+<!--お散歩情報-->
+<% @total = 0 %>
+<% @strolls.each do |stroll| %>
+  <%= stroll.my_dog.name%>ちゃんの散歩
+  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
+  <p>元気の良さ</p>
+  <%= stroll.vitality_condition_i18n %>
+  <%= stroll.memo %>
+  <p>開始時間</p>
+  <%= stroll.start_time.strftime("%H:%M") %>
+  <p>終了時間</p>
+  <%= stroll.end_time.strftime("%H:%M") %>
+  <p>お散歩ルート</p>
+  <%= stroll.pins.order(updated_at: :desc).first.title %>
+  <%= link_to "お散歩ルートを確認する", stroll_path(stroll.id) %>
+  <% stroll.pins.all.each do |pin| %>
+    <% @total += pin.distance %>
+  <% end %>
+  <p>お散歩距離</p>
+  <%= @total %> m
+  <p>お散歩時間</p>
+  <%= stroll.time_of_stroll %> 分
+  <p>スピード</p>
+  <%= @total / stroll.time_of_stroll %> m／分
 <% end %>

@@ -2,34 +2,56 @@ class StrollsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @stroll = Stroll.new
-    @vitality_conditions = Stroll.vitality_conditions
-    @diary_id = params[:diary_id]
-    @dog_id = params[:dog_id]
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    elsif params[:diary_id] == nil
+      flash[:notice] = "先に日記を登録してください"
+      redirect_to diaries_path
+    else
+      @stroll = Stroll.new
+      @vitality_conditions = Stroll.vitality_conditions
+      @diary_id = params[:diary_id]
+      @dog_id = params[:dog_id]
+    end
   end
 
   def create
     @stroll = Stroll.new(stroll_params)
     @stroll.diary.user.id = current_user.id
     @stroll.save
-    redirect_to diary_path(1)
+    redirect_to diary_path(@stroll.diary.id)
+  end
+
+  def index
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @strolls = current_user.strolls.page(params[:page]).per(20)
+    end
   end
 
   def show
-        # current_user's saishin no diary no pins
-    @latest_stroll = STr
-    @lat_c = 40.774102
-    @lng_c = -73.971734
-    @lat = 40.7767644
-    @lng = -73.9761399
-    @lat_m = 40.77976635908304
-    @lng_m = -73.96337236616391
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @stroll = Stroll.find(params[:id])
+      @pins = @stroll.pins.all
+      @pin = @stroll.pins.order(updated_at: :desc).first
+    end
   end
 
   def edit
-    @stroll = Stroll.find(params[:id])
-    @pins = @stroll.pins.all
-    @pin = @stroll.pins.order(updated_at: :desc).first
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @stroll = Stroll.find(params[:id])
+      @pins = @stroll.pins.all
+      @pin = @stroll.pins.order(updated_at: :desc).first
+    end
   end
 
   def updated
@@ -42,7 +64,7 @@ class StrollsController < ApplicationController
   private
 
   def stroll_params
-    params.require(:stroll).permit(:diary_id, :my_dog_id, :road, :start_time, :end_time, :speed, :vitality_condition, :memo)
+    params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
 
   end
 end

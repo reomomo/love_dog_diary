@@ -2,12 +2,17 @@ class DiariesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @date = params[:date]
-    @dog_id = params[:dog_id]
-    @diary = Diary.new
-    @my_dogs = current_user.my_dogs.all
-    @appetites = Diary.appetites
-    @excreta = Diary.excreta
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @date = params[:date]
+      @dog_id = params[:dog_id]
+      @diary = Diary.new
+      @my_dogs = current_user.my_dogs.all
+      @appetites = Diary.appetites
+      @excreta = Diary.excreta
+    end
   end
 
   def create
@@ -18,26 +23,36 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @my_dogs = current_user.my_dogs
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
+    end
   end
 
   def show
-    # @stroll = Stroll.find(1)
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @diary = current_user.diaries.find(params[:id])
+      @photo = Photo.new
+      @photos = @diary.photos.page(params[:page]).per(4)
+      @strolls = @diary.strolls.all
+    end
 
-    # @pins = @stroll.pins.all
-    # @pin = @stroll.pins.order(updated_at: :desc).first
-    # @pin_2 = @stroll.pins.order(updated_at: :desc).second2
-
-    @diary = current_user.diaries.find(params[:id])
-    @photo = Photo.new
-    @photos = @diary.photos.all
-    @strolls = @diary.strolls.all
   end
 
   def edit
-    @diary = current_user.diaries.find(params[:id])
-    @appetites = Diary.appetites
-    @excreta = Diary.excreta
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    else
+      @diary = current_user.diaries.find(params[:id])
+      @appetites = Diary.appetites
+      @excreta = Diary.excreta
+    end
   end
 
   def update
