@@ -61,3 +61,16 @@ ja:
   errors:
     messages:
       record_invalid: "バリデーションに失敗しました: %{errors}"
+
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      not_saved: 登録ができませんでした
+      Lastname: 姓
+      First: 名
+      User: ユーザーネーム
+      Email: メールアドレス
+      Encrypted password: パスワード
