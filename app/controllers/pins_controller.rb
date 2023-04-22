@@ -35,6 +35,13 @@ class PinsController < ApplicationController
     redirect_to diaries_path
   end
 
+  def edit
+
+  end
+
+  def update
+  end
+
   def destroy
     stroll = current_user.strolls.find(params[:stroll_id])
     pins = stroll.pins.all

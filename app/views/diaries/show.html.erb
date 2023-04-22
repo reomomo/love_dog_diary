@@ -51,23 +51,27 @@
   <%= stroll.my_dog.name%>ちゃんの散歩
   <p>元気の良さ</p>
   <%= stroll.vitality_condition_i18n %>
+  <p>散歩メモ</p>
   <%= stroll.memo %>
   <p>開始時間</p>
   <%= stroll.start_time.strftime("%H:%M") %>
   <p>終了時間</p>
   <%= stroll.end_time.strftime("%H:%M") %>
+  <%= link_to "散歩情報を変更する", edit_stroll_path(stroll.id) %>
   <% if stroll.pins.present? %>
-    <p>お散歩ルート</p>
-    <%= stroll.pins.order(updated_at: :desc).first.title %>
+    <%= link_to stroll_path(stroll.id) do %>
+      <p>お散歩ルート</p>
+      <%= stroll.pins.order(updated_at: :desc).first.title %>
+    <% end %>
     <% stroll.pins.all.each do |pin| %>
       <% @total += pin.distance %>
     <% end %>
     <p>お散歩距離</p>
-    <%= @total %> m
+    <%= @total.to_i %> m
     <p>お散歩時間</p>
     <%= stroll.time_of_stroll %> 分
     <p>スピード</p>
-    <%= @total / stroll.time_of_stroll %> m／分
+    <%= @total.to_i / stroll.time_of_stroll %> m／分
     <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id) %>
   <% else %>
     <p>お散歩ルートを登録してください。</p>

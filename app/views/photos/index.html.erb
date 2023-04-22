@@ -9,6 +9,10 @@
     　<p>タイトル</p>
       <span><%= photo.title %></span>
     <% end %>
+    <%= link_to diary_path(photo.diary.id) do %>
+      <p>撮影日</p>
+      <span><%= photo.diary.diary_date %></span>
+    <% end %>
   </div>
 <% end %>
 

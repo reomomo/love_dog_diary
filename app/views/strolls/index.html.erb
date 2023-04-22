@@ -1,13 +1,13 @@
 <p>お散歩ルート一覧</p>
-<% if @strolls == presence %>
+<% if @strolls.present? %>
   <span>ルート名をクリックすると、地図が確認できます<br>
   お散歩ルートの追加は日記から可能です</span>
   <% @strolls.each do |stroll| %>
-  <% link_to stroll_path(stroll.id) do %>
-    <%= stroll.pins.order(updated_at: :desc).first.title %>
+    <%= link_to stroll_path(stroll.id) do %>
+      <%= stroll.pins.select(:title).distinct %>
+    <% end %>
+    <%= paginate @strolls %>
   <% end %>
-  <%= paginate @strolls %>
-<% end %>
 <% else %>
   <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
 <% end %>

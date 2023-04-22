@@ -30,6 +30,7 @@ class StrollsController < ApplicationController
       redirect_to new_my_dog_path
     else
       @strolls = current_user.strolls.page(params[:page]).per(20)
+      # cats_species = Cat.select(:species).distinct
     end
   end
 
@@ -50,14 +51,13 @@ class StrollsController < ApplicationController
       redirect_to new_my_dog_path
     else
       @stroll = Stroll.find(params[:id])
-      @pins = @stroll.pins.all
-      @pin = @stroll.pins.order(updated_at: :desc).first
+      @vitality_conditions = Stroll.vitality_conditions
     end
   end
 
-  def updated
+  def update
     @stroll = Stroll.find(params[:id])
-    @stroll.my_dog.user.id = current_user.id
+    @stroll.user_id = current_user.id
     @stroll.update(stroll_params)
     redirect_to diary_path(@stroll.diary.id)
   end

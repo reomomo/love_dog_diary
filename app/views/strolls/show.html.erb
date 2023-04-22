@@ -1,8 +1,8 @@
 <style>
    /* 地図のサイズ */
   #map {
-    height: 400px;
-    width: 500px;
+    height: 500px;
+    width: 1000px;
    }
 </style>
 
@@ -12,26 +12,10 @@
 <script>
 // 初期マップの設定
 var map;
-function haversine_distance(mk1, mk2) {
-    var R = 6371.0710; // 地球の半径（単位：キロメートル）
-    var rlat1 = mk1.position.lat() * (Math.PI/180);
-     // 角度をラジアンに変換する
-    var rlat2 = mk2.position.lat() * (Math.PI/180);
-     // 角度をラジアンに変換する
-    var difflat = rlat2-rlat1; // ラジアンの差 (緯度)
-    var difflon = (mk2.position.lng()-mk1.position.lng())
-                * (Math.PI/180); // ラジアンの差 (経度)
-
-    var d = 2 * R
-    * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
-    +Math.cos(rlat1)*Math.cos(rlat2)
-    *Math.sin(difflon/2)*Math.sin(difflon/2)));
-    return d;
-}
 function initMap() {
   // 地図の中心地
   const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
-  const options = {zoom: 14, scaleControl: true, center: center};
+  const options = {zoom: 15, scaleControl: true, center: center};
   map = new google.maps.Map(
       document.getElementById('map'), options);
   // マーカーの位置
@@ -54,7 +38,7 @@ function initMap() {
   <% @total += pin.distance %>
 <% end %>
 <p>お散歩距離</p>
-<%= @total %> m
+<%= @total.to_i %> m
 
 <%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
