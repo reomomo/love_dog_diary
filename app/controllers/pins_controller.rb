@@ -16,16 +16,19 @@ class PinsController < ApplicationController
   end
 
   def create
-    lat_langs = params[:pin][:txtLatLng].split("\n")
-    # distance = params[:pin][:distances].split(":")
+    lat_lngs = params[:pin][:txtLatLng].split("\n")
+    distance = params[:pin][:distances].split(":")
 
-    lat_langs.each do |latLng|
+    lat_lngs.each_with_index do |latLng, index|
       pin = Pin.new
       pin.stroll_id = params[:pin][:stroll_id]
       pin.latitude = latLng.split(",")[0]
       pin.longitude = latLng.split(",")[1]
-      pin.distance = 15
-      # distance
+      if index == 0
+        pin.distance = 0
+      else
+        pin.distance = distance
+      end
       pin.title = params[:pin][:title]
       pin.save
     end
@@ -33,7 +36,10 @@ class PinsController < ApplicationController
   end
 
   def destroy
-
+    stroll = current_user.strolls.find(params[:stroll_id])
+    pins = stroll.pins.all
+    pins.destroy_all
+    redirect_to strolls_path
   end
 
 

@@ -10,23 +10,23 @@
 var map;
 var clickedLines;
 var marker;
-// 距離計算の関数
-function haversine_distance(mk1, mk2) {
-    var R = 6371071.0; // Radius of the Earth in meters
-    var rlat1 = mk1.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
-    var rlat2 = mk2.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
-    var difflat = rlat2-rlat1; // Radian difference (latitudes)
-    var difflon = (mk2.position.lng()-mk1.position.lng())
-                * (Math.PI/180); // Radian difference (longitudes)
+// // 距離計算の関数
+// function haversine_distance(mk1, mk2) {
+//     var R = 6371.0710; // 地球の半径（単位：キロメートル）
+//     var rlat1 = mk1.position.lat() * (Math.PI/180);
+//     // 角度をラジアンに変換する
+//     var rlat2 = mk2.position.lat() * (Math.PI/180);
+//     // 角度をラジアンに変換する
+//     var difflat = rlat2-rlat1; // ラジアンの差 (緯度)
+//     var difflon = (mk2.position.lng()-mk1.position.lng())
+//                 * (Math.PI/180); // ラジアンの差 (経度)
 
-    var d = 2 * R
-    * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
-    +Math.cos(rlat1)*Math.cos(rlat2)
-    *Math.sin(difflon/2)*Math.sin(difflon/2)));
-    return d;
-}
+//     var d = 2 * R
+//     * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
+//     +Math.cos(rlat1)*Math.cos(rlat2)
+//     *Math.sin(difflon/2)*Math.sin(difflon/2)));
+//     return d;
+// }
 function initMap() {
   // 東京駅中心に表示
   const center = {lat: 35.68143661184076, lng:139.7671569811205};
@@ -47,23 +47,39 @@ function initMap() {
 }
 
 function drawOneLine(latLng) {
+  // クリック時の動作詳細
   var path = clickedLines.getPath();
   if ( path.length == 0 ) {
+    // 最初のクリック時
     createMarker(latLng);
+    // 緯度経度表示
     document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    // 緯度経度をカラムへ送る
     document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
+    // ２回目以降のクリック時、改行して緯度経度を表示
     document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
+    // 緯度経度をカラムへ送る
     document.getElementById('pin_txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
 
-    path[path.length] // 一番新しい地点
-    path[path.length - 1] // 一つ前の地点
-    // var distance = haversine_distance(path[path.length], path[path.length - 1]);
-    // document.getElementById('pin_distances').value = distance() + ":" + distance();
-// 距離の出し方を検討中,ポリラインが消える問題あり
   }
   path.push(latLng);
     clickedLines.setMap(map);
+    // ２回目以降のクリック時、距離を計算
+    if(path.length >= 2){
+      var distances = []
+      for (let i = 0; i < path.length - 1 ; i++){
+        var prev = path.h[i]
+        var current = path.h[i + 1]
+        var prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
+    	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
+        distances.push(distance);
+      }
+      // 距離をカラムへ送る
+      document.getElementById('pin_distances').value = distances.join(':');
+      console.log(distance)
+    }
 }
 
 function createMarker(latLng) {
@@ -96,8 +112,8 @@ function deleteAllLines() {
 
 <div>
   <%= form_with model: @pin do |f| %>
-    <%= f.hidden_field :txtLatLng  %>
-    <%= f.hidden_field :distances  %>
+    <%= f.hidden_field :txtLatLng %>
+    <%= f.hidden_field :distances %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
     <p>タイトル</p>
     <%= f.text_field :title, placeholder: "お散歩ルート識別の名前" %>

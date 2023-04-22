@@ -78,7 +78,7 @@ ja:
         user_name: ユーザーネーム
         email: メールアドレス
         password: パスワード
-        password_confirmation: パスワード(確認用)
+        password_confirmation: パスワード（確認用）
       my_dog:
         name: 愛犬の名前
         size: サイズ

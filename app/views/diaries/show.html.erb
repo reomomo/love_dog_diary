@@ -49,7 +49,6 @@
 <% @total = 0 %>
 <% @strolls.each do |stroll| %>
   <%= stroll.my_dog.name%>ちゃんの散歩
-  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
   <p>元気の良さ</p>
   <%= stroll.vitality_condition_i18n %>
   <%= stroll.memo %>
@@ -69,9 +68,9 @@
     <%= stroll.time_of_stroll %> 分
     <p>スピード</p>
     <%= @total / stroll.time_of_stroll %> m／分
+    <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id) %>
   <% else %>
     <p>お散歩ルートを登録してください。</p>
   <% end %>
-  <%= link_to "お散歩ルートを確認する", stroll_path(stroll.id) %>
-
+  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
 <% end %>

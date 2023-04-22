@@ -1,26 +1,26 @@
 <style>
-   /* Set the size of the div element that contains the map */
+   /* 地図のサイズ */
   #map {
     height: 400px;
     width: 500px;
    }
 </style>
 
-<!--The div elements for the map and message -->
+<!--地図とメッセージの要素 -->
 <div id="map"></div>
 <div id="msg"></div>
 <script>
 // 初期マップの設定
 var map;
 function haversine_distance(mk1, mk2) {
-    var R = 6371.0710; // Radius of the Earth in kilometers
+    var R = 6371.0710; // 地球の半径（単位：キロメートル）
     var rlat1 = mk1.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
+     // 角度をラジアンに変換する
     var rlat2 = mk2.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
-    var difflat = rlat2-rlat1; // Radian difference (latitudes)
+     // 角度をラジアンに変換する
+    var difflat = rlat2-rlat1; // ラジアンの差 (緯度)
     var difflon = (mk2.position.lng()-mk1.position.lng())
-                * (Math.PI/180); // Radian difference (longitudes)
+                * (Math.PI/180); // ラジアンの差 (経度)
 
     var d = 2 * R
     * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
@@ -29,42 +29,35 @@ function haversine_distance(mk1, mk2) {
     return d;
 }
 function initMap() {
-  // The map, centered on Central Park
+  // 地図の中心地
   const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
-  const options = {zoom: 15, scaleControl: true, center: center};
+  const options = {zoom: 14, scaleControl: true, center: center};
   map = new google.maps.Map(
       document.getElementById('map'), options);
-  // Locations of landmarks
+  // マーカーの位置
   let road_pin = []
   let mk = []
   <% @pins.each_with_index do |pin,index| %>
     road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
-
-
     mk[<%= index %>] = new google.maps.Marker({position: road_pin[<%= index %>], map: map});
-
     <% if index != 0 %>
+    // ポリラインの描画
       new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
-
-      var distance = haversine_distance(mk[<%= index %>], mk[<%= index - 1 %>]);
-      document.getElementById('msg').innerHTML
-        = "散歩の距離: " + distance.toFixed(2)*1000 + " m";
-
     <% end %>
   <% end %>
 
 }
 </script>
 
-<%= link_to "散歩ルートを削除する", pin_path(@pin.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% @total = 0 %>
+<% @pins.each do |pin| %>
+  <% @total += pin.distance %>
+<% end %>
+<p>お散歩距離</p>
+<%= @total %> m
 
-    <!--Load the API from the specified URL --
-    <remember to replace YOUR_API_KEY-->
+<%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
 <script src="https://maps.googleapis.com/maps/api/js?
 key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
 </script>
-
-
-<!--ここまで-->
-
-

@@ -1,6 +1,4 @@
-<div>
-　<%= flash[:notice] %>
-</div>
+<span class="text-danger border border-dark w-25"><%= flash[:notice] %></span>
 
 <% if current_user.my_dogs.length >= 2 %>
   <p>愛犬ごとにカレンダーが表示されます</p>

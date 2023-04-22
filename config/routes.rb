@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :diaries, only: [:new, :create, :index, :show, :edit, :update]
   resources :strolls, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :photos, only: [:create, :index, :show, :edit, :update, :destroy]
-  resources :pins, only: [:new, :create, :update, :destroy]
+  delete '/pins/destroy_all' => 'pins#destroy'
+  resources :pins, only: [:new, :create, :update]
 
 end

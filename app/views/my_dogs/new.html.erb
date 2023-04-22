@@ -1,16 +1,16 @@
 <h1>愛犬情報の登録</h1>
 <!--「先に愛犬情報を登録してください」のメッセージ-->
-<div>
-　<span class="text-danger"><%= flash[:notice] %></span>
-</div>
+<span class="text-danger border border-dark w-25"><%= flash[:notice] %></span>
 <!--名前かサイズが空白だった場合にエラー表示-->
 <% if @my_dog.errors.any? %>
-   <span class="text-danger"><%= @my_dog.errors.count %>件のエラーが発生しました</span>
-   <ul>
+  <div class="border border-dark w-50">
+    <span class="text-danger"><%= @my_dog.errors.count %>件のエラーが発生しました</span>
+    <ul>
       <% @my_dog.errors.full_messages.each do |message| %>
-         <li><%= message %></li>
+        <li><%= message %></li>
       <% end %>
-   </ul>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with model: @my_dog do |f| %>

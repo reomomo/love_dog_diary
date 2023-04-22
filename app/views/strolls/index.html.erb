@@ -1,6 +1,6 @@
 <p>お散歩ルート一覧</p>
 <% if @strolls == presence %>
-  <span>ルート名をクリックすると、地図で確認ができます<br>
+  <span>ルート名をクリックすると、地図が確認できます<br>
   お散歩ルートの追加は日記から可能です</span>
   <% @strolls.each do |stroll| %>
   <% link_to stroll_path(stroll.id) do %>
