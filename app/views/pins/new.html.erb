@@ -9,24 +9,6 @@
 // 初期マップの設定
 var map;
 var clickedLines;
-var marker;
-// // 距離計算の関数
-// function haversine_distance(mk1, mk2) {
-//     var R = 6371.0710; // 地球の半径（単位：キロメートル）
-//     var rlat1 = mk1.position.lat() * (Math.PI/180);
-//     // 角度をラジアンに変換する
-//     var rlat2 = mk2.position.lat() * (Math.PI/180);
-//     // 角度をラジアンに変換する
-//     var difflat = rlat2-rlat1; // ラジアンの差 (緯度)
-//     var difflon = (mk2.position.lng()-mk1.position.lng())
-//                 * (Math.PI/180); // ラジアンの差 (経度)
-
-//     var d = 2 * R
-//     * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
-//     +Math.cos(rlat1)*Math.cos(rlat2)
-//     *Math.sin(difflon/2)*Math.sin(difflon/2)));
-//     return d;
-// }
 function initMap() {
   // 東京駅中心に表示
   const center = {lat: 35.68143661184076, lng:139.7671569811205};
@@ -41,7 +23,7 @@ function initMap() {
   });
   // マップにクリックイベントを設定
   google.maps.event.addListener(map, 'click', function(event) {
-    // クリック時の位置を渡す
+     // クリック時の位置を渡す
     drawOneLine(event.latLng);
   });
 }
@@ -58,11 +40,13 @@ function drawOneLine(latLng) {
     document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
     // ２回目以降のクリック時、改行して緯度経度を表示
-    document.getElementById('txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
+    let textlatlng_value = document.getElementById('txtLatLng').value;
+    document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = document.getElementById('txtLatLng').value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
 
   }
+
   path.push(latLng);
     clickedLines.setMap(map);
     // ２回目以降のクリック時、距離を計算
@@ -75,10 +59,10 @@ function drawOneLine(latLng) {
     	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
         var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
         distances.push(distance);
+
       }
       // 距離をカラムへ送る
       document.getElementById('pin_distances').value = distances.join(':');
-      console.log(distance)
     }
 }
 
@@ -126,6 +110,3 @@ function deleteAllLines() {
 <textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="txtLatLng"></textarea>
 <br />
 <input type="button" value="線を消す"  onclick="deleteAllLines();" style="margin-left:20px;"/>
-
-
-

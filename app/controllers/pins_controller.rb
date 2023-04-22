@@ -27,7 +27,7 @@ class PinsController < ApplicationController
       if index == 0
         pin.distance = 0
       else
-        pin.distance = distance
+        pin.distance = distance[index-1]
       end
       pin.title = params[:pin][:title]
       pin.save

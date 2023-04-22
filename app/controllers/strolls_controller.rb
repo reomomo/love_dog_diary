@@ -1,5 +1,6 @@
 class StrollsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :check_my_dog, only[:new, :index, :show]
 
   def new
     if current_user.my_dogs.empty?
@@ -65,6 +66,11 @@ class StrollsController < ApplicationController
 
   def stroll_params
     params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
+  end
 
+  def check_my_dog
+    current_user.my_dogs.empty?
+    flash[:notice] = "先に愛犬情報を登録してください"
+    redirect_to new_my_dog_path
   end
 end
