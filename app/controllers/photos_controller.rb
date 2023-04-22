@@ -2,11 +2,11 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.my_dogs.nil?
+    if current_user.my_dogs.empty?
       flash[:notice] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     else
-      @photos = current_user.photos.all
+      @photos = current_user.photos.page(params[:page]).per(8)
     end
   end
 
@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
   end
 
   def show
-    if current_user.my_dogs.nil?
+    if current_user.my_dogs.empty?
       flash[:notice] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     else
@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    if current_user.my_dogs.nil?
+    if current_user.my_dogs.empty?
       flash[:notice] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     else

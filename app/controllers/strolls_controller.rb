@@ -18,7 +18,7 @@ class StrollsController < ApplicationController
 
   def create
     @stroll = Stroll.new(stroll_params)
-    @stroll.diary.user.id = current_user.id
+    @stroll.user_id = current_user.id
     @stroll.save
     redirect_to diary_path(@stroll.diary.id)
   end

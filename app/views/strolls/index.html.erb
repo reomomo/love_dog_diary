@@ -2,14 +2,12 @@
 <% if @strolls == presence %>
   <span>ルート名をクリックすると、地図で確認ができます<br>
   お散歩ルートの追加は日記から可能です</span>
+  <% @strolls.each do |stroll| %>
+  <% link_to stroll_path(stroll.id) do %>
+    <%= stroll.pins.order(updated_at: :desc).first.title %>
+  <% end %>
+  <%= paginate @strolls %>
+<% end %>
 <% else %>
   <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
 <% end %>
-
-<% @strolls.each do |stroll| %>
-  <% link_to stroll_path do %>
-    <%= stroll.pins.order(updated_at: :desc).first.title %>
-  <% end %>
-<% end %>
-
-<%= paginate @strolls %>

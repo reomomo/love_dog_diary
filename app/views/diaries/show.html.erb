@@ -57,16 +57,21 @@
   <%= stroll.start_time.strftime("%H:%M") %>
   <p>終了時間</p>
   <%= stroll.end_time.strftime("%H:%M") %>
-  <p>お散歩ルート</p>
-  <%= stroll.pins.order(updated_at: :desc).first.title %>
-  <%= link_to "お散歩ルートを確認する", stroll_path(stroll.id) %>
-  <% stroll.pins.all.each do |pin| %>
-    <% @total += pin.distance %>
+  <% if stroll.pins.present? %>
+    <p>お散歩ルート</p>
+    <%= stroll.pins.order(updated_at: :desc).first.title %>
+    <% stroll.pins.all.each do |pin| %>
+      <% @total += pin.distance %>
+    <% end %>
+    <p>お散歩距離</p>
+    <%= @total %> m
+    <p>お散歩時間</p>
+    <%= stroll.time_of_stroll %> 分
+    <p>スピード</p>
+    <%= @total / stroll.time_of_stroll %> m／分
+  <% else %>
+    <p>お散歩ルートを登録してください。</p>
   <% end %>
-  <p>お散歩距離</p>
-  <%= @total %> m
-  <p>お散歩時間</p>
-  <%= stroll.time_of_stroll %> 分
-  <p>スピード</p>
-  <%= @total / stroll.time_of_stroll %> m／分
+  <%= link_to "お散歩ルートを確認する", stroll_path(stroll.id) %>
+
 <% end %>

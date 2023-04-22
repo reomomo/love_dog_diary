@@ -21,9 +21,4 @@ class Diary < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :strolls, dependent: :destroy
 
-  # validates :last_name, presence: true
-  # validates :first_name, presence: true
-  # validates :user_name, presence: true
-
-
 end
