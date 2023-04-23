@@ -10,9 +10,8 @@ class PinsController < ApplicationController
   def create
     lat_lngs = params[:pin][:txtLatLng].split("\n")
     distance = params[:pin][:distances].split(":")
-
+    pin = Pin.new
     lat_lngs.each_with_index do |latLng, index|
-      pin = Pin.new
       pin.user_id = current_user.id
       pin.stroll_id = params[:pin][:stroll_id]
       pin.latitude = latLng.split(",")[0]
@@ -25,8 +24,7 @@ class PinsController < ApplicationController
       pin.title = params[:pin][:title]
       pin.save
     end
-
-    redirect_to diaries_path
+    redirect_to diary_path(pin.stroll.diary.id)
   end
 
   def destroy

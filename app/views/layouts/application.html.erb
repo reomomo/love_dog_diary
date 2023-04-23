@@ -11,39 +11,49 @@
   </head>
 
   <body>
-    <header>
-      <!--ロゴマーク-->
-      <a class="navbar-brand p-3" href="/">
-        <%= image_tag('logo.png') %>
-        <span>Love Dog Diary</span>
-      </a>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "マイページ", my_page_path %>
-        </li>
-        <li>
-          <%= link_to "散歩ルート一覧", strolls_path %>
-        </li>
-        <li>
-          <%= link_to "写真一覧", photos_path %>
-        </li>
-        <li>
-          <%= link_to "日記", diaries_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "About", about_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark-pink">
+        <div class="container">
+          <!--ロゴマーク-->
+          <a class="navbar-brand" href="/">
+            <%= image_tag('logo.png') %>
+          </a>
+          <button class="navbar-toggler btn btn-pink" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon btn btn-pink"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "マイページ", my_page_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "日記", diaries_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "散歩ルート一覧", strolls_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "写真一覧", photos_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+              <% else %>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "About", about_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+                <li class="nav-item btn btn-pink m-1 px-0">
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-secondary font-weight-bold' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
       <%= yield %>

@@ -1,5 +1,4 @@
 <p>お散歩ルート一覧</p>
-<% @total = 0 %>
 <% if @strolls.present? %>
   <span>ルート名をクリックすると、地図が確認できます<br>
   お散歩ルートの追加は日記から可能です</span>
@@ -8,6 +7,7 @@
       <% stroll.pins.pluck(:title).uniq.each do |title| %>
         <% if title.present? %>
           <%= title %>
+          <% @total = 0 %>
           <% stroll.pins.where(title: title).each do |pin| %>
             <% @total += pin.distance %>
           <% end %>
