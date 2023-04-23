@@ -1,89 +1,6 @@
-<style>
-   /* Set the size of the div element that contains the map */
-  #map {
-    height: 400px;
-    width: 500px;
-   }
-</style>
-
-<!--The div elements for the map and message -->
-<div id="map"></div>
-<div id="msg"></div>
-<script>
-// 初期マップの設定
-var map;
-function haversine_distance(mk1, mk2) {
-    var R = 6371.0710; // Radius of the Earth in kilometers
-    var rlat1 = mk1.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
-    var rlat2 = mk2.position.lat() * (Math.PI/180);
-     // Convert degrees to radians
-    var difflat = rlat2-rlat1; // Radian difference (latitudes)
-    var difflon = (mk2.position.lng()-mk1.position.lng())
-                * (Math.PI/180); // Radian difference (longitudes)
-
-    var d = 2 * R
-    * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)
-    +Math.cos(rlat1)*Math.cos(rlat2)
-    *Math.sin(difflon/2)*Math.sin(difflon/2)));
-    return d;
-}
-function initMap() {
-  // The map, centered on Central Park
-  const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
-  const options = {zoom: 15, scaleControl: true, center: center};
-  map = new google.maps.Map(
-      document.getElementById('map'), options);
-  // Locations of landmarks
-  let road_pin = []
-  let mk = []
-  <% @pins.each_with_index do |pin,index| %>
-    road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
-
-  // The markers for The Dakota and The Frick Collection
-    mk[<%= index %>] = new google.maps.Marker({position: road_pin[<%= index %>], map: map});
-
-    <% if index != 0 %>
-      new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
-
-      var distance = haversine_distance(mk[<%= index %>], mk[<%= index - 1 %>]);
-      document.getElementById('msg').innerHTML
-        = "散歩の距離: " + distance.toFixed(2)*1000 + " m";
-    <% end %>
-  <% end %>
-
-}
-</script>
-
-
-    <!--Load the API from the specified URL --
-    <remember to replace YOUR_API_KEY-->
-<script src="https://maps.googleapis.com/maps/api/js?
-key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
-</script>
-
-
-
-
-<% @strolls.each do |stroll| %>
-  <%= stroll.start_time.strftime("%H:%M") %>
-  <%= stroll.end_time.strftime("%H:%M") %>
-  <%= stroll.vitality_condition_i18n %>
-  <%= stroll.my_dog.name%>ちゃん
-  <%= stroll.road %>
-  <%= stroll.distance %>m
-  <%= stroll.speed %>m/分
-  <%= stroll.memo %>
-
-
-
-  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
-<% end %>
-
-<h1><%= @diary.diary_date %>の日記</h1>
-
+<!--日記-->
+<h1><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
 <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
-<%= @diary.my_dog.name %>ちゃん
 <p>今日のひとこと</p>
 <%= @diary.memo %>
 <%= image_tag('food.png') %>
@@ -105,9 +22,12 @@ key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
       <%= photo.title %>
     <% end %>
   <% end %>
+  <%= link_to "もっと見る", photos_path %>
 <% else %>
   <p>写真がありません</p>
 <% end %>
+
+<%= paginate @photos %>
 
 
 <p>写真の追加</p>
@@ -123,4 +43,51 @@ key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
     <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
     <%= f.submit "保存" %>
   </div>
+<% end %>
+
+<%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id) %>
+<!--お散歩情報-->
+<% @total_dist1 = 0 %>
+<% @total_min = 0 %>
+<% @strolls.each do |stroll| %>
+  <%= stroll.my_dog.name%>ちゃんの散歩
+  <p>元気の良さ</p>
+  <%= stroll.vitality_condition_i18n %>
+  <p>散歩メモ</p>
+  <%= stroll.memo %>
+  <p>開始時間</p>
+  <%= stroll.start_time.strftime("%H:%M") %>
+  <p>終了時間</p>
+  <%= stroll.end_time.strftime("%H:%M") %>
+  <%= link_to "散歩情報を変更する", edit_stroll_path(stroll.id) %>
+  <% if stroll.pins.present? %>
+    <%= link_to stroll_path(stroll.id) do %>
+      <p>お散歩ルート</p>
+      <%= stroll.pins.order(updated_at: :desc).first.title %>
+    <% end %>
+    <% @total_dist2 = 0 %>
+    <% stroll.pins.all.each do |pin| %>
+      <% @total_dist2 += pin.distance %>
+    <% end %>
+    <p>お散歩距離</p>
+    <%= @total_dist2.to_i %> m
+    <% @total_dist1 += @total_dist2 %>
+    <p>お散歩時間</p>
+    <%= stroll.time_of_stroll %> 分
+    <% @total_min += stroll.time_of_stroll %>
+    <p>スピード</p>
+    <%= @total_dist2.to_i / stroll.time_of_stroll %> m／分
+    <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id) %>
+  <% else %>
+    <p>お散歩ルートを登録してください。</p>
+    <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
+  <% end %>
+<% end %>
+<p><%= @diary.diary_date %>の合計距離</p>
+<%= @total_dist1.to_i %> m
+<p><%= @diary.diary_date %>の合計時間</p>
+<%= @total_min %> 分
+<p><%= @diary.diary_date %>のスピード</p>
+<% if @total_min > 0 %>
+  <%= @total_dist1.to_i / @total_min %> m／分
 <% end %>

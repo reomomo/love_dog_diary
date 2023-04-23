@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @my_dogs = current_user.my_dogs.all
+    @my_dogs = current_user.my_dogs.page(params[:page]).per(4)
     @date = Date.current
     @size = MyDog.sizes.key(0)
   end
