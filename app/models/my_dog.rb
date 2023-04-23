@@ -12,6 +12,10 @@ class MyDog < ApplicationRecord
 
   has_one_attached :dog_image
 
+  validates :name, presence: true
+  validates :size, presence: true
+
+
   def get_dog_image(width, height)
     unless dog_image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.jpg')

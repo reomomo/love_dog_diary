@@ -1,5 +1,5 @@
 class DiariesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_dog, only:[:new, :index, :show, :edit]
 
   def new
     @date = params[:date]
@@ -18,23 +18,24 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @my_dogs = current_user.my_dogs
+    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
   end
 
   def show
-    @stroll = Stroll.find(params[:id])
-    @pins = @stroll.pins.all
-    @pin = @stroll.pins.order(updated_at: :desc).first
-    @pin_2 = @stroll.pins.order(updated_at: :desc).second
-
-    @diary = current_user.diaries.find(params[:id])
+    @diary = Diary.find(params[:id])
+  unless @diary.user_id == current_user.id
+    redirect_to diaries_path
+  end
     @photo = Photo.new
-    @photos = @diary.photos.all
+    @photos = @diary.photos.page(params[:page]).per(4)
     @strolls = @diary.strolls.all
   end
 
   def edit
-    @diary = current_user.diaries.find(params[:id])
+    @diary = Diary.find(params[:id])
+  unless @diary.user_id == current_user.id
+    redirect_to diaries_path
+  end
     @appetites = Diary.appetites
     @excreta = Diary.excreta
   end
@@ -44,10 +45,22 @@ class DiariesController < ApplicationController
     diary.user_id = current_user.id
     diary.update(diary_params)
     redirect_to diary_path(diary.id)
+  end
 
+  def destroy
+    pins = current_user.strolls.pins.all
+    cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   private
+
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
+  end
 
   def diary_params
     params.require(:diary).permit(:user_id, :my_dog_id, :diary_date, :memo, :appetite, :excreta)

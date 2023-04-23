@@ -9,11 +9,9 @@
 
 <% @my_dogs.each do |my_dog| %>
   <%= image_tag my_dog.get_dog_image(100,100) %>
-  <p>わんちゃんの名前</p>
-  <%= my_dog.name %>ちゃん
-  <p>わんちゃんの誕生日</p>
+  <p><%= my_dog.name %>ちゃんの誕生日</p>
   <%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %>
-  <p>わんちゃんの年齢</p>
+  <p><%= my_dog.name %>ちゃんの年齢</p>
   <!--わんちゃんの年齢計算-->
   <% months_old = (@date - my_dog.birthdate).to_i/30.416 %>
   <% years_old = (@date.strftime("%Y%m%d").to_i - my_dog.birthdate.strftime("%Y%m%d").to_i)/10000 %>
@@ -24,9 +22,9 @@
   <% else %>
     <%= years_old %>歳
   <% end %>
-  <p>わんちゃんのサイズ</p>
+  <p><%= my_dog.name %>ちゃんのサイズ</p>
   <%= my_dog.size_i18n %>
-  <p>わんちゃんの人間年齢</p>
+  <p><%= my_dog.name %>ちゃんの人間年齢</p>
   <!--大型犬で1歳未満-->
   <% if my_dog.size == @size && years_old < 1 %>
     <p>12歳未満</p>
@@ -62,8 +60,13 @@
   <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id) %>
 <% end %>
 
+<%= paginate @my_dogs %>
+
 <%= link_to "愛犬情報を追加する", new_my_dog_path %>
 
-<span>愛犬年齢が1歳未満の場合は、365日を30.416で割っていますので多少誤差があります<br>
-人間年齢は、「犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）」を参考にしています</span>
+<span>愛犬年齢が1歳未満の場合、<br>
+月齢の計算は365日を30.416日で割って1ヶ月としていますので誤差があります。<br>
+ご了承ください。<br>
+人間年齢は、<br>
+「犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）」を参考にしています。</span>
 

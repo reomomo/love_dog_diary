@@ -1,46 +1,112 @@
-<input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="検索" onclick="codeAddress()">
 <div id='map'></div>
-
 <style>
 #map {
   height: 600px;
   width: 1000px;
 }
 </style>
-
 <script>
 // 初期マップの設定
 var map;
+var clickedLines;
 function initMap() {
   // 東京駅中心に表示
   const center = {lat: 35.68143661184076, lng:139.7671569811205};
   const options = {zoom: 15, scaleControl: true, center: center};
   map = new google.maps.Map(
     document.getElementById('map'), options);
-  //mapをクリックしたときのイベントを設定
-  google.maps.event.addListener(map, 'click', mylistener);
-  //クリックしたときの処理
-  function mylistener(event){
-    //marker作成
-    var marker = new google.maps.Marker();
-    //markerの位置を設定
-    //event.latLng.lat()でクリックしたところの緯度を取得
-    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
-    //marker設置
-    marker.setMap(map);
+  clickedLines = new google.maps.Polyline({
+    geodesic: true,
+    strokeColor: "#3333FF",
+    strokeOpacity: 1.0,
+    strokeWeight: 3
+  });
+  // マップにクリックイベントを設定
+  google.maps.event.addListener(map, 'click', function(event) {
+     // クリック時の位置を渡す
+    drawOneLine(event.latLng);
+  });
+}
+
+function drawOneLine(latLng) {
+  // クリック時の動作詳細
+  var path = clickedLines.getPath();
+  if ( path.length == 0 ) {
+    // 最初のクリック時
+    createMarker(latLng);
+    // 緯度経度表示
+    document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    // 緯度経度をカラムへ送る
+    document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
+  } else {
+    // ２回目以降のクリック時、改行して緯度経度を表示
+    let textlatlng_value = document.getElementById('txtLatLng').value;
+    document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+    // 緯度経度をカラムへ送る
+    document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+
   }
-  // marker間にポリラインを描く
-  var line = new google.maps.Polyline({path: [marker.fist()], map: map});
+
+  path.push(latLng);
+    clickedLines.setMap(map);
+    // ２回目以降のクリック時、距離を計算
+    if(path.length >= 2){
+      var distances = []
+      for (let i = 0; i < path.length - 1 ; i++){
+        var prev = path.h[i]
+        var current = path.h[i + 1]
+        var prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
+    	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
+        distances.push(distance);
+
+      }
+      // 距離をカラムへ送る
+      document.getElementById('pin_distances').value = distances.join(':');
+    }
+}
+
+function createMarker(latLng) {
+  marker = new google.maps.Marker({
+  position: latLng,
+  map: map,
+  title: '最初の位置'
+  });
+}
+function deleteAllLines() {
+  var path = clickedLines.getPath();
+  if ( path != undefined ) {
+    if ( path.length >= 0 ){
+      do {
+        if ( path.length == 0 ) break;
+        path.pop();
+      } while(1);
+    }
+  }
+  document.getElementById('txtLatLng').value = "";
+    if ( marker != undefined ) {
+      marker.setMap(null);
+    }
+    if ( clickedLines != undefined ) {
+      clickedLines.setMap(null);
+    }
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 
-<%= form_with model: @pin do |f| %>
-  <div>
-    <%= f.hidden_field :latitude, :placeholder =>"緯度", id: :latitude %>
-    <%= f.hidden_field :longitude, :placeholder =>"経度", id: :longitude %>
+<div>
+  <%= form_with model: @pin do |f| %>
+    <%= f.hidden_field :txtLatLng %>
+    <%= f.hidden_field :distances %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
-    <%= f.submit %>
-  </div>
-<% end %>
+    <p>タイトル</p>
+    <%= f.text_field :title, placeholder: "お散歩ルート識別の名前" %>
+    <%= f.submit "散歩ルートを登録" %>
+  <% end %>
+</div>
+
+<div id="map_canvas"></div>
+<br />
+<textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="txtLatLng"></textarea>
+<br />
+<input type="button" value="線を消す"  onclick="deleteAllLines();" style="margin-left:20px;"/>
