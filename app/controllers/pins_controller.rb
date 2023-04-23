@@ -1,18 +1,10 @@
 class PinsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_dog, only:[:new]
 
   def new
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    elsif @diary_id = params[:stroll_id].empty?
-      flash[:notice] = "先に散歩情報を登録してください"
-      redirect_to diaries_path
-    else
-      @pin = Pin.new
+    @pin = Pin.new
       # @form = Form::PinCollection.new
-      @stroll_id = params[:stroll_id]
-    end
+    @stroll_id = params[:stroll_id]
   end
 
   def create
@@ -35,13 +27,6 @@ class PinsController < ApplicationController
     redirect_to diaries_path
   end
 
-  def edit
-
-  end
-
-  def update
-  end
-
   def destroy
     stroll = current_user.strolls.find(params[:stroll_id])
     pins = stroll.pins.all
@@ -51,6 +36,13 @@ class PinsController < ApplicationController
 
 
   private
+
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
+  end
 
   def pin_params
     params.require(:pin).permit(:stroll_id, :latitude, :longitude, :distance, :title)

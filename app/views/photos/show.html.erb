@@ -1,11 +1,11 @@
 <h1>写真詳細</h1>
-<%= @photo.my_dog.name %>
+
 <p>撮影日</p>
 <!--撮影日の日記へ遷移する-->
 <%= link_to diary_path(@photo.diary.id) do %>
-  <%= @photo.diary.diary_date %>
+  <%= @photo.my_dog.name %>ちゃんの<%= @photo.diary.diary_date %>の写真
 <% end %>
-<%= image_tag @photo.get_image(100,100) %>
+<%= image_tag @photo.get_image(350,350) %>
 <p>タイトル</p>
 <p><%= @photo.title %></p>
 <p>コメント</p>

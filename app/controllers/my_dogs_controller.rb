@@ -1,5 +1,4 @@
 class MyDogsController < ApplicationController
-  before_action :authenticate_user!
 
   def new
     @my_dog = MyDog.new

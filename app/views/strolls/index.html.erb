@@ -4,7 +4,10 @@
   お散歩ルートの追加は日記から可能です</span>
   <% @strolls.each do |stroll| %>
     <%= link_to stroll_path(stroll.id) do %>
+
+      <%= stroll.pins.distinct.pluck(:title) %>
       <%= stroll.pins.select(:title).distinct %>
+
     <% end %>
     <%= paginate @strolls %>
   <% end %>

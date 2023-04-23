@@ -1,20 +1,11 @@
 class StrollsController < ApplicationController
-  before_action :authenticate_user!
-  # before_action :check_my_dog, only[:new, :index, :show]
+  before_action :check_dog, only:[:new, :index, :show, :edit]
 
   def new
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    elsif params[:diary_id] == nil
-      flash[:notice] = "先に日記を登録してください"
-      redirect_to diaries_path
-    else
-      @stroll = Stroll.new
-      @vitality_conditions = Stroll.vitality_conditions
-      @diary_id = params[:diary_id]
-      @dog_id = params[:dog_id]
-    end
+    @stroll = Stroll.new
+    @vitality_conditions = Stroll.vitality_conditions
+    @diary_id = params[:diary_id]
+    @dog_id = params[:dog_id]
   end
 
   def create
@@ -25,34 +16,19 @@ class StrollsController < ApplicationController
   end
 
   def index
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
       @strolls = current_user.strolls.page(params[:page]).per(20)
       # cats_species = Cat.select(:species).distinct
-    end
   end
 
   def show
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @stroll = Stroll.find(params[:id])
-      @pins = @stroll.pins.all
-      @pin = @stroll.pins.order(updated_at: :desc).first
-    end
+    @stroll = Stroll.find(params[:id])
+    @pins = @stroll.pins.all
+    @pin = @stroll.pins.order(updated_at: :desc).first
   end
 
   def edit
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @stroll = Stroll.find(params[:id])
-      @vitality_conditions = Stroll.vitality_conditions
-    end
+    @stroll = Stroll.find(params[:id])
+    @vitality_conditions = Stroll.vitality_conditions
   end
 
   def update
@@ -68,9 +44,10 @@ class StrollsController < ApplicationController
     params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
   end
 
-  def check_my_dog
-    current_user.my_dogs.empty?
-    flash[:notice] = "先に愛犬情報を登録してください"
-    redirect_to new_my_dog_path
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
   end
 end

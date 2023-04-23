@@ -1,13 +1,8 @@
 class PhotosController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_dog, only:[:index, :show, :edit]
 
   def index
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @photos = current_user.photos.page(params[:page]).per(8)
-    end
+    @photos = current_user.photos.page(params[:page]).per(8)
   end
 
   def create
@@ -18,21 +13,11 @@ class PhotosController < ApplicationController
   end
 
   def show
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @photo = Photo.find(params[:id])
-    end
+    @photo = Photo.find(params[:id])
   end
 
   def edit
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @photo = Photo.find(params[:id])
-    end
+    @photo = Photo.find(params[:id])
   end
 
   def update
@@ -50,6 +35,13 @@ class PhotosController < ApplicationController
   end
 
   private
+
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
+  end
 
   def photo_params
     params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)

@@ -1,18 +1,13 @@
 class DiariesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :check_dog, only:[:new, :index, :show, :edit]
 
   def new
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @date = params[:date]
-      @dog_id = params[:dog_id]
-      @diary = Diary.new
-      @my_dogs = current_user.my_dogs.all
-      @appetites = Diary.appetites
-      @excreta = Diary.excreta
-    end
+    @date = params[:date]
+    @dog_id = params[:dog_id]
+    @diary = Diary.new
+    @my_dogs = current_user.my_dogs.all
+    @appetites = Diary.appetites
+    @excreta = Diary.excreta
   end
 
   def create
@@ -23,36 +18,20 @@ class DiariesController < ApplicationController
   end
 
   def index
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
-    end
+    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
   end
 
   def show
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @diary = current_user.diaries.find(params[:id])
-      @photo = Photo.new
-      @photos = @diary.photos.page(params[:page]).per(4)
-      @strolls = @diary.strolls.all
-    end
-
+    @diary = current_user.diaries.find(params[:id])
+    @photo = Photo.new
+    @photos = @diary.photos.page(params[:page]).per(4)
+    @strolls = @diary.strolls.all
   end
 
   def edit
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
-    else
-      @diary = current_user.diaries.find(params[:id])
-      @appetites = Diary.appetites
-      @excreta = Diary.excreta
-    end
+    @diary = current_user.diaries.find(params[:id])
+    @appetites = Diary.appetites
+    @excreta = Diary.excreta
   end
 
   def update
@@ -69,6 +48,13 @@ class DiariesController < ApplicationController
   end
 
   private
+
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
+  end
 
   def diary_params
     params.require(:diary).permit(:user_id, :my_dog_id, :diary_date, :memo, :appetite, :excreta)
