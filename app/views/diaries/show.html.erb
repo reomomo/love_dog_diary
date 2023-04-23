@@ -47,7 +47,8 @@
 
 <%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id) %>
 <!--お散歩情報-->
-<% @total = 0 %>
+<% @total_dist1 = 0 %>
+<% @total_min = 0 %>
 <% @strolls.each do |stroll| %>
   <%= stroll.my_dog.name%>ちゃんの散歩
   <p>元気の良さ</p>
@@ -64,18 +65,29 @@
       <p>お散歩ルート</p>
       <%= stroll.pins.order(updated_at: :desc).first.title %>
     <% end %>
+    <% @total_dist2 = 0 %>
     <% stroll.pins.all.each do |pin| %>
-      <% @total += pin.distance %>
+      <% @total_dist2 += pin.distance %>
     <% end %>
     <p>お散歩距離</p>
-    <%= @total.to_i %> m
+    <%= @total_dist2.to_i %> m
+    <% @total_dist1 += @total_dist2 %>
     <p>お散歩時間</p>
     <%= stroll.time_of_stroll %> 分
+    <% @total_min += stroll.time_of_stroll %>
     <p>スピード</p>
-    <%= @total.to_i / stroll.time_of_stroll %> m／分
+    <%= @total_dist2.to_i / stroll.time_of_stroll %> m／分
     <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id) %>
   <% else %>
     <p>お散歩ルートを登録してください。</p>
     <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
   <% end %>
+<% end %>
+<p><%= @diary.diary_date %>の合計距離</p>
+<%= @total_dist1.to_i %> m
+<p><%= @diary.diary_date %>の合計時間</p>
+<%= @total_min %> 分
+<p><%= @diary.diary_date %>のスピード</p>
+<% if @total_min > 0 %>
+  <%= @total_dist1.to_i / @total_min %> m／分
 <% end %>

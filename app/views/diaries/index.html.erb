@@ -10,16 +10,29 @@
   <span class="h3"><%= my_dog.name %>ちゃんのカレンダー</span>
   <%= month_calendar do |date| %>
     <!--カレンダーで選択した日付に日記があればその日記ページへ-->
+    <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
     <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
       <%= link_to diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) do %>
         <span class="text-dark"><%= date.day %></span>
         <span class="text-dark"><%= image_tag('food.png') %>
-        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
+        <span class="text-dark"><%= diary.appetite_i18n %></span>
         <span class="text-dark"><%= image_tag('dooky.png') %></span>
-        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).excreta_i18n %></span>
-        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
-        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
-
+        <span class="text-dark"><%= diary.excreta_i18n %></span>
+        <% @total_dist1 = 0 %>
+        <% @total_min = 0 %>
+        <% diary.strolls.all.each do |stroll| %>
+          <% @total_dist2 = 0 %>
+          <% stroll.pins.all.each do |pin| %>
+            <% @total_dist2 += pin.distance %>
+          <% end %>
+          <% @total_dist1 += @total_dist2 %>
+          <% @total_min += stroll.time_of_stroll %>
+        <% end %>
+        <span class="text-dark"><%= @total_min %> 分</span>
+        <span class="text-dark"><%= @total_dist1.to_i %> m</span>
+        <% if @total_min > 0 %>
+          <%= @total_dist1.to_i / @total_min %> m／分
+        <% end %>
       <% end %>
     <% else %>
     <!--日記が無ければ新規登録ページへ（カレンダーで選択した日付データも送信する）-->
