@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_beginning_of_week
+  before_action :authenticate_user!, except: [:top, :about]
 
   def after_sign_up_path_for(resource)
     my_page_path

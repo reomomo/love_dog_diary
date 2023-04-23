@@ -7,6 +7,5 @@
 </span>
 
 <%= link_to "退会しない", my_page_path %>
-<%= form_with model: @user, url: withdraw_path do |f| %>
-  <%= f.submit "退会する", "data-confirm" => "本当に退会しますか？" %>
-<% end %>
+
+<%= link_to "退会する", destroy_user_path, method: :delete, "data-confirm" => "本当に退会しますか？" %>

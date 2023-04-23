@@ -1,36 +1,45 @@
 class StrollsController < ApplicationController
+  before_action :check_dog, only:[:new, :index, :show, :edit]
+
   def new
     @stroll = Stroll.new
     @vitality_conditions = Stroll.vitality_conditions
-    @diary_id = 1
-    @dog_id = 2
+    @diary_id = params[:diary_id]
+    @dog_id = params[:dog_id]
   end
 
   def create
     @stroll = Stroll.new(stroll_params)
-    @stroll.my_dog.user.id = current_user.id
+    @stroll.user_id = current_user.id
     @stroll.save
-    redirect_to diary_path(1)
+    redirect_to diary_path(@stroll.diary.id)
   end
 
   def index
-    @lat_c = 40.774102
-    @lng_c = -73.971734
-    @lat = 40.7767644
-    @lng = -73.9761399
-    @lat_m = 40.77976635908304
-    @lng_m = -73.96337236616391
+      @strolls = current_user.strolls.page(params[:page]).per(20)
+      # cats_species = Cat.select(:species).distinct
   end
 
-  def edit
+  def show
     @stroll = Stroll.find(params[:id])
+  unless @stroll.user_id == current_user.id
+    redirect_to strolls_path
+  end
     @pins = @stroll.pins.all
     @pin = @stroll.pins.order(updated_at: :desc).first
   end
 
-  def updated
+  def edit
     @stroll = Stroll.find(params[:id])
-    @stroll.my_dog.user.id = current_user.id
+  unless @stroll.user_id == current_user.id
+    redirect_to strolls_path
+  end
+    @vitality_conditions = Stroll.vitality_conditions
+  end
+
+  def update
+    @stroll = Stroll.find(params[:id])
+    @stroll.user_id = current_user.id
     @stroll.update(stroll_params)
     redirect_to diary_path(@stroll.diary.id)
   end
@@ -38,7 +47,13 @@ class StrollsController < ApplicationController
   private
 
   def stroll_params
-    params.require(:stroll).permit(:diary_id, :my_dog_id, :road, :start_time, :end_time, :distance, :speed, :vitality_condition, :memo)
+    params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
+  end
 
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:notice] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
+    end
   end
 end
