@@ -76,6 +76,6 @@
     <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id) %>
   <% else %>
     <p>お散歩ルートを登録してください。</p>
+    <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
   <% end %>
-  <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id) %>
 <% end %>

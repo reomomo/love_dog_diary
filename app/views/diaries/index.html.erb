@@ -17,6 +17,9 @@
         <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
         <span class="text-dark"><%= image_tag('dooky.png') %></span>
         <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).excreta_i18n %></span>
+        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
+        <span class="text-dark"><%= Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).appetite_i18n %></span>
+
       <% end %>
     <% else %>
     <!--日記が無ければ新規登録ページへ（カレンダーで選択した日付データも送信する）-->

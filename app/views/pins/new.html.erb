@@ -96,15 +96,11 @@ function deleteAllLines() {
 
 <div>
   <%= form_with model: @pin do |f| %>
-    <label class="fz16"><%= radio_button_tag "select_maps", 0, :checked => true %>新しいルート</label>
     <%= f.hidden_field :txtLatLng %>
     <%= f.hidden_field :distances %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
     <p>タイトル</p>
     <%= f.text_field :title, placeholder: "お散歩ルート識別の名前" %>
-    <label class="fz16"><%= radio_button_tag "select_address", 1 %>登録済のルート</label>
-    <%= select_tag "pin_id", options_from_collection_for_select(current_user.addresses, :id, :finally_address), prompt: "ルートを選択してください" %>
-
     <%= f.submit "散歩ルートを登録" %>
   <% end %>
 </div>

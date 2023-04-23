@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2023_04_13_045412) do
   end
 
   create_table "pins", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "stroll_id", null: false
     t.decimal "latitude", precision: 10, scale: 6, null: false
     t.decimal "longitude", precision: 10, scale: 6, null: false

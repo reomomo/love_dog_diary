@@ -1,16 +1,23 @@
 <p>お散歩ルート一覧</p>
+<% @total = 0 %>
 <% if @strolls.present? %>
   <span>ルート名をクリックすると、地図が確認できます<br>
   お散歩ルートの追加は日記から可能です</span>
   <% @strolls.each do |stroll| %>
     <%= link_to stroll_path(stroll.id) do %>
-
-      <%= stroll.pins.distinct.pluck(:title) %>
-      <%= stroll.pins.select(:title).distinct %>
-
+      <% stroll.pins.pluck(:title).uniq.each do |title| %>
+        <% if title.present? %>
+          <%= title %>
+          <% stroll.pins.where(title: title).each do |pin| %>
+            <% @total += pin.distance %>
+          <% end %>
+          <p>お散歩距離</p>
+          <%= @total.to_i %> m
+        <% end %>
+      <% end %>
     <% end %>
-    <%= paginate @strolls %>
   <% end %>
+  <%= paginate @strolls %>
 <% else %>
   <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
 <% end %>

@@ -13,6 +13,7 @@ class PinsController < ApplicationController
 
     lat_lngs.each_with_index do |latLng, index|
       pin = Pin.new
+      pin.user_id = current_user.id
       pin.stroll_id = params[:pin][:stroll_id]
       pin.latitude = latLng.split(",")[0]
       pin.longitude = latLng.split(",")[1]
@@ -24,11 +25,13 @@ class PinsController < ApplicationController
       pin.title = params[:pin][:title]
       pin.save
     end
+
     redirect_to diaries_path
   end
 
   def destroy
-    stroll = current_user.strolls.find(params[:stroll_id])
+    stroll = Stroll.find(params[:stroll_id])
+    stroll.user_id = current_user.id
     pins = stroll.pins.all
     pins.destroy_all
     redirect_to strolls_path
@@ -45,6 +48,6 @@ class PinsController < ApplicationController
   end
 
   def pin_params
-    params.require(:pin).permit(:stroll_id, :latitude, :longitude, :distance, :title)
+    params.require(:pin).permit(:user_id, :stroll_id, :latitude, :longitude, :distance, :title)
   end
 end

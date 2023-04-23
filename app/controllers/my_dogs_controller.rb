@@ -16,6 +16,9 @@ class MyDogsController < ApplicationController
 
   def edit
     @my_dog = MyDog.find(params[:id])
+  unless @my_dog.user_id == current_user.id
+    redirect_to my_page_path
+  end
   end
 
   def update

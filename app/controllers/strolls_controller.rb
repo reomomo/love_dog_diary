@@ -22,12 +22,18 @@ class StrollsController < ApplicationController
 
   def show
     @stroll = Stroll.find(params[:id])
+  unless @stroll.user_id == current_user.id
+    redirect_to strolls_path
+  end
     @pins = @stroll.pins.all
     @pin = @stroll.pins.order(updated_at: :desc).first
   end
 
   def edit
     @stroll = Stroll.find(params[:id])
+  unless @stroll.user_id == current_user.id
+    redirect_to strolls_path
+  end
     @vitality_conditions = Stroll.vitality_conditions
   end
 

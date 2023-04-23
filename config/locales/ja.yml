@@ -69,6 +69,7 @@ ja:
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください
       not_saved: 登録ができませんでした
+      required: 必要です
 
   activerecord:
     attributes:

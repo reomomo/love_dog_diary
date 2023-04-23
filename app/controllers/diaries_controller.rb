@@ -22,14 +22,20 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = current_user.diaries.find(params[:id])
+    @diary = Diary.find(params[:id])
+  unless @diary.user_id == current_user.id
+    redirect_to diaries_path
+  end
     @photo = Photo.new
     @photos = @diary.photos.page(params[:page]).per(4)
     @strolls = @diary.strolls.all
   end
 
   def edit
-    @diary = current_user.diaries.find(params[:id])
+    @diary = Diary.find(params[:id])
+  unless @diary.user_id == current_user.id
+    redirect_to diaries_path
+  end
     @appetites = Diary.appetites
     @excreta = Diary.excreta
   end

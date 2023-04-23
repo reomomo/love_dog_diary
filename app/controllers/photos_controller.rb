@@ -14,10 +14,16 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+    unless @photo.user_id == current_user.id
+      redirect_to photos_path
+    end
   end
 
   def edit
     @photo = Photo.find(params[:id])
+    unless @photo.user_id == current_user.id
+      redirect_to photos_path
+    end
   end
 
   def update
