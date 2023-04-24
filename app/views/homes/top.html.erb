@@ -1,15 +1,29 @@
-<div class="top-bg-image">
-  <div class="top-box">
-    <p>ようこそ、Loveドッグダイアリーへ！</p>
+<div class="container_fuluid" style="width: 100%; min-height: 600px;">
+  <div class="top-bg-image">
+    <div class="image jumbotron mb-0 position-relative" style="width: 100%; min-height: 600px;">
+    <img src="app/assets/images/top-bg.jpg" class="img-fluid" alt="Responsive image">
+      <div class="top-box text-center">
+        <div class="card py-4 pr-2 pl-1 position-absolute" style="width: 400px; height: 150px; left: 100px; top: 60px;">
+          <h2>ようこそ、Loveドッグダイアリーへ！</h2>
 
-    <li>
-      <%= link_to "Loveドッグダイアリーってなに？？", about_path %>
-    </li>
-    <li>
-      <%= link_to "新規登録", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ログイン", new_user_session_path %>
-    </li>
+          <span>Loveドッグダイアリーでは、<br>
+          わんちゃんとのお散歩ルートや距離、散歩時間、速度<br>
+          その時に撮った写真、その日の健康状態などを<br>
+          日記として登録できます</span>
+        </div>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to "地図見本", about_path(path_id: 0) %>
+        </li>
+        <li>
+          <%= link_to "日記見本", about_path(path_id: 1) %>
+        </li>
+      </div>
+    </div>
   </div>
 </div>
