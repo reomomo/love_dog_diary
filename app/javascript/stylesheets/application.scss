@@ -14,15 +14,18 @@
   background-color: #FFD5EC !important;
 }
 
-// .top-bg-image {
-//   background-image: url(app/assets/images/top-bg.jpg);
-// }
+.top-bg-image {
+  background-image: url("../images/top-bg.jpg");
+    background-position: left;
+  background-repeat: no-repeat;
+  background-size: 100% 600px;
+}
 
-// .top-box {
-//   background:rgba(255,0,0,0.5);
-//   text-align:center;
-//   padding:15px 0;
-// }
+.top-box {
+  background:rgba(255,233,232,0.5);
+  text-align:center;
+  padding:15px 0;
+}
 
 .simple-calendar {
   table {
