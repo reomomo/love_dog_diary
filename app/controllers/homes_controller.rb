@@ -3,5 +3,6 @@ class HomesController < ApplicationController
   end
 
   def about
+    @path_id = params[:path_id].to_i
   end
 end
