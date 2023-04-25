@@ -1,47 +1,47 @@
-<style>
-   /* 地図のサイズ */
-  #map {
-    height: 500px;
-    width: 1000px;
-   }
-</style>
+<div class="container_fuluid map-image jumbotron m-0" style="width: 100%; height: 100%;">
+  <style>
+     /* 地図のサイズ */
+    #map {
+      height: 550px;
+      width: 100%;
+     }
+  </style>
 
-<!--地図とメッセージの要素 -->
-<div id="map"></div>
-<div id="msg"></div>
-<script>
-// 初期マップの設定
-var map;
-function initMap() {
-  // 地図の中心地
-  const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
-  const options = {zoom: 15, scaleControl: true, center: center};
-  map = new google.maps.Map(
-      document.getElementById('map'), options);
-  // マーカーの位置
-  let road_pin = []
-  let mk = []
-  <% @pins.each_with_index do |pin,index| %>
-    road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
-    mk[<%= index %>] = new google.maps.Marker({position: road_pin[<%= index %>], map: map});
-    <% if index != 0 %>
-    // ポリラインの描画
-      new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
-    <% end %>
-  <% end %>
+  <!--地図とメッセージの要素 -->
+  <div id="map"></div>
+  <div id="msg"></div>
+  <script>
+    // 初期マップの設定
+    var map;
+    function initMap() {
+      // 地図の中心地
+      const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
+      const options = {zoom: 15, scaleControl: true, center: center};
+      map = new google.maps.Map(
+          document.getElementById('map'), options);
+      // マーカーの位置
+      let road_pin = []
+      let mk = []
+      <% @pins.each_with_index do |pin,index| %>
+        road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
+        mk[<%= index %>] = new google.maps.Marker({position: road_pin[<%= index %>], map: map});
+        <% if index != 0 %>
+        // ポリラインの描画
+          new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
+        <% end %>
+      <% end %>
 
-}
-</script>
-
-<% @total = 0 %>
-<% @pins.each do |pin| %>
-  <% @total += pin.distance %>
-<% end %>
-<p>お散歩距離</p>
-<%= @total.to_i %> m
-
-<%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-
-<script src="https://maps.googleapis.com/maps/api/js?
-key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
-</script>
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+  <div class="row justify-content-md-center">
+    <div class="about-box mt-3 w-75 text-center" style="height: 30px;">
+      <% @total = 0 %>
+      <% @pins.each do |pin| %>
+        <% @total += pin.distance %>
+      <% end %>
+      <span class="mr-5">お散歩距離 <%= @total.to_i %> m</span>
+      <span class="ml-5"><%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+    </div>
+  </div>
+</div>

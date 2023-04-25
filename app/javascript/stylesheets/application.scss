@@ -7,7 +7,7 @@
 }
 
 .navbar-pink {
-  background-color: #FFD4E4 !important;
+  background-color: #F2CED1 !important;
 }
 
 .btn-pink {
@@ -20,21 +20,28 @@
 
 .top-bg-image {
   background-image: url("../images/top-bg.jpg");
-  background-size: 100% 600px;
+  background-size: cover;
+  background-position: bottom 0px right 0px;
+  background-repeat: no-repeat;
+  min-height: 600px;
 }
 
 .top-box {
   background:rgba(255,233,232,0.5);
   text-align:center;
-  padding:15px 0;
+  padding: 0;
+}
+
+.text-pink {
+  color: #EA3F98;
 }
 
 .top-balloon {
   position: relative;
-  width: 200px;
+  width: 180px;
   margin: 20px 0 20px 40px;
   padding: 25px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 30px;
 }
 
@@ -45,7 +52,7 @@
   width: 13px;
   height: 12px;
   bottom: -20px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 
@@ -56,7 +63,7 @@
   width: 20px;
   height: 18px;
   bottom: -9px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 .top-balloon p {
@@ -66,10 +73,10 @@
 
 .top-balloon2 {
   position: relative;
-  width: 200px;
+  width: 180px;
   margin: 20px 0 20px 40px;
   padding: 25px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 30px;
 }
 
@@ -80,7 +87,7 @@
   width: 13px;
   height: 12px;
   bottom: -20px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 
@@ -91,7 +98,7 @@
   width: 20px;
   height: 18px;
   bottom: -9px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 .top-balloon2 p {
@@ -99,6 +106,10 @@
   padding: 0;
 }
 
+.about-box {
+  background:rgba(250,250,250,0.5);
+  padding: 0;
+}
 
 .simple-calendar {
   table {
@@ -189,3 +200,14 @@
 //   white-space: nowrap;
 //   text-overflow: ellipsis;
 // }
+
+.map-image {
+  background-image: url("../images/pad.jpg");
+  background-size: cover;
+  background-position: bottom 0px right 0px;
+  min-height: 600px;
+}
+
+.footer-pink {
+  background-color: #FFD4E4 !important;
+}
