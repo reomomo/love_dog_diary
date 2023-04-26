@@ -27,7 +27,9 @@
         </tr>
         <tr>
           <th class="py-1 px-0"></th>
-          <td class="py-1 pl-5"><%= link_to "内容を変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %></td>
+          <td class="py-1 px-5 row justify-content-end">
+            <%= link_to "内容を変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+          </td>
         </tr>
       </table>
       <!--写真-->
@@ -93,7 +95,7 @@
         <% @strolls.each do |stroll| %>
           <tr>
             <th class="py-1 px-0 h5 font-weight-bold"><%= stroll.my_dog.name%>ちゃんの散歩</th>
-            <td class="py-1 pl-5 pr-0">
+            <td class="py-1 pl-5 row justify-content-end">
               <%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %>
             </td>
           </tr>
@@ -115,7 +117,7 @@
           </tr>
           <tr>
             <th class="py-1 px-0 h5 font-weight-bold"></th>
-            <td class="py-1 pl-5">
+            <td class="py-1 pl-5 row justify-content-end">
               <%= link_to "散歩情報を変更する", edit_stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
             </td>
           </tr>
@@ -153,30 +155,36 @@
             </tr>
             <tr>
               <th class="py-1 px-0"></th>
-              <td class="py-1 pl-5">
+              <td class="py-1 pl-5 row justify-content-end">
                 <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
               </td>
             </tr>
           <% else %>
             <tr>
               <th class="py-1 px-0 h5 font-weight-bold">お散歩ルートを登録してください</th>
-              <td class="py-1 pl-5">
+              <td class="py-1 pl-5 row justify-content-end">
                 <%= link_to "散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
               </td>
             </tr>
           <% end %>
         <% end %>
+        <!--.strftime("%-m月%-d日")-->
+
         <tr>
-          <th class="py-1 px-0 h5 font-weight-bold"><%= @diary.diary_date %>の合計距離</th>
+          <th class="py-1 px-0 h5 font-weight-bold"><%= @diary.diary_date %>の合計</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th class="py-1 px-0 h5 font-weight-bold">距離</th>
           <td class="py-1"><%= @total_dist1.to_i %> m</td>
         </tr>
         <tr>
-          <th class="py-1 px-0 h5 font-weight-bold"><%= @diary.diary_date %>の合計時間</th>
+          <th class="py-1 px-0 h5 font-weight-bold">時間</th>
           <td class="py-1"><%= @total_min %> 分</td>
         </tr>
         <% if @total_min > 0 %>
           <tr>
-            <th class="py-1 px-0 h5 font-weight-bold"><%= @diary.diary_date %>のスピード</th>
+            <th class="py-1 px-0 h5 font-weight-bold">スピード</th>
             <td class="py-1"><%= @total_dist1.to_i / @total_min %> m／分</td>
           </tr>
         <% end %>
