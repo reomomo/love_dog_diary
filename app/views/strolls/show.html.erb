@@ -40,8 +40,8 @@
       <% @pins.each do |pin| %>
         <% @total += pin.distance %>
       <% end %>
-      <span class="mr-5">お散歩距離 <%= @total.to_i %> m</span>
-      <span class="ml-5"><%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+      <span class="mr-5 h4 font-weight-bold border-bottom border-pink">お散歩距離 <%= @total.to_i %> m</span>
+      <span class="ml-5 btn btn-pink mr-2 font-weight-bold"><%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "text-success" %></span>
     </div>
   </div>
 </div>

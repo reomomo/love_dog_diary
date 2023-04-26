@@ -89,15 +89,59 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
     <div class="row justify-content-md-center">
       <div class="map-box mt-3 w-75 text-center" style="height: 30px;">
-        <h4 class="mr-5 font-weight-bold">お散歩距離 1490 m</h4>
-        <span class="ml-5 text-primary">散歩ルートを削除する</span>
+        <span class="mr-5 h4 font-weight-bold border-bottom border-pink">お散歩距離 1490 m</span>
+        <span class="ml-5 btn btn-pink mr-2 font-weight-bold text-success">散歩ルートを削除する</span>
       </div>
     </div>
   </div>
 <!--日記見本を選択した場合-->
 <% elsif @path_id == 1 %>
-  <h3 class="ml-4 border-bottom border-success" style="width: 200px;">日記見本</h3>
-
+  <div class="container_fuluid diary-image jumbotron m-0" style="width: 100%; height: 100%;">
+    <div class="row diary-box mt-5 justify-content-center">
+      <div class="col-xl-6 col-12">
+        <h3 class="ml-4 border-bottom border-success" style="width: 200px;">カレンダー見本</h3>
+        <div class="diary-box">
+          <span>
+            愛犬ごとにカレンダーが表示されます<br>
+            それぞれのカレンダーの日付を選択して、日記を作成してください<br>
+          </span>
+        </div>
+        <div class="row diary-box mt-3 justify-content-center">
+          <span class="text-right">
+            <%= image_tag('food.png') %>：食欲、
+            <%= image_tag('dooky.png') %>：排せつ、
+            <%= image_tag('time.png') %>：散歩時間、
+            <%= image_tag('distance.png') %>：散歩距離、
+            <%= image_tag('speed.png') %>：散歩のスピード
+          </span>
+        </div>
+        <!--愛犬ごとのカレンダー表示-->
+        <div class="mb-4 border-top border-pink">
+          <div class="diary-box mt-5 ml-5">
+            <span class="h3 font-weight-bold">レオちゃんのカレンダー</span>
+          </div>
+          <%= month_calendar do |date| %>
+            <span class="text-success"><%= date.day %></span><br>
+            <% food = ["2023-04-01" => "普通", "2023-04-02" => "多い"] %>
+            <% dooky = ["2023-04-01" => "少ない", "2023-04-02" => "普通"] %>
+            <% time = ["2023-04-01" => "75", "2023-04-02" => "50"] %>
+            <% distance = ["2023-04-01" => "2350", "2023-04-02" => "1490"] %>
+            <% speed = ["2023-04-01" => "31", "2023-04-02" => "29"] %>
+            <% food.each do |date, food| %>
+              <span class="text-dark"><%= image_tag('food.png') %> <%= "#{date} => #{food}" %></span><br>
+            <% end %>
+            <span class="text-dark"><%= image_tag('dooky.png') %> 普通</span><br>
+            <span class="text-dark"><%= image_tag('time.png') %> 60 分</span><br>
+            <span class="text-dark"><%= image_tag('distance.png') %> 1490 m</span><br>
+            <span class="text-dark"><%= image_tag('speed.png') %> 24 m／分</span>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xl-6 col-12">
+        <h3 class="ml-4 border-bottom border-success" style="width: 200px;">日記見本</h3>
+      </div>
+    </div>
+  </div>
 
 
 <% end %>

@@ -14,7 +14,7 @@
     <% end %>
   </div>
   <div class="row diary-box mt-3 justify-content-center">
-    <span class="text-right">
+    <span>
       <%= image_tag('food.png') %>：食欲、
       <%= image_tag('dooky.png') %>：排せつ、
       <%= image_tag('time.png') %>：散歩時間、
@@ -25,9 +25,9 @@
   <!--愛犬ごとのカレンダー表示-->
   <% @my_dogs.each do |my_dog| %>
     <div class="mb-4 border-top border-pink">
-    <div class="diary-box mt-5 ml-5">
-      <span class="h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</span>
-    </div>
+      <div class="diary-box mt-5 ml-5">
+        <span class="h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</span>
+      </div>
       <%= month_calendar do |date| %>
         <!--カレンダーの日付に日記を記録済みの場合-->
         <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
@@ -65,7 +65,7 @@
           <% end %>
         <% end %>
       <% end %>
-</div>
+    </div>
   <% end %>
   <%= paginate @my_dogs %>
 </div>
