@@ -29,6 +29,14 @@ class DiariesController < ApplicationController
     @photo = Photo.new
     @photos = @diary.photos.page(params[:page]).per(4)
     @strolls = @diary.strolls.all
+    @total_distances = 0
+    @diary.strolls.all.each do |stroll|
+      total = 0
+      stroll.pins.all.each do |pin|
+        total += pin.distance
+      end
+      @total_distances += total
+    end
   end
 
   def edit

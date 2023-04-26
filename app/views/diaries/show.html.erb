@@ -49,6 +49,7 @@
               <% end %>
             </div>
             <div class="row mt-2 px-5 justify-content-end">
+              <!--写真一覧へ遷移する-->
               <%= link_to "もっと見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
             </div>
           <% else %>
@@ -171,12 +172,12 @@
         <!--.strftime("%-m月%-d日")-->
 
         <tr>
-          <th class="py-1 px-0 h5 font-weight-bold"><%= @diary.diary_date %>の合計</th>
+          <th class="py-1 px-0 h5 font-weight-bold">一日の合計</th>
           <td></td>
         </tr>
         <tr>
           <th class="py-1 px-0 h5 font-weight-bold">距離</th>
-          <td class="py-1"><%= @total_dist1.to_i %> m</td>
+          <td class="py-1"><%= @total_distances.to_i %> m</td>
         </tr>
         <tr>
           <th class="py-1 px-0 h5 font-weight-bold">時間</th>

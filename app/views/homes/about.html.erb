@@ -20,74 +20,49 @@
       function initMap() {
         // 地図の中心地
         const center = {lat: 35.44487884450651, lng:139.62308928897625 };
-        const options = {zoom: 15, scaleControl: true, center: center};
+        const options = {zoom: 16, scaleControl: true, center: center};
         map = new google.maps.Map(
             document.getElementById('map'), options);
         // 地図で選択した地点の緯度経度
-          const pin1 = {lat: 35.44572877219444, lng: 139.62378010118806};
-          const pin2 = {lat: 35.446099117474276, lng: 139.6236627852748};
-          const pin3 = {lat: 35.44655668988745, lng: 139.62371183540827};
-          const pin4 = {lat: 35.44647950961486, lng: 139.6234602364601};
-          const pin5 = {lat: 35.446468786236814, lng: 139.62296662216815};
-          const pin6 = {lat: 35.44552610975033, lng: 139.62234657513955};
-          const pin7 = {lat: 35.44507891320344, lng: 139.62161466848204};
-          const pin8 = {lat: 35.44500830299523, lng: 139.6213739097131};
-          const pin9 = {lat: 35.444718015932885, lng: 139.62067089410783};
-          const pin10 = {lat: 35.44455579084709, lng: 139.62068006005006};
-          const pin11 = {lat: 35.44437547264336, lng: 139.62023738643495};
-          const pin12 = {lat: 35.44400534458001, lng: 139.62043542457928};
-          const pin13 = {lat: 35.44386298717938, lng: 139.62071500784185};
-          const pin14 = {lat: 35.44444190570535, lng: 139.62255559765396};
-          const pin15 = {lat: 35.4445842620821, lng: 139.62270703858786};
-          const pin16 = {lat: 35.444783560586565, lng: 139.6233244516261};
-          const pin17 = {lat: 35.4453097490541, lng: 139.62349651862618};
-          const pin18 = {lat: 35.44535550869139, lng: 139.62338417944576};
-          const pin19 = {lat: 35.445256362777734, lng: 139.62322503227352};
-          const pin20 = {lat: 35.44535550869139, lng: 139.62269142116656};
-          const pin21 = {lat: 35.445256362770735, lng: 139.62249014676843};
-          const pin22 = {lat: 35.445100017043366, lng: 139.62241993478065};
-          const pin23 = {lat: 35.444623351357116, lng: 139.6211607997281};
-          const pin24 = {lat: 35.444539457905776, lng: 139.62111867253543};
-          const pin25 = {lat: 35.444508951169816, lng: 139.6210531413313};
-          const pin26 = {lat: 35.444165749646395, lng: 139.62124973489702};
-          const pin27 = {lat: 35.44487884450651, lng: 139.62308928897625};
+          const pin = []
+          pin.push({lat: 35.44572877219444, lng: 139.62378010118806});
+          pin.push({lat: 35.446099117474276, lng: 139.6236627852748});
+          pin.push({lat: 35.44655668988745, lng: 139.62371183540827});
+          pin.push({lat: 35.44647950961486, lng: 139.6234602364601});
+          pin.push({lat: 35.446468786236814, lng: 139.62296662216815});
+          pin.push({lat: 35.44552610975033, lng: 139.62234657513955});
+          pin.push({lat: 35.44507891320344, lng: 139.62161466848204});
+          pin.push({lat: 35.44500830299523, lng: 139.6213739097131});
+          pin.push({lat: 35.444718015932885, lng: 139.62067089410783});
+          pin.push({lat: 35.44455579084709, lng: 139.62068006005006});
+          pin.push({lat: 35.44437547264336, lng: 139.62023738643495});
+          pin.push({lat: 35.44400534458001, lng: 139.62043542457928});
+          pin.push({lat: 35.44386298717938, lng: 139.62071500784185});
+          pin.push({lat: 35.44444190570535, lng: 139.62255559765396});
+          pin.push({lat: 35.4445842620821, lng: 139.62270703858786});
+          pin.push({lat: 35.444783560586565, lng: 139.6233244516261});
+          pin.push({lat: 35.4453097490541, lng: 139.62349651862618});
+          pin.push({lat: 35.44535550869139, lng: 139.62338417944576});
+          pin.push({lat: 35.445256362777734, lng: 139.62322503227352});
+          pin.push({lat: 35.44535550869139, lng: 139.62269142116656});
+          pin.push({lat: 35.445256362770735, lng: 139.62249014676843});
+          pin.push({lat: 35.445100017043366, lng: 139.62241993478065});
+          pin.push({lat: 35.444623351357116, lng: 139.6211607997281});
+          pin.push({lat: 35.444539457905776, lng: 139.62111867253543});
+          pin.push({lat: 35.444508951169816, lng: 139.6210531413313});
+          pin.push({lat: 35.444165749646395, lng: 139.62124973489702});
+          pin.push({lat: 35.44487884450651, lng: 139.62308928897625});
           // マーカーの位置
-          var mk = new google.maps.Marker({position: pin1, map: map});
+          var mk = new google.maps.Marker({position: pin[0], map: map});
           // ポリラインの描画
           let i;
-          for (let i = 1; i < 28; i++){
-            var line = new google.maps.Polyline({path: [pin(i), pin(i+1)], map: map});
+          for (let i = 0; i < pin.length-1; i++){
+            var line = new google.maps.Polyline({path: [pin[i], pin[i+1]], map: map});
           }
-          // var line = new google.maps.Polyline({path: [pin1, pin2], map: map});
-          // var line = new google.maps.Polyline({path: [pin2, pin3], map: map});
-          // var line = new google.maps.Polyline({path: [pin3, pin4], map: map});
-          // var line = new google.maps.Polyline({path: [pin4, pin5], map: map});
-          // var line = new google.maps.Polyline({path: [pin5, pin6], map: map});
-          // var line = new google.maps.Polyline({path: [pin6, pin7], map: map});
-          // var line = new google.maps.Polyline({path: [pin7, pin8], map: map});
-          // var line = new google.maps.Polyline({path: [pin8, pin9], map: map});
-          // var line = new google.maps.Polyline({path: [pin9, pin10], map: map});
-          // var line = new google.maps.Polyline({path: [pin10, pin11], map: map});
-          // var line = new google.maps.Polyline({path: [pin11, pin12], map: map});
-          // var line = new google.maps.Polyline({path: [pin12, pin13], map: map});
-          // var line = new google.maps.Polyline({path: [pin13, pin14], map: map});
-          // var line = new google.maps.Polyline({path: [pin14, pin15], map: map});
-          // var line = new google.maps.Polyline({path: [pin15, pin16], map: map});
-          // var line = new google.maps.Polyline({path: [pin16, pin17], map: map});
-          // var line = new google.maps.Polyline({path: [pin17, pin18], map: map});
-          // var line = new google.maps.Polyline({path: [pin18, pin19], map: map});
-          // var line = new google.maps.Polyline({path: [pin19, pin20], map: map});
-          // var line = new google.maps.Polyline({path: [pin20, pin21], map: map});
-          // var line = new google.maps.Polyline({path: [pin21, pin22], map: map});
-          // var line = new google.maps.Polyline({path: [pin22, pin23], map: map});
-          // var line = new google.maps.Polyline({path: [pin23, pin24], map: map});
-          // var line = new google.maps.Polyline({path: [pin24, pin25], map: map});
-          // var line = new google.maps.Polyline({path: [pin25, pin26], map: map});
-          // var line = new google.maps.Polyline({path: [pin26, pin27], map: map});
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-center">
       <div class="map-box mt-3 w-75 text-center" style="height: 30px;">
         <span class="mr-5 h4 font-weight-bold border-bottom border-pink">お散歩距離 1490 m</span>
         <span class="ml-5 btn btn-pink mr-2 font-weight-bold text-success">散歩ルートを削除する</span>
@@ -95,10 +70,13 @@
     </div>
   </div>
 <!--日記見本を選択した場合-->
+
+
+
 <% elsif @path_id == 1 %>
   <div class="container_fuluid diary-image jumbotron m-0" style="width: 100%; height: 100%;">
     <div class="row diary-box mt-5 justify-content-center">
-      <div class="col-xl-6 col-12">
+      <div class="col-12">
         <h3 class="ml-4 border-bottom border-success" style="width: 200px;">カレンダー見本</h3>
         <div class="diary-box">
           <span>
@@ -107,9 +85,10 @@
           </span>
         </div>
         <div class="row diary-box mt-3 justify-content-center">
+          <!--アイコン紹介-->
           <span class="text-right">
             <%= image_tag('food.png') %>：食欲、
-            <%= image_tag('dooky.png') %>：排せつ、
+            <%= image_tag('dookie.png') %>：排せつ、
             <%= image_tag('time.png') %>：散歩時間、
             <%= image_tag('distance.png') %>：散歩距離、
             <%= image_tag('speed.png') %>：散歩のスピード
@@ -121,24 +100,44 @@
             <span class="h3 font-weight-bold">レオちゃんのカレンダー</span>
           </div>
           <%= month_calendar do |date| %>
+          <%  random = Random.new %>
             <span class="text-success"><%= date.day %></span><br>
-            <% food = ["2023-04-01" => "普通", "2023-04-02" => "多い"] %>
-            <% dooky = ["2023-04-01" => "少ない", "2023-04-02" => "普通"] %>
-            <% time = ["2023-04-01" => "75", "2023-04-02" => "50"] %>
-            <% distance = ["2023-04-01" => "2350", "2023-04-02" => "1490"] %>
-            <% speed = ["2023-04-01" => "31", "2023-04-02" => "29"] %>
-            <% food.each do |date, food| %>
-              <span class="text-dark"><%= image_tag('food.png') %> <%= "#{date} => #{food}" %></span><br>
-            <% end %>
-            <span class="text-dark"><%= image_tag('dooky.png') %> 普通</span><br>
-            <span class="text-dark"><%= image_tag('time.png') %> 60 分</span><br>
-            <span class="text-dark"><%= image_tag('distance.png') %> 1490 m</span><br>
-            <span class="text-dark"><%= image_tag('speed.png') %> 24 m／分</span>
+            <!--それぞれの配列からランダムに出力-->
+            <% food = @foods[random.rand(1..@foods.count-1)] %>
+            <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
+            <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
+            <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
+            <% time = @times[random.rand(1..@times.count-1)] %>
+            <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
+            <% distance = @distances[random.rand(1..@distances.count-1)] %>
+            <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
+            <% speed = distance / time %>
+            <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
           <% end %>
         </div>
-      </div>
-      <div class="col-xl-6 col-12">
+        <div class="mb-4 border-top border-pink">
+          <div class="diary-box mt-5 ml-5">
+            <span class="h3 font-weight-bold">こたろうちゃんのカレンダー</span>
+          </div>
+          <%= month_calendar do |date| %>
+          <%  random = Random.new %>
+            <span class="text-success"><%= date.day %></span><br>
+            <!--それぞれの配列からランダムに出力-->
+            <% food = @foods[random.rand(1..@foods.count-1)] %>
+            <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
+            <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
+            <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
+            <% time = @times[random.rand(1..@times.count-1)] %>
+            <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
+            <% distance = @distances[random.rand(1..@distances.count-1)] %>
+            <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
+            <% speed = distance / time %>
+            <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
+          <% end %>
+        </div>
         <h3 class="ml-4 border-bottom border-success" style="width: 200px;">日記見本</h3>
+
+
       </div>
     </div>
   </div>

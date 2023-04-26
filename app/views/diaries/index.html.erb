@@ -14,9 +14,10 @@
     <% end %>
   </div>
   <div class="row diary-box mt-3 justify-content-center">
+    <!--アイコン紹介-->
     <span>
       <%= image_tag('food.png') %>：食欲、
-      <%= image_tag('dooky.png') %>：排せつ、
+      <%= image_tag('dookie.png') %>：排せつ、
       <%= image_tag('time.png') %>：散歩時間、
       <%= image_tag('distance.png') %>：散歩距離、
       <%= image_tag('speed.png') %>：散歩のスピード
@@ -37,7 +38,7 @@
             <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
             <span class="text-success"><%= date.day %></span><br>
             <span class="text-dark"><%= image_tag('food.png') %> <%= diary.appetite_i18n %></span><br>
-            <span class="text-dark"><%= image_tag('dooky.png') %> <%= diary.excreta_i18n %></span><br>
+            <span class="text-dark"><%= image_tag('dookie.png') %> <%= diary.excreta_i18n %></span><br>
             <!--一日トータルの散歩距離-->
             <% @total_dist1 = 0 %>
             <!--一日トータルの散歩時間-->
