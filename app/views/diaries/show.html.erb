@@ -61,39 +61,37 @@
           <%= paginate @photos %>
         </div>
       </div>
-      <div class="row mt-2">
-        <div class="col-12">
-          <span class="mb-0 h5 font-weight-bold border-bottom border-pink">写真の追加</span>
+      <div class="row mt-2 justify-content-center">
+        <div class="col-6 px-0">
           <%= form_with model: @photo do |f| %>
             <table class="table table-borderless">
               <tr>
-                <th>タイトル</th>
-                <td><%= f.text_field :title %></td>
+                <th colspan="2" class="py-2 px-0">
+                  <span class="h5 font-weight-bold border-bottom border-pink">写真の追加</span>
+                </th>
               </tr>
               <tr>
-                <th>コメント</th>
-                <td><%= f.text_area :body %></td>
+                <th class="py-1 px-0 small">タイトル</th>
+                <td class="p-0 small"><%= f.text_field :title %></td>
               </tr>
               <tr>
-                <th>写真</th>
-                <td><%= f.file_field :image, accept: "image/*" %></td>
+                <th class="py-1 px-0 small">コメント</th>
+                <td class="p-0 small"><%= f.text_area :body %></td>
+              </tr>
+              <tr>
+                <th class="py-1 px-0 small">写真</th>
+                <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
                 <%= f.hidden_field :diary_id, :value => @diary.id %>
                 <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
               </tr>
               <tr>
                 <th></th>
-                <td><%= f.submit "保存", class: "btn btn-lightpink font-weight-bold text-success" %></td>
+                <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
               </tr>
-
-
-              <div class="media position-relative">
-                <div class="diaries-image jumbotron m-0" style="width: 200px; min-height: 200px;"></div>
-              </div>
-
-
             </table>
           <% end %>
         </div>
+        <div class="col-4 p-0 media diaries-image jumbotron" style="width: 160px; height: 194px;"></div>
       </div>
     </div>
     <!--散歩情報-->

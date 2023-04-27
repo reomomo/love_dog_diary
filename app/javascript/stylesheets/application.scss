@@ -238,13 +238,29 @@
   text-overflow: ellipsis;
 }
 
+.diaries-image {
+  background-image: url("../images/dachshund.jpg");
+  background-size: 100%;
+  background-position: top 0px right 0px;
+  background-repeat: no-repeat;
+}
+
 .diary-memo {
   overflow: scroll;
 }
 
-.diary-memo::-webkit-scrollbar
+.diary-memo::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
 
-.diary-memo::-webkit-scrollbar
+.diary-memo::-webkit-scrollbar-track {
+  background-color: #FFD5EC;
+}
+
+.diary-memo::-webkit-scrollbar-thumb {
+  background-color: #E9B4D0;
+}
 
 
 // .diaries-image{
