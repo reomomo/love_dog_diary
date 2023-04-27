@@ -27,15 +27,23 @@ class DiariesController < ApplicationController
     redirect_to diaries_path
   end
     @photo = Photo.new
-    @photos = @diary.photos.page(params[:page]).per(4)
+    @photos = @diary.photos.page(params[:page]).per(8)
     @strolls = @diary.strolls.all
     @total_distances = 0
+    @total_min = 0
+
     @diary.strolls.all.each do |stroll|
-      total = 0
+      @total = 0
       stroll.pins.all.each do |pin|
-        total += pin.distance
+        # 1回の散歩ごとの散歩距離（複数のポリラインの合計距離）
+        @total += pin.distance
       end
-      @total_distances += total
+      # 一日合計の散歩距離
+      @total_distances += @total
+    end
+    @diary.strolls.all.each do |stroll|
+      # 一日合計の散歩
+      @total_min += stroll.time_of_stroll
     end
   end
 
@@ -53,12 +61,6 @@ class DiariesController < ApplicationController
     diary.user_id = current_user.id
     diary.update(diary_params)
     redirect_to diary_path(diary.id)
-  end
-
-  def destroy
-    pins = current_user.strolls.pins.all
-    cart_items.destroy_all
-    redirect_to cart_items_path
   end
 
   private

@@ -10,6 +10,11 @@
   border-color: #FFD5EC !important;
 }
 
+.border-pink-thick {
+  border-color: #FFD5EC !important;
+  border-bottom-width: 10px !important;
+}
+
 .navbar-pink {
   background-color: #F2CED1 !important;
 }
@@ -114,6 +119,24 @@
   padding: 0;
 }
 
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
 .diary-image {
   background-image: url("../images/pad-line.jpg");
   background-size: 50%;
@@ -209,6 +232,24 @@
   .has-events {}
 }
 
+.daiary-photo {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.diary-memo {
+  overflow: scroll;
+}
+
+.diary-memo::-webkit-scrollbar
+
+.diary-memo::-webkit-scrollbar
+
+
+// .diaries-image{
+//   background-image: url("../images/hana-line.jpg");
+// }
 
 // .item-name {
 //   margin: 10px 0;
