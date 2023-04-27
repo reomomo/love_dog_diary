@@ -33,15 +33,13 @@ class DiariesController < ApplicationController
     @total_min = 0
 
     @diary.strolls.all.each do |stroll|
-      @total = 0
+      total = 0
       stroll.pins.all.each do |pin|
         # 1回の散歩ごとの散歩距離（複数のポリラインの合計距離）
-        @total += pin.distance
+        total += pin.distance
       end
       # 一日合計の散歩距離
-      @total_distances += @total
-    end
-    @diary.strolls.all.each do |stroll|
+      @total_distances += total
       # 一日合計の散歩
       @total_min += stroll.time_of_stroll
     end

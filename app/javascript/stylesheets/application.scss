@@ -10,8 +10,18 @@
   border-color: #FFD5EC !important;
 }
 
-.border-pink-thick {
+.border-pink-medium {
   border-color: #FFD5EC !important;
+  border-bottom-width: medium !important;
+}
+
+.border-pink-10 {
+  border-color: #FFD5EC !important;
+  border-bottom-width: 10px !important;
+}
+
+.border-green-10 {
+  border-color: #CCFFCC !important;
   border-bottom-width: 10px !important;
 }
 
@@ -238,10 +248,19 @@
   text-overflow: ellipsis;
 }
 
-.diaries-image {
-  background-image: url("../images/dachshund.jpg");
-  background-size: 100%;
+.diaries-image1 {
+  border-color: #FFD5EC;
+  background-image: url("../images/kishuu.jpg");
+  background-size: cover;
   background-position: top 0px right 0px;
+  background-repeat: no-repeat;
+}
+
+.diaries-image2 {
+  border-color: #FFD5EC;
+  background-image: url("../images/dachshund.jpg");
+  background-size: cover;
+  background-position: top 0px;
   background-repeat: no-repeat;
 }
 
@@ -251,7 +270,7 @@
 
 .diary-memo::-webkit-scrollbar {
   width: 3px;
-  height: 3px;
+  height: 0;
 }
 
 .diary-memo::-webkit-scrollbar-track {
