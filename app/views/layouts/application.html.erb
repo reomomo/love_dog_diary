@@ -12,7 +12,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-pink" style="width: 100%; height: 52px;">
+      <nav class="navbar navbar-expand-md navbar-pink pr-5" style="width: 100%; height: 52px;">
         <a class="navbar-brand" href="/">
           <%= image_tag('logo.png')%>
         </a>
@@ -26,7 +26,7 @@
                 <%= link_to "マイページ", my_page_path, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
               </li>
               <li class="nav-item btn btn-pink my-3 mx-1 p-0">
-                <%= link_to "日記", diaries_path, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
+                <%= link_to "カレンダー", diaries_path, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
               </li>
               <li class="nav-item btn btn-pink my-3 mx-1 p-0">
                 <%= link_to "散歩ルート一覧", strolls_path, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
@@ -52,7 +52,7 @@
     <main>
       <%= yield %>
     </main>
-    <footer>
+    <footer class="footer-pink">
 
     </footer>
   </body>

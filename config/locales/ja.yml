@@ -83,3 +83,13 @@ ja:
       my_dog:
         name: 愛犬の名前
         size: サイズ
+
+  views:
+      pagination:
+        first: "&laquo; 最初"
+        last: "最後 &raquo;"
+        previous: "&lsaquo; 前"
+        next: "次 &rsaquo;"
+        truncate: "..."
+
+
