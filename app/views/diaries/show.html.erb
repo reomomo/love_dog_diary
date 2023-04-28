@@ -1,12 +1,12 @@
 <div class="container_fuluid diaries-image0 mx-3">
   <div class="row my-2 justify-content-center">
     <!--日記-->
-    <h1 class="diaries-box font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
+    <h1 class="box-8 font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
     <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-6 col-11">
-      <div class="diaries-box">
+      <div class="box-8">
         <div class="row">
           <div class="col-12">
             <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんのひとこと</span><br>
@@ -106,7 +106,7 @@
     </div>
     <!--散歩情報-->
     <div class="col-lg-5 col-11 border-left border-pink-medium">
-      <div class="diaries-box">
+      <div class="box-8">
         <table class="table table-borderless">
           <tr>
             <th colspan="2" class="py-3 px-0">
