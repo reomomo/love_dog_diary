@@ -1,7 +1,7 @@
 <% if @path_id == 0 %>
   <div class="container_fuluid map-image jumbotron m-0" style="width: 100%; height: 100%;">
     <div class="about-box w-25 text-left" style="height: 40px;">
-      <h1 class="ml-4 border-bottom border-success font-weight-bold" style="width: 200px;">散歩ルート見本</h1>
+      <h1 class="ml-4 border-bottom border-green-10 font-weight-bold" style="width: 200px;">散歩ルート見本</h1>
     </div>
     <style>
        /* 地図のサイズ */
@@ -24,41 +24,41 @@
         map = new google.maps.Map(
             document.getElementById('map'), options);
         // 地図で選択した地点の緯度経度
-          const pin = []
-          pin.push({lat: 35.44572877219444, lng: 139.62378010118806});
-          pin.push({lat: 35.446099117474276, lng: 139.6236627852748});
-          pin.push({lat: 35.44655668988745, lng: 139.62371183540827});
-          pin.push({lat: 35.44647950961486, lng: 139.6234602364601});
-          pin.push({lat: 35.446468786236814, lng: 139.62296662216815});
-          pin.push({lat: 35.44552610975033, lng: 139.62234657513955});
-          pin.push({lat: 35.44507891320344, lng: 139.62161466848204});
-          pin.push({lat: 35.44500830299523, lng: 139.6213739097131});
-          pin.push({lat: 35.444718015932885, lng: 139.62067089410783});
-          pin.push({lat: 35.44455579084709, lng: 139.62068006005006});
-          pin.push({lat: 35.44437547264336, lng: 139.62023738643495});
-          pin.push({lat: 35.44400534458001, lng: 139.62043542457928});
-          pin.push({lat: 35.44386298717938, lng: 139.62071500784185});
-          pin.push({lat: 35.44444190570535, lng: 139.62255559765396});
-          pin.push({lat: 35.4445842620821, lng: 139.62270703858786});
-          pin.push({lat: 35.444783560586565, lng: 139.6233244516261});
-          pin.push({lat: 35.4453097490541, lng: 139.62349651862618});
-          pin.push({lat: 35.44535550869139, lng: 139.62338417944576});
-          pin.push({lat: 35.445256362777734, lng: 139.62322503227352});
-          pin.push({lat: 35.44535550869139, lng: 139.62269142116656});
-          pin.push({lat: 35.445256362770735, lng: 139.62249014676843});
-          pin.push({lat: 35.445100017043366, lng: 139.62241993478065});
-          pin.push({lat: 35.444623351357116, lng: 139.6211607997281});
-          pin.push({lat: 35.444539457905776, lng: 139.62111867253543});
-          pin.push({lat: 35.444508951169816, lng: 139.6210531413313});
-          pin.push({lat: 35.444165749646395, lng: 139.62124973489702});
-          pin.push({lat: 35.44487884450651, lng: 139.62308928897625});
-          // マーカーの位置
-          var mk = new google.maps.Marker({position: pin[0], map: map});
-          // ポリラインの描画
-          let i;
-          for (let i = 0; i < pin.length-1; i++){
-            var line = new google.maps.Polyline({path: [pin[i], pin[i+1]], map: map});
-          }
+        const pin = []
+        pin.push({lat: 35.44572877219444, lng: 139.62378010118806});
+        pin.push({lat: 35.446099117474276, lng: 139.6236627852748});
+        pin.push({lat: 35.44655668988745, lng: 139.62371183540827});
+        pin.push({lat: 35.44647950961486, lng: 139.6234602364601});
+        pin.push({lat: 35.446468786236814, lng: 139.62296662216815});
+        pin.push({lat: 35.44552610975033, lng: 139.62234657513955});
+        pin.push({lat: 35.44507891320344, lng: 139.62161466848204});
+        pin.push({lat: 35.44500830299523, lng: 139.6213739097131});
+        pin.push({lat: 35.444718015932885, lng: 139.62067089410783});
+        pin.push({lat: 35.44455579084709, lng: 139.62068006005006});
+        pin.push({lat: 35.44437547264336, lng: 139.62023738643495});
+        pin.push({lat: 35.44400534458001, lng: 139.62043542457928});
+        pin.push({lat: 35.44386298717938, lng: 139.62071500784185});
+        pin.push({lat: 35.44444190570535, lng: 139.62255559765396});
+        pin.push({lat: 35.4445842620821, lng: 139.62270703858786});
+        pin.push({lat: 35.444783560586565, lng: 139.6233244516261});
+        pin.push({lat: 35.4453097490541, lng: 139.62349651862618});
+        pin.push({lat: 35.44535550869139, lng: 139.62338417944576});
+        pin.push({lat: 35.445256362777734, lng: 139.62322503227352});
+        pin.push({lat: 35.44535550869139, lng: 139.62269142116656});
+        pin.push({lat: 35.445256362770735, lng: 139.62249014676843});
+        pin.push({lat: 35.445100017043366, lng: 139.62241993478065});
+        pin.push({lat: 35.444623351357116, lng: 139.6211607997281});
+        pin.push({lat: 35.444539457905776, lng: 139.62111867253543});
+        pin.push({lat: 35.444508951169816, lng: 139.6210531413313});
+        pin.push({lat: 35.444165749646395, lng: 139.62124973489702});
+        pin.push({lat: 35.44487884450651, lng: 139.62308928897625});
+        // マーカーの位置
+        var mk = new google.maps.Marker({position: pin[0], map: map});
+        // ポリラインの描画
+        let i;
+        for (let i = 0; i < pin.length-1; i++){
+          var line = new google.maps.Polyline({path: [pin[i], pin[i+1]], map: map});
+        }
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
@@ -69,68 +69,65 @@
       </div>
     </div>
   </div>
-<!--日記見本を選択した場合-->
-
-
-
+<!--カレンダーの見本を選択した場合-->
 <% elsif @path_id == 1 %>
   <div class="container_fuluid diary-image jumbotron m-0" style="width: 100%; height: 100%;">
-    <h1 class="border-bottom border-success" style="width: 280px;">カレンダー見本</h1>
+    <h1 class="border-bottom border-green-10" style="width: 280px;">カレンダー見本</h1>
     <div class="row diary-box mt-5 justify-content-center">
-      <div class="col-12">
+      <div class="diary-box">
+        <span>
+          カレンダーの日付を選択して、日記を作成してください<br>
+        </span>
 
-        <div class="diary-box">
-          <span>
-            愛犬ごとにカレンダーが表示されます<br>
-            それぞれのカレンダーの日付を選択して、日記を作成してください<br>
-          </span>
-        </div>
-        <div class="row diary-box mt-3 justify-content-center">
-          <!--アイコン紹介-->
-          <span class="text-right">
-            <%= image_tag('food.png') %>：食欲、
-            <%= image_tag('dookie.png') %>：排せつ、
-            <%= image_tag('time.png') %>：散歩時間、
-            <%= image_tag('distance.png') %>：散歩距離、
-            <%= image_tag('speed.png') %>：散歩のスピード
-          </span>
-        </div>
-        <!--愛犬ごとのカレンダー表示-->
-        <div class="mb-5 border-top border-pink">
-          <div class="diary-box mt-5 ml-5">
-            <span class="h3 font-weight-bold">レオちゃんのカレンダー</span>
-          </div>
-          <%= month_calendar do |date| %>
-          <%  random = Random.new %>
-            <span class="text-success"><%= date.day %></span><br>
-            <!--それぞれの配列からランダムに出力-->
-            <% food = @foods[random.rand(1..@foods.count-1)] %>
-            <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
-            <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
-            <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
-            <% time = @times[random.rand(1..@times.count-1)] %>
-            <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
-            <% distance = @distances[random.rand(1..@distances.count-1)] %>
-            <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
-            <% speed = distance / time %>
-            <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
-          <% end %>
-        </div>
+        <span>
+          <%= image_tag('food.png') %>：食欲、
+          <%= image_tag('dookie.png') %>：排せつ、
+          <%= image_tag('time.png') %>：散歩時間、
+          <%= image_tag('distance.png') %>：散歩距離、
+          <%= image_tag('speed.png') %>：散歩のスピード
+        </span>
       </div>
     </div>
+    <div class="mb-5 border-top border-pink">
+      <div class="diary-box mt-5 ml-5">
+        <span class="h3 font-weight-bold">レオちゃんのカレンダー</span>
+      </div>
+      <%= month_calendar do |date| %>
+      <%  random = Random.new %>
+        <span class="text-success"><%= date.day %></span><br>
+        <!--それぞれの配列からランダムに出力-->
+        <% food = @foods[random.rand(1..@foods.count-1)] %>
+        <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
+        <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
+        <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
+        <% time = @times[random.rand(1..@times.count-1)] %>
+        <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
+        <% distance = @distances[random.rand(1..@distances.count-1)] %>
+        <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
+        <% speed = distance / time %>
+        <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
+      <% end %>
+    </div>
+  </div>
+<!--日記の見本を選択した場合-->
+<% else %>
+  <div class="container_fuluid diaries-image0 jumbotron m-0" style="width: 100%; height: 100%;">
     <div class="mt-5 diaries-box">
-          <h1 class="border-bottom border-success" style="width: 160px;">日記見本</h1>
-          <div class="row my-2 justify-content-center">
-            <div class="col-7">
-            <!--日記-->
-              <h2 class="font-weight-bold">レオちゃんの2023年4月1日の日記</h2>
-            </div>
-            <div class="col-2 m-0 p-0 media about-image jumbotron" style="width: 80px; height: 80px;"></div>
-          </div>
-          <div class="row my-2 justify-content-center">
-            <div class="col-lg-6 col-11">
+      <h1 class="border-bottom border-green-10" style="width: 160px;">日記見本</h1>
+      <div class="row my-2 justify-content-center">
+        <div class="col-7">
+          <!--日記-->
+          <h2 class="font-weight-bold">レオちゃんの2023年4月1日の日記</h2>
+        </div>
+        <div class="col-2 m-0 p-0 media about-image jumbotron" style="width: 80px; height: 80px;"></div>
+      </div>
+      <div class="row my-5 justify-content-center">
+        <div class="col-lg-6 col-11">
+          <div class="row">
+            <div class="col-12">
               <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんのひとこと</span><br>
             </div>
+          </div>
           <div class="row mt-3 ml-4">
             <div class="diary-memo col-11 w-75" style="height: 150px;">
               <span>
@@ -165,102 +162,98 @@
             </div>
           </div>
           <!--写真-->
-          <div class="row mt-3 ml-3">
-            <div class="col-11">
+          <div class="row mt-3">
+            <div class="col-12">
               <span class="h4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
-                <div class="row mt-3 justify-content-center">
-                  <div class="col-sm-4 col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 160px; height: 200px;"></div>
-                  <div class="col-sm-4 col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
-                </div>
+              <div class="row mt-3 justify-content-center">
+                <div class="col-sm-4 col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 200px; height: 200px;"></div>
+                <div class="col-sm-4 col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+              </div>
             </div>
           </div>
-      <div class="row mt-2 justify-content-center">
-        <div class="col-7 px-0">
-            <table class="table table-borderless">
-              <tr>
-                <th colspan="2" class="py-3 px-0">
-                  <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
-                </th>
-              </tr>
-              <tr>
-                <th class="col-4 py-1 px-0 small">タイトル</th>
-                <td class="p-0 small">
-                  <div class="border w-50">タイトルを入力</div>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-1 px-0 small">コメント</th>
-                <td class="p-0 small">
-                  <div class="border w-50">コメントを入力</div>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-1 px-0 small">写真</th>
-                <td class="p-0 small">
-                  <div class="border w-50">ファイルを選択</div>選択されていません
-                </td>
-              </tr>
-              <tr>
-                <th></th>
-                <td class="py-1 px-0 small">
-                  <span class="btn btn-lightpink font-weight-bold text-success">保存</span>
-                </td>
-              </tr>
-            </table>
+          <div class="row mt-2 justify-content-center">
+            <div class="col-sm-7 col-8 px-0">
+              <table class="table table-borderless">
+                <tr>
+                  <th colspan="2" class="py-3 px-0">
+                    <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="col-4 py-1 px-0 small">タイトル</th>
+                  <td class="p-0 small">
+                    <div class="border w-50">タイトルを入力</div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="py-1 px-0 small">コメント</th>
+                  <td class="p-0 small">
+                    <div class="border w-50">コメントを入力</div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="py-1 px-0 small">写真</th>
+                  <td class="p-0 small">
+                    <div class="border w-50">ファイルを選択</div>選択されていません
+                  </td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td class="py-1 px-0 small">
+                    <span class="btn btn-lightpink font-weight-bold text-success">保存</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4 col-7 mt-5 mx-0 p-0 media diaries-image2 jumbotron" style="width: 250px; height: 255px;"></div>
+          </div>
         </div>
-        <div class="col-4 m-0 p-0 media diaries-image2 jumbotron" style="width: 160px; height: 255px;"></div>
-      </div>
-      <!--散歩情報-->
-      <div class="row mt-4 my-2 justify-content-center">
+        <!--散歩情報-->
         <div class="col-lg-5 col-11">
           <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんの散歩</span>
-        <table class="table table-borderless">
-          <tr>
-            <th class="col-3 py-1 px-0"></th>
-            <td class="row mb-1 py-1 px-5 justify-content-end">
-              <span class="btn btn-lightpink font-weight-bold text-success">散歩情報を登録する</span>
-            </td>
-          </tr>
-          <tr>
-            <th colspan="2" class="py-3 px-0">
-              <span class="h5 font-weight-bold border-bottom border-pink-medium">1回目の散歩</span>
-            </th>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0">元気の良さ</th>
-            <td class="py-1 px-0">元気</td>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
-            <td class="py-1 px-0">
-              <div class=" diary-memo w-75" style="height: 50px;">涼しくて歩きやすかった</div>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0">開始時間</th>
-            <td class="py-1 px-0">7:30</td>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0">終了時間</th>
-            <td class="py-1 px-0">8:30</td>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0"></th>
-            <td class="row mb-3 py-1 px-5 justify-content-end">
-              <span class="btn btn-lightpink font-weight-bold text-success">元気の良さ、散歩メモ、時間を変更する</span>
-            </td>
-          </tr>
+          <table class="table table-borderless mt-3">
             <tr>
-              <th class="col-3 py-1 px-0">お散歩ルート</th>
-              <td class="py-1 px-0">
-                お気に入り
+              <th class="col-3 py-1 px-0"></th>
+              <td class="row mb-1 py-1 px-5 justify-content-end">
+                <span class="btn btn-lightpink font-weight-bold text-success">散歩情報を登録する</span>
               </td>
             </tr>
             <tr>
-              <th class="col-3 py-1 px-0">お散歩距離</th>
+              <th colspan="2" class="py-3 px-0">
+                <span class="h5 font-weight-bold border-bottom border-pink-medium">1回目の散歩</span>
+              </th>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">元気の良さ</th>
+              <td class="py-1 px-0">元気</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
               <td class="py-1 px-0">
-                2540 m
+                <div class=" diary-memo w-75" style="height: 50px;">涼しくて歩きやすかった</div>
               </td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">開始時間</th>
+              <td class="py-1 px-0">7:30</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">終了時間</th>
+              <td class="py-1 px-0">8:30</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0"></th>
+              <td class="row mb-3 py-1 px-5 justify-content-end">
+                <span class="btn btn-lightpink font-weight-bold text-success">元気の良さ、散歩メモ、時間を変更する</span>
+              </td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">お散歩ルート</th>
+              <td class="py-1 px-0">お気に入り</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">お散歩距離</th>
+              <td class="py-1 px-0">2540 m</td>
             </tr>
             <tr>
               <th class="col-3 py-1 px-0">お散歩時間</th>
@@ -268,9 +261,7 @@
             </tr>
             <tr>
               <th class="col-3 py-1 px-0">スピード</th>
-              <td class="py-1 px-0">
-                42 m／分
-              </td>
+              <td class="py-1 px-0">42 m／分</td>
             </tr>
             <tr>
               <th class="col-3 py-1 px-0"></th>
@@ -278,34 +269,26 @@
                 <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを地図で確認する</span>
               </td>
             </tr>
-
-        <tr>
-          <th colspan="2" class="py-3 px-0">
-            <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
-          </th>
-        </tr>
-        <tr>
-          <th class="col-3 py-1 px-0">距離</th>
-          <td class="py-1 px-0">2540 m</td>
-        </tr>
-        <tr>
-          <th class="col-3 py-1 px-0">時間</th>
-          <td class="py-1 px-0">60 分</td>
-        </tr>
-          <tr>
-            <th class="col-3 py-1 px-0">スピード</th>
-            <td class="py-1 px-0">
-              42 m／分
-            </td>
-          </tr>
-      </table>
-    </div>
-  </div>
-</div>
-</div>
+            <tr>
+              <th colspan="2" class="py-3 px-0">
+                <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+              </th>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">距離</th>
+              <td class="py-1 px-0">2540 m</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">時間</th>
+              <td class="py-1 px-0">60 分</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">スピード</th>
+              <td class="py-1 px-0">42 m／分</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
-
 <% end %>

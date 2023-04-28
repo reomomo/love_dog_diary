@@ -256,8 +256,15 @@
 }
 
 .diaries-box {
-  background:rgba(250,250,250,1);
+  background:rgba(250,250,250,0.8);
   padding: 0;
+}
+
+.diaries-image0 {
+  background-image: url("../images/pad-gray.jpg");
+  background-size: 50%;
+  background-position: top 0px right 0px;
+  min-height: 600px;
 }
 
 .diaries-image1 {
@@ -279,7 +286,7 @@
 }
 
 .diary-memo::-webkit-scrollbar {
-  width: 3px;
+  width: 0;
   height: 0;
 }
 
