@@ -6,30 +6,65 @@
   box-sizing: border-box;
 }
 
+.border-pink {
+  border-color: #FFD5EC !important;
+}
+
+.border-pink-medium {
+  border-color: #FFD5EC !important;
+  border-bottom-width: medium !important;
+}
+
+.border-pink-10 {
+  border-color: #FFD5EC !important;
+  border-bottom-width: 10px !important;
+}
+
+.border-green-10 {
+  border-color: #CCFFCC !important;
+  border-bottom-width: 10px !important;
+}
+
 .navbar-pink {
-  background-color: #FFD4E4 !important;
+  background-color: #F2CED1 !important;
 }
 
 .btn-pink {
-  background-color: #FFABCE !important;
+  background-color: #E9B4D0 !important;
+}
+
+.btn-lightpink {
+  background-color: #F2CED1 !important;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,255,86,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .top-bg-image {
   background-image: url("../images/top-bg.jpg");
-  background-size: 100% 600px;
+  background-size: cover;
+  background-position: bottom 0px right 0px;
+  background-repeat: no-repeat;
+  min-height: 600px;
 }
 
 .top-box {
   background:rgba(255,233,232,0.5);
   text-align:center;
-  padding:15px 0;
+  padding: 0;
+}
+
+.text-pink {
+  color: #EA3F98;
 }
 
 .top-balloon {
   position: relative;
+  width: 180px;
   margin: 20px 0 20px 40px;
   padding: 25px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 30px;
 }
 
@@ -40,7 +75,7 @@
   width: 13px;
   height: 12px;
   bottom: -20px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 
@@ -51,7 +86,7 @@
   width: 20px;
   height: 18px;
   bottom: -9px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 .top-balloon p {
@@ -61,9 +96,10 @@
 
 .top-balloon2 {
   position: relative;
+  width: 180px;
   margin: 20px 0 20px 40px;
   padding: 25px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 30px;
 }
 
@@ -74,7 +110,7 @@
   width: 13px;
   height: 12px;
   bottom: -20px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 
@@ -85,7 +121,7 @@
   width: 20px;
   height: 18px;
   bottom: -9px;
-  background: #FFABCE;
+  background: #C6F7D5;
   border-radius: 50%;
 }
 .top-balloon2 p {
@@ -93,17 +129,58 @@
   padding: 0;
 }
 
+.about-image{
+  background-image: url("../images/dog.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.diary-image {
+  background-image: url("../images/pad-line.jpg");
+  background-size: 50%;
+  background-position: top 0px right 0px;
+  min-height: 600px;
+}
+
+.diary-box {
+  background:rgba(250,250,250,0.5);
+  padding: 0;
+}
 
 .simple-calendar {
+  a {
+    color: #28A745;
+  }
+
   table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid rgb(221, 221, 221);
+    border: 1px solid #FFD5EC;
     border-collapse: collapse;
     box-sizing: border-box;
     max-width: 100%;
-    width: 80%;
+    width: 90%;
+    margin: 0 auto;
   }
 
   tr {
@@ -111,11 +188,12 @@
   }
 
   th {
+    background: #FFFFFF;
     padding: 4px;
-    border-bottom: 2px solid rgb(221, 221, 221);
+    border-bottom: 2px solid #FFD5EC;
     border-collapse: collapse;
-    border-left: 1px solid rgb(221, 221, 221);
-    border-right: 1px solid rgb(221, 221, 221);
+    border-left: 1px solid #FFD5EC;
+    border-right: 1px solid #FFD5EC;
     border-top: 0px none rgb(51, 51, 51);
     box-sizing: border-box;
   }
@@ -124,18 +202,17 @@
     padding: 6px;
     vertical-align: top;
     width: 14%;
-
     border: 1px solid #ddd;
-    border-top-color: rgb(221, 221, 221);
+    border-top-color: #FFD5EC;
     border-top-style: solid;
     border-top-width: 1px;
-    border-right-color: rgb(221, 221, 221);
+    border-right-color: #FFD5EC;
     border-right-style: solid;
     border-right-width: 1px;
-    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-color: #FFD5EC;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-left-color: rgb(221, 221, 221);
+    border-left-color: #FFD5EC;
     border-left-style: solid;
     border-left-width: 1px;
   }
@@ -152,9 +229,7 @@
   .wday-5 {}
   .wday-6 {}
 
-  .today {
-    background: #FFBEDA;
-  }
+  .today {}
 
   .past {}
   .future {}
@@ -168,8 +243,87 @@
     background: #EEEEEE;
   }
   .current-month {
-    // background: #FFD5EC
+    background: #FFFFFF
   }
 
   .has-events {}
+}
+
+.daiary-photo {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.diaries-box {
+  background:rgba(250,250,250,0.8);
+  padding: 0;
+}
+
+.diaries-image0 {
+  background-image: url("../images/pad-gray.jpg");
+  background-size: 50%;
+  background-position: top 0px right 0px;
+  min-height: 600px;
+}
+
+.diaries-image1 {
+  background-image: url("../images/kishuu.jpg");
+  background-size: cover;
+  background-position: top 0px right 0px;
+  background-repeat: no-repeat;
+}
+
+.diaries-image2 {
+  background-image: url("../images/dachshund.jpg");
+  background-size: cover;
+  background-position: top 0px;
+  background-repeat: no-repeat;
+}
+
+.diary-memo {
+  overflow: scroll;
+}
+
+.diary-memo::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.diary-memo::-webkit-scrollbar-track {
+  background-color: #FFD5EC;
+}
+
+.diary-memo::-webkit-scrollbar-thumb {
+  background-color: #E9B4D0;
+}
+
+
+// .diaries-image{
+//   background-image: url("../images/hana-line.jpg");
+// }
+
+// .item-name {
+//   margin: 10px 0;
+//   display: block;
+//   color: black;
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// }
+
+.map-image {
+  background-image: url("../images/pad.jpg");
+  background-size: cover;
+  background-position: bottom 0px right 0px;
+  min-height: 600px;
+}
+
+.map-box {
+  background:rgba(250,250,250,0.5);
+  padding: 0;
+}
+
+.footer-pink {
+  background-color: #FFD4E4 !important;
 }
