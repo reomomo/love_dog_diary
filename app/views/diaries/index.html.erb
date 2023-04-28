@@ -26,8 +26,11 @@
   <!--愛犬ごとのカレンダー表示-->
   <% @my_dogs.each do |my_dog| %>
     <div class="mb-4 border-top border-pink">
-      <div class="diary-box mt-5 ml-5">
-        <span class="h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</span>
+      <div class="row diary-box mt-5 ml-5">
+        <div class="col-xl-4 col-lg-5 col-md-7 col-9 h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</div>
+        <div class="col-lg-1 col-md-2 m-0 p-0">
+          <%= image_tag my_dog.get_dog_image(100,100) %>
+        </div>
       </div>
       <%= month_calendar do |date| %>
         <!--カレンダーの日付に日記を記録済みの場合-->
