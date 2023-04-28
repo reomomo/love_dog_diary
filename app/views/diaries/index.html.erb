@@ -27,8 +27,10 @@
   <% @my_dogs.each do |my_dog| %>
     <div class="mb-4 border-top border-pink">
       <div class="row diary-box mt-5 ml-5">
-        <div class="col-xl-4 col-lg-5 col-md-7 col-10 h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</div>
-        <div class="col-lg-1 col-md-2 m-0 p-0"><%= image_tag my_dog.get_dog_image(100,100) %></div>
+        <div class="col-xl-4 col-lg-5 col-md-7 col-9 h3 font-weight-bold"><%= my_dog.name %>ちゃんのカレンダー</div>
+        <div class="col-lg-1 col-md-2 m-0 p-0">
+          <%= image_tag my_dog.get_dog_image(100,100) %>
+        </div>
       </div>
       <%= month_calendar do |date| %>
         <!--カレンダーの日付に日記を記録済みの場合-->
@@ -38,37 +40,27 @@
             <!--該当の日付と愛犬IDでデータ検索-->
             <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
             <span class="text-success"><%= date.day %></span><br>
-            <div class="row justify-content-center">
-              <div class="col-10">
-                <span class="text-dark"><%= image_tag('food.png') %> <%= diary.appetite_i18n %></span><br>
-                <span class="text-dark"><%= image_tag('dookie.png') %> <%= diary.excreta_i18n %></span><br>
-                <!--一日トータルの散歩距離-->
-                <% @total_dist1 = 0 %>
-                <!--一日トータルの散歩時間-->
-                <% @total_min = 0 %>
-                <% diary.strolls.all.each do |stroll| %>
-                  <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                  <% @total_dist2 = 0 %>
-                  <% stroll.pins.all.each do |pin| %>
-                    <% @total_dist2 += pin.distance %>
-                  <% end %>
-                  <% @total_dist1 += @total_dist2 %>
-                  <% @total_min += stroll.time_of_stroll %>
-                <% end %>
-                <% if @total_min == 0 %>
-                  <!--一日の散歩時間が0ならイメージと「散歩お休み」を表示する-->
-                  <div class="m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 80px;"></div>
-                  <div class="text-dark">散歩お休み</div>
-                <% else %>
-                  <!--一日トータルの散歩時間が0より大きければトータルの時間、距離、スピードを表示する-->
-                  <span class="text-dark"><%= image_tag('time.png') %> <%= @total_min %> 分</span><br>
-                  <span class="text-dark"><%= image_tag('distance.png') %> <%= @total_dist1.to_i %> m</span><br>
-                  <span class="text-dark">
-                    <%= image_tag('speed.png') %> <%= @total_dist1.to_i / @total_min %> m／分
-                  </span>
-                <% end %>
-              </div>
-            </div>
+            <span class="text-dark"><%= image_tag('food.png') %> <%= diary.appetite_i18n %></span><br>
+            <span class="text-dark"><%= image_tag('dookie.png') %> <%= diary.excreta_i18n %></span><br>
+            <!--一日トータルの散歩距離-->
+            <% @total_dist1 = 0 %>
+            <!--一日トータルの散歩時間-->
+            <% @total_min = 0 %>
+            <% diary.strolls.all.each do |stroll| %>
+              <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
+              <% @total_dist2 = 0 %>
+              <% stroll.pins.all.each do |pin| %>
+                <% @total_dist2 += pin.distance %>
+              <% end %>
+              <% @total_dist1 += @total_dist2 %>
+              <% @total_min += stroll.time_of_stroll %>
+            <% end %>
+            <span class="text-dark"><%= image_tag('time.png') %> <%= @total_min %> 分</span><br>
+            <span class="text-dark"><%= image_tag('distance.png') %> <%= @total_dist1.to_i %> m</span><br>
+            <!--一日トータルの散歩時間が0より大きければ散歩スピードを算出する-->
+            <% if @total_min > 0 %>
+              <span class="text-dark"><%= image_tag('speed.png') %> <%= @total_dist1.to_i / @total_min %> m／分</span>
+            <% end %>
           <% end %>
         <% else %>
         <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
