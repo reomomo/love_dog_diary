@@ -106,12 +106,14 @@
             <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
             <% time = @times[random.rand(1..@times.count-1)] %>
             <% if time != 0 %>
+              <!--一日トータルの散歩時間が0以外ならトータル時間、距離、スピードを表示する-->
               <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
               <% distance = @distances[random.rand(1..@distances.count-1)] %>
               <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
               <% speed = distance / time %>
               <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
             <% else %>
+              <!--一日のトータル散歩時間が0分ならイメージと「散歩お休み」を表示する-->
               <div class="m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 80px;"></div>
               <div>散歩お休み</div>
             <% end %>
