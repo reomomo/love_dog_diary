@@ -41,6 +41,10 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,255,86,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,255,86,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
 .top-bg-image {
   background-image: url("../images/top-bg.jpg");
   background-size: cover;
@@ -249,6 +253,7 @@
   .has-events {}
 }
 
+
 .daiary-photo {
   overflow: hidden;
   white-space: nowrap;
@@ -303,6 +308,7 @@
 //   background-image: url("../images/hana-line.jpg");
 // }
 
+
 // .item-name {
 //   margin: 10px 0;
 //   display: block;
@@ -327,3 +333,5 @@
 .footer-pink {
   background-color: #FFD4E4 !important;
 }
+
+
