@@ -1,34 +1,45 @@
 <div class="container_fuluid mypage-image" style="width: 100%; min-height: 600px;">
   <div class="box-8">
-    <h2 class="box-8 text-center border-bottom border-green-10 w-25">マイページ</h2>
-    <div class="row justify-content-center">
-      <div class="col-7 offset-2 px-0">
-        <table class="box-8 table table-borderless my-3">
+        <div class="row ml-2 justify-content-start">
+      <div class="col-md-4 col-5">
+    <h2 class="box-8 text-center border-bottom border-green-10">マイページ</h2>
+          </div>
+    </div>
+    <div class="row mx-3 justify-content-center">
+      <div class="col-md-7 col-md-11 col-11 offset-lg-4">
+        <table class="table table-borderless box-8 my-3 border border-green">
           <tr>
-            <th class="col-3 py-1">氏名</th>
-            <td class="py-1"><%= @user.last_name %><%= @user.first_name %></td>
+            <th class="py-1">氏名</th>
+            <td class="py-1 pl-4"><%= @user.last_name %><%= @user.first_name %></td>
           </tr>
           <tr>
             <th class="py-1">ユーザーネーム</th>
-            <td class="py-1"><%= @user.user_name %></td>
+            <td class="py-1 pl-4"><%= @user.user_name %></td>
           </tr>
           <tr>
             <th class="py-1">メールアドレス</th>
-            <td class="py-1"><%= @user.email %></td>
-            <td class="py-1 pr-5 row justify-content-center">
-              <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink font-weight-bold text-success" %>
+            <td class="py-1 pl-4"><%= @user.email %></td>
+            <td class="py-1 pr-1 row justify-content-center">
+              <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink border border-green font-weight-bold text-success" %>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td></td>
+            <td class="py-1 pr-1 row justify-content-center">
+              <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink border border-green font-weight-bold text-success" %>
             </td>
           </tr>
         </table>
       </div>
     </div>
     <% @my_dogs.each do |my_dog| %>
-      <div class="row justify-content-center">
-        <div class="col-3 px-0">
-        <%= image_tag my_dog.get_dog_image(250,250) %>
+      <div class="row my-4 mx-3 justify-content-center">
+        <div class="col-md-4 col-6">
+        <%= image_tag my_dog.get_dog_image(250,250), class: "border border-green" %>
         </div>
-        <div class="col-7">
-          <table class="box-8 table table-borderless my-4">
+        <div class="col-md-7 col-11">
+          <table class="table table-borderless box-8 my-0 py-5 border border-green">
             <tr>
               <th class="py-3"><%= my_dog.name %>ちゃんの誕生日</th>
               <td class="py-3"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
@@ -86,8 +97,8 @@
                   <%= (years_old - 2)*4 +24 %>歳から<%= (years_old - 2)*4 +28 %>歳ぐらい
                 <% end %>
               </td>
-              <td class="py-1 pr-5 row justify-content-center">
-                <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink font-weight-bold text-success" %>
+              <td class="py-1 pr-4 row justify-content-center">
+                <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink border border-green font-weight-bold text-success" %>
               </td>
             </tr>
           </table>
@@ -95,13 +106,8 @@
       </div>
     <% end %>
     <%= paginate @my_dogs %>
-    <div class="row justify-content-center">
-      <div class="col-2 box-8 offset-8 my-3">
-        <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink font-weight-bold text-success" %>
-      </div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col-7 box-8">
+    <div class="row mt-5 mx-3 justify-content-end">
+      <div class="col-lg-6 col-md-11 col-12 box-8">
         <span class="small text-right">愛犬年齢が1歳未満の場合、<br>
           月齢の計算は365日を30.416日で割って1ヶ月としていますので誤差があります。<br>
           ご了承ください。<br>
