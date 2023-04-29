@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+// url("../images/pad-plaid.jpg");
 .border-pink {
   border-color: #FFD5EC !important;
 }
@@ -170,14 +170,14 @@
 }
 
 .mypage-image {
-  background-image: url("../images/pad-plaid.jpg");
-  background-size: 100%;
+  background-image: url("../images/1393774.jpg");
+  background-size: 50%;
   background-position: top 0px right 0px;
   min-height: 600px;
 }
 
 .diary-image {
-  background-image: url("../images/pad-line.jpg");
+  background-image: url("../images/prank.jpg");
   background-size: 50%;
   background-position: top 0px right 0px;
   min-height: 600px;
@@ -311,9 +311,6 @@
 }
 
 
-// .diaries-image{
-//   background-image: url("../images/hana-line.jpg");
-// }
 
 // .item-name {
 //   margin: 10px 0;
