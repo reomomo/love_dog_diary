@@ -1,4 +1,6 @@
-<h1>散歩情報の登録</h1>
+<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
+  <div class="beige-box">
+    <h1>散歩情報の登録</h1>
 <%= form_with model: @stroll do |f| %>
   <p>散歩開始時間</p>
   <%= f.time_field :start_time %>
@@ -21,3 +23,5 @@
   <%= f.hidden_field :my_dog_id, :value => @dog_id %>
   <%= f.submit "保存する" %>
 <% end %>
+</div>
+</div>

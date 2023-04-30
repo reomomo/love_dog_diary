@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="row mt-3">
-          <div class="diary-memo col-11 w-75" style="height: 150px;">
+          <div class="col-11 diary-memo w-75" style="height: 150px;">
             <span><%= @diary.memo %></span>
           </div>
         </div>
@@ -132,7 +132,7 @@
             <tr>
               <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
               <td class="py-1 px-0">
-                <div class=" diary-memo w-75" style="height: 50px;"><%= stroll.memo %></div>
+                <div class="diary-memo w-75" style="height: 50px;"><%= stroll.memo %></div>
               </td>
             </tr>
             <tr>
@@ -185,7 +185,10 @@
               </tr>
             <% else %>
               <tr>
-                <th class="col-3 py-1 px-0">お散歩ルートを登録してください</th>
+                <th colspan="2" class="col-3 py-1 px-0">お散歩ルートを登録してください</th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
                 <td class="row mb-3 py-1 px-5 justify-content-end">
                   <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
                 </td>

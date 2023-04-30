@@ -1,23 +1,52 @@
-<p>お散歩ルート一覧</p>
-<% if @strolls.present? %>
-  <span>ルート名をクリックすると、地図が確認できます<br>
-  お散歩ルートの追加は日記から可能です</span>
-  <% @strolls.each do |stroll| %>
-    <%= link_to stroll_path(stroll.id) do %>
-      <% stroll.pins.pluck(:title).uniq.each do |title| %>
-        <% if title.present? %>
-          <%= title %>
-          <% @total = 0 %>
-          <% stroll.pins.where(title: title).each do |pin| %>
-            <% @total += pin.distance %>
+<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
+  <div class="row justify-content-center">
+    <div class="col-xl-5 col-lg-6 col-md-7 col-sm-10 col-11 beige-box my-5">
+      <div class="row">
+        <div class="col-sm-6 col-8 m-4">
+          <h3 class="text-center border-bottom border-green-10">お散歩ルート一覧</h3>
+        </div>
+      </div>
+      <div class="row m-4">
+        <div class="col-lg-10 col-12">
+          <% if @strolls.present? %>
+            <span>
+              ルート名をクリックすると、地図が確認できます<br>
+              お散歩ルートの追加は日記から可能です
+            </span>
+          <% else %>
+            <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
           <% end %>
-          <p>お散歩距離</p>
-          <%= @total.to_i %> m
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <%= paginate @strolls %>
-<% else %>
-  <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
-<% end %>
+        </div>
+      </div>
+      <div class="row m-4 justify-content-center">
+        <div class="col-sm-7 col-8">
+          <table class="table">
+            <tr>
+              <th class="px-0 text-left">お散歩ルート</th>
+              <th class="px-0 text-right">お散歩距離</th>
+            </tr>
+            <% @strolls.each do |stroll| %>
+              <tr>
+                <% stroll.pins.pluck(:title).uniq.each do |title| %>
+                  <th class="px-0 text-left">
+                    <%= link_to stroll_path(stroll.id) do %>
+                      <div class="scroll" style="width: 150px; max-height: 40px;"><%= title %></div>
+                    <% end %>
+                  </th>
+                  <td class="px-0 text-right">
+                    <% @total = 0 %>
+                    <% stroll.pins.where(title: title).each do |pin| %>
+                      <% @total += pin.distance %>
+                    <% end %>
+                    <%= @total.to_i %> m
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+          <%= paginate @strolls %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

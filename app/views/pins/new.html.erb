@@ -59,7 +59,7 @@ function drawOneLine(latLng) {
     	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
         var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
         distances.push(distance);
-
+        console.log
       }
       // 距離をカラムへ送る
       document.getElementById('pin_distances').value = distances.join(':');
