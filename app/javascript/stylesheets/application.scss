@@ -35,7 +35,15 @@
 }
 
 .text-pink {
-  color: #EA3F98;
+  color: #EA3F98 !important;
+}
+
+.text-lightpink {
+  color: #EB6AB1 !important;
+}
+
+.text-green {
+  color: #CCFFCC !important;
 }
 
 .box-5 {
@@ -59,6 +67,14 @@
 
 .btn-lightpink {
   background-color: #F2CED1 !important;
+}
+
+.btn-pink2 {
+  background-color: #EB6AB1;
+}
+
+.btn-green {
+  background-color: #CCFFCC !important;
 }
 
 .pagination {

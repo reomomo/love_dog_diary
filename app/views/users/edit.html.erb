@@ -1,18 +1,37 @@
 <div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
-  <div class="beige-box">
-<h2>会員情報編集</h2>
-
-<%= form_with model: @user, url: information_path do |f| %>
-  <p>氏名</p>
-  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  <p>ユーザーネーム</p>
-  <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-  <p>メールアドレス</p>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  <%= f.submit "変更する" %>
-<% end %>
-
-<%= link_to "退会する", unsubscribe_path %>
-</div>
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 beige-box my-5">
+      <div class="row">
+        <div class="col-sm-4 col-8 m-4">
+          <h3 class="text-center border-bottom border-green-10">会員情報編集</h3>
+        </div>
+      </div>
+      <div class="row m-4 justify-content-center">
+        <div class="col-sm-12 col-8">
+          <%= form_with model: @user, url: information_path do |f| %>
+            <table class="table">
+              <tr>
+                <th class="px-0 text-left">氏名</th>
+                <td class="px-0 text-right"><%= f.label "姓" %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+                <td class="px-0 text-right"><%= f.label "名" %> <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+              </tr>
+              <tr>
+                <th class="px-0 text-left">ユーザーネーム</th>
+                <td class="px-0 text-right"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
+              </tr>
+              <tr>
+                <th class="px-0 text-left">メールアドレス</th>
+                <td class="px-0 text-right"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+              </tr>
+              <tr class="pt-5">
+                <th class="pt-5 px-0 text-left"></th>
+                <td class="pt-5 px-0 text-left"><%= f.submit "変更する", class: "btn btn-pink2 font-weight-bold text-green" %></td>
+                <td class="pt-5 px-0 text-left"><%= link_to "退会する", unsubscribe_path, class: "btn btn-green font-weight-bold text-lightpink" %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
