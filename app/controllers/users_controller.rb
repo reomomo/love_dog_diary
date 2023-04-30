@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @my_dogs = current_user.my_dogs.page(params[:page]).per(4)
+    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
     @date = Date.current
-    @size = MyDog.sizes.key(0)
+    # @bigは大型犬
+    @big = MyDog.sizes.key(0)
   end
 
   def edit
