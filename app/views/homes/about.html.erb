@@ -73,7 +73,7 @@
 <% elsif @path_id == 1 %>
   <!--カレンダーの見本を選択した場合-->
   <div class="container_fuluid diary-image jumbotron m-0" style="width: 100%; height: 100%;">
-    <h1 class="border-bottom border-green-10" style="width: 280px;">カレンダー見本</h1>
+    <h1 class="border-bottom border-green-10">カレンダー見本</h1>
     <div class="row box-5 mt-5 justify-content-center">
       <div class="box-5">
         <span>
@@ -92,7 +92,7 @@
     <div class="mb-5 border-top border-pink">
       <div class="row box-5 mt-5 mx-5">
         <div class="col-xl-4 col-lg-5 col-md-7 col-9 h3 font-weight-bold">レオちゃんのカレンダー</div>
-        <div class="col-lg-1 col-md-2 m-0 p-0 media about-image jumbotron" style="width: 100px; height: 100px;"></div>
+        <div class="col-lg-1 col-md-2 m-0 p-0 media about-image jumbotron"></div>
       </div>
       <%= month_calendar do |date| %>
       <%  random = Random.new %>
@@ -114,7 +114,7 @@
               <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>
             <% else %>
               <!--一日のトータル散歩時間が0分ならイメージと「散歩お休み」を表示する-->
-              <div class="m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 80px;"></div>
+              <div class="m-0 p-0 media diaries-image1 jumbotron"></div>
               <div>散歩お休み</div>
             <% end %>
           </div>

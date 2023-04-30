@@ -23,7 +23,7 @@ function initMap() {
   });
   // マップにクリックイベントを設定
   google.maps.event.addListener(map, 'click', function(event) {
-     // クリック時の位置を渡す
+    // クリック時の位置を渡す
     drawOneLine(event.latLng);
   });
 }
@@ -53,13 +53,12 @@ function drawOneLine(latLng) {
     if(path.length >= 2){
       var distances = []
       for (let i = 0; i < path.length - 1 ; i++){
-        var prev = path.h[i]
-        var current = path.h[i + 1]
+        var prev = path.g[i]
+        var current = path.g[i + 1]
         var prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
     	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
         var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
         distances.push(distance);
-
       }
       // 距離をカラムへ送る
       document.getElementById('pin_distances').value = distances.join(':');

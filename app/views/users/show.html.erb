@@ -20,14 +20,14 @@
             <th class="py-1">メールアドレス</th>
             <td class="py-1 pl-4"><%= @user.email %></td>
             <td class="py-1 pr-0 row justify-content-center">
-              <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink border border-green font-weight-bold text-success" %>
+              <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink py-1 border border-green font-weight-bold text-success" %>
             </td>
           </tr>
           <tr>
             <th></th>
             <td></td>
             <td class="py-1 pr-0 row justify-content-center">
-              <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink border border-green font-weight-bold text-success" %>
+              <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink py-1 border border-green font-weight-bold text-success" %>
             </td>
           </tr>
         </table>
@@ -41,12 +41,18 @@
         <div class="col-md-7 col-11">
           <table class="table table-borderless box-8 my-0 py-5 border border-green">
             <tr>
-              <th class="py-3"><%= my_dog.name %>ちゃんの誕生日</th>
-              <td class="py-3"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
+              <th colspan="2" class="h4 font-weight-bold text-left"><%= my_dog.name %>ちゃん</th>
+            <tr>
+              <th class="pl-5 pr-2" style="width: 125px;">誕生日</th>
+              <td class="py-2"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
             </tr>
             <tr>
-              <th class="py-3"><%= my_dog.name %>ちゃんの年齢</th>
-              <td class="py-3">
+              <th class="pl-5 pr-2" style="width: 125px;">サイズ</th>
+              <td class="py-2"><%= my_dog.size_i18n %></td>
+            </tr>
+            <tr>
+              <th class="pl-5 pr-2" style="width: 125px;">年齢</th>
+              <td class="py-2">
                 <% months_old = (@date - my_dog.birthdate).to_i/30.416 %>
                 <% years_old = (@date.strftime("%Y%m%d").to_i - my_dog.birthdate.strftime("%Y%m%d").to_i)/10000 %>
                 <% if months_old < 1 %>
@@ -59,12 +65,8 @@
               </td>
             </tr>
             <tr>
-              <th class="py-3"><%= my_dog.name %>ちゃんのサイズ</th>
-              <td class="py-3"><%= my_dog.size_i18n %></td>
-            </tr>
-            <tr>
-              <th class="py-3"><%= my_dog.name %>ちゃんの人間年齢</th>
-              <td class="py-3">
+              <th class="pl-5 pr-2" style="width: 125px;">人間年齢</th>
+              <td class="py-2">
                 <!--大型犬で1歳未満-->
                 <% if my_dog.size == @big && years_old < 1 %>
                   12歳未満
@@ -97,8 +99,10 @@
                   <%= (years_old - 2)*4 +24 %>歳から<%= (years_old - 2)*4 +28 %>歳ぐらい
                 <% end %>
               </td>
-              <td class="py-1 pr-4 row justify-content-center">
-                <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink border border-green font-weight-bold text-success" %>
+              <td class="pt-0 pb-2 pr-4 row justify-content-end">
+                <div style="width: 100px;">
+                  <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink p-1 border border-green font-weight-bold text-success" %>
+                </div>
               </td>
             </tr>
           </table>

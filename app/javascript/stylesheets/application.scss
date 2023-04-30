@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-// url("../images/pad-plaid.jpg");
+
 .border-pink {
   border-color: #FFD5EC !important;
 }
@@ -35,7 +35,15 @@
 }
 
 .text-pink {
-  color: #EA3F98;
+  color: #EA3F98 !important;
+}
+
+.text-lightpink {
+  color: #EB6AB1 !important;
+}
+
+.text-green {
+  color: #CCFFCC !important;
 }
 
 .box-5 {
@@ -61,22 +69,38 @@
   background-color: #F2CED1 !important;
 }
 
+.btn-pink2 {
+  background-color: #EB6AB1;
+}
+
+.btn-green {
+  background-color: #CCFFCC !important;
+}
+
 .pagination {
   justify-content: center;
 }
 
-.pagination>li>a {
-  border: none;
-  color: #696969;
+.page a,
+.next a,
+.last a,
+.first a,
+.prev a {
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.pagination>.active>a {
-  background: #93c9ff;
-  border-radius: 15px;
+.page a:hover,
+.next a:hover,
+.last a:hover,
+.first a:hover,
+.prev a:hover {
+  color: black;
 }
 
-.pagination>li>a:hover {
-  border-radius: 15px;
+.current {
+  font-weight: bold;
 }
 
 .navbar-pink {
@@ -307,19 +331,17 @@
 }
 
 .diary-memo::-webkit-scrollbar {
-  width: 0;
+  width: 1;
   height: 0;
 }
 
 .diary-memo::-webkit-scrollbar-track {
-  background-color: #FFD5EC;
+  background-color: #FFFFFF;
 }
 
 .diary-memo::-webkit-scrollbar-thumb {
-  background-color: #E9B4D0;
+  background-color: #F2CED1;
 }
-
-
 
 // .item-name {
 //   margin: 10px 0;
@@ -335,6 +357,30 @@
   background-size: cover;
   background-position: bottom 0px right 0px;
   min-height: 600px;
+}
+
+.other-images {
+  background-image: url("../images/pad-plaid.jpg");
+  background-size: cover;
+  background-position: bottom 0px right 0px;
+  min-height: 600px;
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 1;
+  height: 0;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background-color: #F2E3D5;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #F2B5A7;
 }
 
 .footer-pink {
