@@ -35,7 +35,7 @@
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
   <div class="row justify-content-md-center">
-    <div class="map-box mt-3 w-75 text-center" style="height: 30px;">
+    <div class="box-8 mt-3 w-75 text-center" style="height: 30px;">
       <% @total = 0 %>
       <% @pins.each do |pin| %>
         <% @total += pin.distance %>
