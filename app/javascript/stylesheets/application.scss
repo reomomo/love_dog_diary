@@ -5,82 +5,68 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+// 共通CSS
 .border-pink {
   border-color: #FFD5EC !important;
 }
-
 .border-green {
   border-color: #CCFFCC !important;
 }
-
 .border-pink-medium {
   border-color: #FFD5EC !important;
   border-bottom-width: medium !important;
 }
-
 .border-green-medium {
   border-color: #CCFFCC !important;
   border-bottom-width: medium !important;
 }
-
 .border-pink-10 {
   border-color: #FFD5EC !important;
   border-bottom-width: 10px !important;
 }
-
 .border-green-10 {
   border-color: #CCFFCC !important;
   border-bottom-width: 10px !important;
 }
-
 .text-pink {
   color: #EA3F98 !important;
 }
-
 .text-lightpink {
   color: #EB6AB1 !important;
 }
-
 .text-green {
   color: #CCFFCC !important;
 }
-
 .box-5 {
   background:rgba(250,250,250,0.5);
   padding: 0;
 }
-
 .box-8 {
   background:rgba(250,250,250,0.8);
   padding: 0;
 }
-
 .beige-box {
   background:rgba(242,227,213,0.8);
   padding: 0;
 }
-
 .btn-pink {
   background-color: #E9B4D0 !important;
 }
-
 .btn-lightpink {
   background-color: #F2CED1 !important;
 }
-
 .btn-pink2 {
   background-color: #EB6AB1;
 }
-
 .btn-green {
   background-color: #CCFFCC !important;
 }
+// 共通CSSここまで
 
+// ページネーションここから
 .pagination {
   justify-content: center;
 }
-
 .page a,
 .next a,
 .last a,
@@ -90,7 +76,6 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-
 .page a:hover,
 .next a:hover,
 .last a:hover,
@@ -98,19 +83,131 @@
 .prev a:hover {
   color: black;
 }
-
 .current {
   font-weight: bold;
 }
+// ページネーションここまで
 
-.navbar-pink {
-  background-color: #F2CED1 !important;
+// ハンバーガーメニュー
+.input-hidden{
+	display: none;
+}
+	/* label */
+.hamburger-demo-switch{
+	cursor: pointer;
+	position: absolute;
+	right: 3%;
+	top: 0; /* ハンバーガーアイコンの位置（上から） */
+	z-index: 9999;
+	width: 4em; /* アイコン（クリック可能領域）の幅 */
+	height: 4em; /* アイコン（クリック可能領域の）高さ */
+}
+/* メニュー展開時にハンバーガーアイコンを固定 */
+#hamburger-demo1:checked ~ .hamburger-demo-switch{
+	position: fixed;
+}
+/* ハンバーガーアイコン */
+.hamburger-switch-line1, .hamburger-switch-line1-before, .hamburger-switch-line1-after{
+	width: 25px;
+	height: 3px;
+	background: #333; /* ハンバーガーアイコンの色 */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transition: .3s;
+	content: "";
+}
+.hamburger-switch-line1{
+		transform: translate(-50%, -50%);
+}
+.hamburger-switch-line1-before{
+	transform: translate(-50%, -300%);
+}
+.hamburger-switch-line1-after{
+	transform: translate(-50%, 200%);
+}
+/* ハンバーガーアイコン･アニメーション */
+#hamburger-demo1:checked ~ .hamburger-demo-switch .hamburger-switch-line1{
+	width: 0;
+}
+#hamburger-demo1:checked ~ .hamburger-demo-switch .hamburger-switch-line1-before{
+	transform: rotate(45deg) translate(-40%, 325%);
+}
+#hamburger-demo1:checked ~ .hamburger-demo-switch .hamburger-switch-line1-after{
+	transform: rotate(-45deg) translate(-40%, -325%);
+}
+/* メニューエリア */
+.hamburger-demo-menuwrap{
+	position: fixed;
+	height: 100%;
+	background: #fafafa; /* メニューエリアの背景色 */
+	padding: 5em 3% 2em;
+	z-index: 9998;
+	transition: .3s;
+	overflow-y: scroll; /* メニュー内容が多い場合に縦スクロールする */
+	top: 0;
+	left: 100%;
+	width: 70%;
+}
+/* メニューリスト */
+.hamburger-demo-menulist{
+	margin-right: 3%;
+	padding-left: 5% !important; /* !important不要な場合もあり */
+	list-style: none;
+}
+.hamburger-demo-menulist li a{
+	text-decoration: none;
+	color: #333; /* メニューリストの文字色 */
+	display: block;
+	padding: .5em 0;
+}
+/* メニューエリア･アニメーション */
+	/* 右から */
+#hamburger-demo1:checked ~ .hamburger-demo-menuwrap{
+	left: 30%;
+}
+	/* コンテンツカバー */
+#hamburger-demo1:checked ~ .hamburger-demo-cover{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 9997;
+	background: rgba(3,3,3,.5);
+	display: block;
 }
 
-.navbar-toggler .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(40,167,69,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
+// @media (min-width: 992px){
+// 	.hamburger-demo-menubox{
+// 		display: none;
+// 	}
+// }
 
+// .navbar-toggler .navbar-toggler-icon {
+//   position: absolute;
+// 	right: 10%;
+// 	top: 20%;
+// 	width: 4em;
+// 	height: 4em;
+// }
+
+// .navbar-collapse {
+// 	position: fixed;
+// 	height: 100%;
+// 	background: #fafafa; /* メニューエリアの背景色 */
+// 	padding: 5em 3% 2em;
+// 	z-index: 9998;
+// 	transition: .3s;
+// 	overflow-y: scroll; /* メニュー内容が多い場合に縦スクロールする */
+// 	top: 0;
+// 	left: 100%;
+// 	width: 70%;
+// }
+
+// ハンバーガーメニューここまで
+
+// トップ画面
 .top-bg-image {
   background-image: url("../images/top-bg.jpg");
   background-size: cover;
@@ -194,6 +291,7 @@
   margin: 0;
   padding: 0;
 }
+// トップ画面ここまで
 
 .about-image{
   background-image: url("../images/dog.jpg");
@@ -216,6 +314,7 @@
   min-height: 600px;
 }
 
+// シンプルカレンダーここから
 .simple-calendar {
   a {
     color: #28A745;
@@ -298,6 +397,7 @@
 
   .has-events {}
 }
+// シンプルカレンダーここまで
 
 .daiary-photo {
   overflow: hidden;
@@ -343,15 +443,6 @@
   background-color: #F2CED1;
 }
 
-// .item-name {
-//   margin: 10px 0;
-//   display: block;
-//   color: black;
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// }
-
 .map-image {
   background-image: url("../images/pad.jpg");
   background-size: cover;
@@ -366,6 +457,7 @@
   min-height: 600px;
 }
 
+// 文字量多い時のスクロールバー
 .scroll {
   overflow: scroll;
 }
@@ -382,6 +474,7 @@
 .scroll::-webkit-scrollbar-thumb {
   background-color: #F2B5A7;
 }
+// 文字量多い時のスクロールバーここまで
 
 .footer-pink {
   background-color: #FFD4E4 !important;
