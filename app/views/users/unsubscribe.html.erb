@@ -1,11 +1,28 @@
-<h5><strong>本当に退会しますか？</strong></h5>
-
-<span>
-  退会すると、会員登録情報や<br>
-  これまでの日記が閲覧できなくなります。<br>
-  退会する場合は、「退会する」をクリックしてください。
-</span>
-
-<%= link_to "退会しない", my_page_path %>
-
-<%= link_to "退会する", destroy_user_path, method: :delete, "data-confirm" => "本当に退会しますか？" %>
+<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
+  <div class="row justify-content-center" style="height: 500px;">
+    <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10 col-12 beige-box my-5">
+      <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-8 m-4">
+          <h3 class="text-center border-bottom border-green-10"><strong>本当に退会しますか？</strong></h3>
+        </div>
+      </div>
+      <div class="row mb-5 justify-content-center">
+        <div class="col-md-9 col-11 m-4 text-center">
+          <span>
+            退会すると、会員登録情報や<br>
+            これまでの日記が閲覧できなくなります。<br>
+            退会する場合は、「退会する」をクリックしてください。
+          </span>
+        </div>
+      </div>
+      <div class="row my-4 justify-content-between">
+        <div class="col-md-5 col-4 m-4 text-center">
+          <%= link_to "退会しない", my_page_path, class: "btn btn-pink2 font-weight-bold text-green" %>
+        </div>
+        <div class="col-md-5 col-4 m-4 text-center">
+          <%= link_to "退会する", destroy_user_path, method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-green font-weight-bold text-lightpink" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
