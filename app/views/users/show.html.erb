@@ -1,12 +1,12 @@
 <div class="container_fuluid mypage-image" style="width: 100%; min-height: 600px;">
   <div class="box-8">
         <div class="row ml-2 justify-content-start">
-      <div class="col-md-4 col-5">
+      <div class="col-lg-3 col-md-4 col-5">
     <h2 class="box-8 text-center border-bottom border-green-10">マイページ</h2>
           </div>
     </div>
     <div class="row mx-3 justify-content-center">
-      <div class="col-md-7 col-md-11 col-11 offset-lg-4">
+      <div class="col-lg-7 offset-lg-4 col-md-7 col-md-11 col-11">
         <table class="table table-borderless box-8 my-3 border border-green">
           <tr>
             <th class="py-1">氏名</th>
@@ -19,14 +19,14 @@
           <tr>
             <th class="py-1">メールアドレス</th>
             <td class="py-1 pl-4"><%= @user.email %></td>
-            <td class="py-1 pr-1 row justify-content-center">
+            <td class="py-1 pr-0 row justify-content-center">
               <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink border border-green font-weight-bold text-success" %>
             </td>
           </tr>
           <tr>
             <th></th>
             <td></td>
-            <td class="py-1 pr-1 row justify-content-center">
+            <td class="py-1 pr-0 row justify-content-center">
               <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink border border-green font-weight-bold text-success" %>
             </td>
           </tr>
