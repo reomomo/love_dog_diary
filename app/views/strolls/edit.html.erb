@@ -1,14 +1,14 @@
-<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
   <div class="row mx-0auto justify-content-center">
     <div class="col-lg-8 col-lg-9 col-sm-10 col-12 beige-box my-5">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 col-11 mt-5 mx-5 px-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-11 mt-5">
           <h3 class="text-center border-bottom border-green-10">元気の良さ、散歩メモ、時間の編集</h3>
         </div>
       </div>
       <div class="row m-4 justify-content-center">
           <%= form_with model: @stroll do |f| %>
-            <table class="table" style="width: 500px;">
+            <table class="table">
               <tr>
                 <th class="pl-4">開始時間</th>
                 <td class=""><%= f.time_field :start_time %></td>
@@ -20,7 +20,7 @@
               <tr>
                 <th class="pl-4">散歩メモ</th>
                 <td class="">
-                  <div><%= f.text_area :memo, style: "width: 300px; min-height: 70px;" %></div>
+                  <div><%= f.text_area :memo, style: "width: 90%; min-height: 70px;" %></div>
                 </td>
               </tr>
               <tr>
