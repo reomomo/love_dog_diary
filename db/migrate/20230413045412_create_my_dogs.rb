@@ -7,7 +7,6 @@ class CreateMyDogs < ActiveRecord::Migration[6.1]
       t.date :birthdate
       t.integer :age
       t.integer :human_age
-      t.string :image
 
       t.timestamps
     end
