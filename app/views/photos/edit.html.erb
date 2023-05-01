@@ -1,16 +1,33 @@
-<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
-  <div class="beige-box">
-<h1>写真編集画面</h1>
-<%= form_with model: @photo do |f| %>
-  <div>
-    <p>タイトル</p>
-    <%= f.text_field :title %>
-    <p>コメント</p>
-    <%= f.text_area :body %>
-    <p>写真</p>
-    <%= f.file_field :image, accept: "image/*" %>
-    <%= f.submit "変更する" %>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <div class="row mx-0auto justify-content-center">
+    <div class="col-lg-8 col-lg-9 col-sm-10 col-12 beige-box my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-11 mt-5">
+          <h3 class="text-center border-bottom border-green-10">写真の編集</h3>
+        </div>
+      </div>
+      <div class="row m-4 justify-content-center">
+        <%= form_with model: @photo do |f| %>
+          <table class="table">
+            <tr>
+              <th class="pl-4">タイトル</th>
+              <td class=""><%= f.text_field :title %></td>
+            </tr>
+            <tr>
+              <th class="pl-4">コメント</th>
+              <td class=""><%= f.text_area :body %></td>
+            </tr>
+            <tr>
+              <th class="pl-4">写真</th>
+              <td class=""><%= f.file_field :image, accept: "image/*" %></td>
+            </tr>
+            <tr>
+              <th class="px-0 text-right"></th>
+              <td class="px-0 text-right"><%= f.submit "変更する" %></td>
+            </tr>
+          </table>
+         <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
-</div>
 </div>

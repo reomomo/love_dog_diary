@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2023_04_13_045412) do
     t.date "birthdate"
     t.integer "age"
     t.integer "human_age"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

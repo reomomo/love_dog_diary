@@ -2,7 +2,7 @@
   <div class="beige-box">
 <h1>愛犬情報の登録</h1>
 <!--「先に愛犬情報を登録してください」のメッセージ-->
-<span class="text-danger border border-dark w-25"><%= flash[:notice] %></span>
+<span class="text-danger border border-dark w-25"><%= flash[:info] %></span>
 <!--名前かサイズが空白だった場合にエラー表示-->
 <% if @my_dog.errors.any? %>
   <div class="border border-dark w-50">
