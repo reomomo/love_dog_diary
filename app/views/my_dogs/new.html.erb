@@ -4,7 +4,7 @@
       <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 beige-box my-5">
         <div class="row justify-content-start">
           <div class="col-xl-5 col-sm-5 mt-5 ml-5">
-            <h3 class="text-center border-bottom border-green-10">愛犬の情報編集</h3>
+            <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
         </div>
         <div class="row m-4 justify-content-center">
@@ -54,7 +54,7 @@
       <div class="beige-box m-0auto py-5 px-5" style="width: 90%;">
         <div class="row justify-content-center">
           <div class="col-10 m-4">
-            <h3 class="text-center border-bottom border-green-10">愛犬の情報編集</h3>
+            <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -86,46 +86,4 @@
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
-  <div class="beige-box">
-<h1>愛犬情報の登録</h1>
-<!--「先に愛犬情報を登録してください」のメッセージ-->
-<span class="text-danger border border-dark w-25"><%= flash[:info] %></span>
-<!--名前かサイズが空白だった場合にエラー表示-->
-<% if @my_dog.errors.any? %>
-  <div class="border border-dark w-50">
-    <span class="text-danger"><%= @my_dog.errors.count %>件のエラーが発生しました</span>
-    <ul>
-      <% @my_dog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_with model: @my_dog do |f| %>
-  <p>愛犬の名前</p>
-  <%= f.text_field :name %>
-  <p>サイズ</p>
-<!--小型犬-->
-  <%= f.radio_button :size, "small_size_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
-<!--中型犬-->
-  <%= f.radio_button :size, "medium_size_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
-<!--大型犬-->
-  <%= f.radio_button :size, "large_scale_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
-  <p>愛犬の誕生日(不明な場合は選択せず登録してください)</p>
-  <%= f.date_field :birthdate %>
-  <p>愛犬の写真</p>
-  <%= f.file_field :dog_image, accept: "image/*" %>
-  <%= f.submit '登録' %>
-<% end %>
-</div>
 </div>
