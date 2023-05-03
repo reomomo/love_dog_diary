@@ -1,49 +1,91 @@
-<div class="sign_up container-md" style="min-height: 500px;">
-<h2>新規登録</h2>
-
-<div class="text-box">
-  <%= form_with model: @user, url: user_registration_path do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="field">
-      <%= f.label :姓 %><br />
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <!--画面幅 768px 以上-->
+  <div class="d-none d-md-block">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-10 col-md-12 beige-box p-4">
+        <div class="row">
+          <div class="col-md-4 m-4">
+            <h3 class="text-center border-bottom border-green-10">新規登録</h3>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-center">
+          <div class="col-md-12">
+            <%= form_with model: @user, url: user_registration_path do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <table class="table">
+                <tr>
+                  <th class="px-0 text-left">氏名</th>
+                  <td class="px-0 text-right"><%= f.label :姓 %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+                  <td class="px-0 text-right"><%= f.label :名 %> <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">ユーザーネーム</th>
+                  <td class="px-0 text-right"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">メールアドレス</th>
+                  <td class="px-0 text-right"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">パスワード</th>
+                  <td class="px-0 text-right">
+                    <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> 桁以上)</em>
+                    <% end %><br />
+                    <%= f.password_field :password, autocomplete: "new-password" %>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">パスワード（確認用</th>
+                  <td class="px-0 text-right"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+                </tr>
+                <tr class="pt-5">
+                  <th class="pt-5 px-0 text-left"></th>
+                  <td class="pt-5 px-0 text-left"><%= f.submit "新規登録", class: "btn btn-pink2 font-weight-bold text-green" %></td>
+                  <td class="pt-5 px-0 text-left"><%= render "devise/shared/links" %></td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :名 %><br />
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+  <!--画面幅 768px 未満-->
+  <div class="d-block d-md-none">
+    <div class="row justify-content-center">
+      <div class="beige-box m-0auto py-0 px-4" style="width: 80%;">
+        <div class="row justify-content-center">
+          <div class="col-sm-6 col-10 m-4">
+            <h3 class="text-center border-bottom border-green-10">新規登録</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= form_with model: @user, url: user_registration_path do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="col-12">
+              <div class="text-left">氏名</div>
+              <div class="pl-4 text-right"><%= f.label "姓" %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></div>
+              <div class="mb-3 pl-4 text-right"><%= f.label "名" %> <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></div>
+              <div class="text-left">ユーザーネーム</div>
+              <div class="mb-3 text-right"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></div>
+              <div class="text-left">メールアドレス</div>
+              <div class="mb-3 text-right"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+              <div class="text-left">パスワード</div>
+              <div class="pb-3 text-right">
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 桁以上)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+              </div>
+              <div class="text-left">パスワード（確認用）</div>
+              <div class="mb-3 text-right"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+              <div class="my-4 text-right"><%= f.submit "新規登録", class: "btn btn-pink2 font-weight-bold text-green" %></div>
+              <div class="mb-4 text-right"><%= render "devise/shared/links" %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :ユーザーネーム %><br />
-      <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :メールアドレス %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :パスワード %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 桁以上)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :パスワード（確認用） %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "新規登録" %>
-    </div>
-
-  <% end %>
-
-  <%= render "devise/shared/links" %>
   </div>
 </div>
