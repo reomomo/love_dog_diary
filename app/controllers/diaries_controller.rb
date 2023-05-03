@@ -18,7 +18,8 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
+    @user = current_user
+    @my_dogs = @user.my_dogs.page(params[:page]).per(2)
   end
 
   def show
