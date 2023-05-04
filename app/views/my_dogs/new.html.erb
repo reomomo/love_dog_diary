@@ -3,10 +3,22 @@
     <div class="row mx-0auto justify-content-center">
       <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 beige-box my-5">
         <div class="row justify-content-start">
-          <div class="col-xl-5 col-sm-5 mt-5 ml-5">
+          <div class="col-xl-5 col-sm-7 mt-5 ml-5">
             <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
         </div>
+        <% if @my_dog.errors.any? %>
+          <div class="row justify-content-center">
+            <%= @my_dog.errors.count %>件のエラーが発生しました
+          </div>
+          <div class="row ml-5 justify-content-center">
+            <ul>
+              <% @my_dog.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <div class="row m-4 justify-content-center">
           <%= form_with model: @my_dog do |f| %>
             <table class="table">
@@ -41,7 +53,7 @@
               </tr>
               <tr>
                 <th class="px-0"></th>
-                <td class="px-0 text-right"><%= f.submit '変更する', class: "btn btn-green font-weight-bold text-lightpink" %></td>
+                <td class="px-0 text-right"><%= f.submit '登録する', class: "btn btn-green font-weight-bold text-lightpink" %></td>
               </tr>
             </table>
           <% end %>
@@ -53,10 +65,22 @@
     <div class="row justify-content-center">
       <div class="beige-box m-0auto py-5 px-5" style="width: 90%;">
         <div class="row justify-content-center">
-          <div class="col-10 m-4">
+          <div class="col-11 m-4">
             <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
         </div>
+        <% if @my_dog.errors.any? %>
+          <div class="row justify-content-center">
+            <%= @my_dog.errors.count %>件のエラーが発生しました
+          </div>
+          <div class="row ml-5 justify-content-center">
+            <ul>
+              <% @my_dog.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <div class="row justify-content-center">
           <%= form_with model: @my_dog do |f| %>
             <div class="mx-4 text-left font-weight-bold">愛犬の名前</div>
@@ -80,7 +104,7 @@
             <div class="mb-4 mx-3 text-right"><%= f.date_field :birthdate %></div>
             <div class="mx-4 text-left font-weight-bold">愛犬の写真</div>
             <div class="mb-4 mx-3 text-right"><%= f.file_field :dog_image, accept: "image/*" %></div>
-            <div class="m-5 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
+            <div class="m-5 text-right"><%= f.submit "登録する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
           <% end %>
         </div>
       </div>

@@ -12,7 +12,7 @@
           <div class="col-md-12">
             <%= form_with model: @user, url: user_registration_path do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
-              <table class="table">
+              <table class="table table-borderless">
                 <tr>
                   <th class="px-0 text-left">氏名</th>
                   <td class="px-0 text-right"><%= f.label :姓 %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
@@ -36,7 +36,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th class="px-0 text-left">パスワード（確認用</th>
+                  <th class="px-0 text-left">パスワード(確認用)</th>
                   <td class="px-0 text-right"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
                 </tr>
                 <tr class="pt-5">
