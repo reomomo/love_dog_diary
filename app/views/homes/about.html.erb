@@ -229,183 +229,358 @@
 
 <% else %>
   <!--日記の見本を選択した場合-->
-  <div class="container_fuluid diaries-image0 jumbotron m-0" style="width: 100%; height: 100%;">
-    <div class="mt-5 box-8">
+  <div class="container_fuluid diaries-image0 jumbotron m-0">
+    <!--画面幅 576px 以上は以下の表示-->
+    <div class="d-none d-sm-block">
       <h1 class="border-bottom border-green-10" style="width: 160px;">日記見本</h1>
       <div class="row my-2 justify-content-center">
-        <div class="col-xl-6 col-lg-7 col-md-9 col-10">
-          <!--日記-->
-          <h2 class="font-weight-bold">レオちゃんの2023年4月1日の日記</h2>
-        </div>
+        <!--日記-->
+        <h2 class="box-8 font-weight-bold">>レオちゃんの2023年4月1日の日記</h2>
         <div class="col-lg-1 col-md-2 m-0 p-0 media about-image jumbotron" style="width: 80px; height: 80px;"></div>
       </div>
-      <div class="row my-5 justify-content-center">
+      <div class="row justify-content-center">
         <div class="col-lg-6 col-11">
-          <div class="row">
-            <div class="col-12">
-              <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんのひとこと</span><br>
-            </div>
-          </div>
-          <div class="row mt-3 ml-4">
-            <div class="diary-memo col-11 w-75" style="height: 150px;">
-              <span>
-                今日も元気にお散歩したからお腹ぺこぺこ！<br>
-                暑くなってきたからお散歩は早い時間にしたいな。<br>
-                いい子にするからお菓子たくさんちょうだいね(^^♪
-              </span>
-            </div>
-          </div>
-          <div class="row mt-2 ml-4 justify-content-center">
-            <div class="col-11 px-0">
-              <table class="mt-3 table table-borderless">
-                <tr>
-                  <th class="col-4 py-1 px-0">
-                    <span class="border-bottom border-pink-medium">食欲</span>
-                  </th>
-                  <td class="py-1 px-0">やや多い</td>
-                </tr>
-                <tr>
-                  <th class="col-4 py-1 px-0">
-                    <span class="border-bottom border-pink-medium">排せつ</span>
-                  </th>
-                  <td class="py-1 px-0 text-left">普通</td>
-                </tr>
-                <tr>
-                  <th class="py-1 px-0"></th>
-                  <td class="row py-1 px-5 justify-content-end">
-                    <span class="btn btn-lightpink font-weight-bold text-success">ひとこと、食欲、排せつを変更する</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <!--写真-->
-          <div class="row mt-3">
-            <div class="col-12">
-              <span class="h4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
-              <div class="row mt-3 justify-content-center">
-                <div class="col-sm-4 col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 200px; height: 200px;"></div>
-                <div class="col-sm-4 col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+          <div class="box-8">
+            <div class="row">
+              <div class="col-12">
+                <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんのひとこと</span>
               </div>
             </div>
-          </div>
-          <div class="row mt-2 justify-content-center">
-            <div class="col-sm-7 col-8 px-0">
-              <table class="table table-borderless">
-                <tr>
-                  <th colspan="2" class="py-3 px-0">
-                    <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
-                  </th>
-                </tr>
-                <tr>
-                  <th class="col-4 py-1 px-0 small">タイトル</th>
-                  <td class="p-0 small">
-                    <div class="border w-50">タイトルを入力</div>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="py-1 px-0 small">コメント</th>
-                  <td class="p-0 small">
-                    <div class="border w-50">コメントを入力</div>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="py-1 px-0 small">写真</th>
-                  <td class="p-0 small">
-                    <div class="border w-50">ファイルを選択</div>選択されていません
-                  </td>
-                </tr>
-                <tr>
-                  <th></th>
-                  <td class="py-1 px-0 small">
-                    <span class="btn btn-lightpink font-weight-bold text-success">保存</span>
-                  </td>
-                </tr>
-              </table>
+            <div class="row mt-3">
+              <div class="col-11 diary-memo w-75" style="height: 150px;">
+                <span>
+                  今日も元気にお散歩したからお腹ぺこぺこ！<br>
+                  暑くなってきたからお散歩は早い時間にしたいな。<br>
+                  いい子にするからお菓子たくさんちょうだいね(^^♪
+                </span>
+              </div>
             </div>
-            <div class="col-sm-4 col-7 mt-5 mx-0 p-0 media diaries-image2 jumbotron" style="width: 250px; height: 255px;"></div>
+            <div class="row mt-2 justify-content-center">
+              <div class="col-11 px-0">
+                <table class="mt-3 table table-borderless">
+                  <tr>
+                    <th class="py-1 px-0">
+                      <span class="border-bottom border-pink-medium">食欲</span>
+                    </th>
+                    <td class="py-1 px-0">やや多い</td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0">
+                      <span class="border-bottom border-pink-medium">排せつ</span>
+                    </th>
+                    <td class="py-1 px-0">普通</td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0"></th>
+                    <td class="row py-1 px-5 justify-content-end">
+                      <span class="btn btn-lightpink font-weight-bold text-success">ひとこと、食欲、排せつを変更する</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!--写真-->
+            <div class="row mt-3">
+              <div class="col-12">
+                <span class="h4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
+                <div class="row mt-3 justify-content-center">
+                  <div class="col-sm-4 m-0 p-0 media diaries-image1 jumbotron" style="width: 160px; height: 200px;"></div>
+                  <div class="col-sm-4 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2 justify-content-center">
+              <div class="col-sm-7 px-0">
+                <table class="table table-borderless">
+                  <tr>
+                    <th colspan="2" class="py-3 px-0">
+                      <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="col-4 py-1 px-0 small">タイトル</th>
+                    <td class="p-0 small">
+                      <div class="border w-50">タイトルを入力</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0 small">コメント</th>
+                    <td class="p-0 small">
+                      <div class="border w-50">コメントを入力</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0 small">写真</th>
+                    <td class="p-0 small">
+                      <div class="border w-50">ファイルを選択</div>選択されていません
+                    </td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td class="py-1 px-0 small">
+                      <span class="btn btn-lightpink font-weight-bold text-success">保存</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-sm-4 m-0 p-0 media diaries-image2 jumbotron" style="width: 160px; height: 255px;"></div>
+            </div>
           </div>
         </div>
+
         <!--散歩情報-->
-        <div class="col-lg-5 col-11">
-          <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんの散歩</span>
-          <table class="table table-borderless mt-3">
-            <tr>
-              <th class="col-3 py-1 px-0"></th>
-              <td class="row mb-1 py-1 px-5 justify-content-end">
-                <span class="btn btn-lightpink font-weight-bold text-success">散歩情報を登録する</span>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="2" class="py-3 px-0">
-                <span class="h5 font-weight-bold border-bottom border-pink-medium">1回目の散歩</span>
-              </th>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">元気の良さ</th>
-              <td class="py-1 px-0">元気</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
-              <td class="py-1 px-0">
-                <div class=" diary-memo w-75" style="height: 50px;">涼しくて歩きやすかった</div>
-              </td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">開始時間</th>
-              <td class="py-1 px-0">7:30</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">終了時間</th>
-              <td class="py-1 px-0">8:30</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0"></th>
-              <td class="row mb-3 py-1 px-5 justify-content-end">
-                <span class="btn btn-lightpink font-weight-bold text-success">元気の良さ、散歩メモ、時間を変更する</span>
-              </td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">お散歩ルート</th>
-              <td class="py-1 px-0">お気に入り</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">お散歩距離</th>
-              <td class="py-1 px-0">2540 m</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">お散歩時間</th>
-              <td class="py-1 px-0">60 分</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">スピード</th>
-              <td class="py-1 px-0">42 m／分</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0"></th>
-              <td class="row mb-3 py-1 px-5 justify-content-end">
-                <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを地図で確認する</span>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="2" class="py-3 px-0">
-                <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
-              </th>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">距離</th>
-              <td class="py-1 px-0">2540 m</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">時間</th>
-              <td class="py-1 px-0">60 分</td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">スピード</th>
-              <td class="py-1 px-0">42 m／分</td>
-            </tr>
-          </table>
+        <div class="col-lg-5 col-11 border-left border-pink-medium">
+          <div class="box-8">
+            <table class="table table-borderless">
+              <tr>
+                <th colspan="2" class="py-3 px-0">
+                  <span class="h4 font-weight-bold border-bottom border-green-10">レオちゃんの散歩</span>
+                </th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
+                <td class="row mb-1 py-1 px-5 justify-content-end">
+                  <span class="btn btn-lightpink font-weight-bold text-success">散歩情報を登録する</span>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2" class="py-3 px-0">
+                  <span class="h5 font-weight-bold border-bottom border-pink-medium">1回目の散歩</span>
+                </th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">元気の良さ</th>
+                <td class="py-1 px-0">元気</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
+                <td class="py-1 px-0">
+                  <div class="diary-memo w-75" style="height: 50px;">涼しくて歩きやすかった</div>
+                </td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">開始時間</th>
+                <td class="py-1 px-0">7:30</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">終了時間</th>
+                <td class="py-1 px-0">8:30</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
+                <td class="row mb-3 py-1 px-5 justify-content-end">
+                  <span class="btn btn-lightpink font-weight-bold text-success">元気の良さ、散歩メモ、時間を変更する</span>
+                </td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">お散歩ルート</th>
+                <td class="py-1 px-0">お気に入り</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">お散歩距離</th>
+                <td class="py-1 px-0">2540 m</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">お散歩時間</th>
+                <td class="py-1 px-0">60 分</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">スピード</th>
+                <td class="py-1 px-0">42 m／分</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
+                <td class="row mb-3 py-1 px-5 justify-content-end">
+                  <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを地図で確認する</span>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2" class="col-3 py-1 px-0">お散歩ルートを登録してください</th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
+                <td class="row mb-3 py-1 px-5 justify-content-end">
+                  <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを登録する</span>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2" class="py-3 px-0">
+                  <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+                </th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">距離</th>
+                <td class="py-1 px-0">2540 m</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">時間</th>
+                <td class="py-1 px-0">60 分</td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">スピード</th>
+                <td class="py-1 px-0">42 m／分</td>
+              </tr>
+            </table>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!--画面幅 576px 未満は以下の表示-->
+    <div class="d-block d-sm-none">
+      <h1 class="border-bottom border-green-10" style="width: 160px;">日記見本</h1>
+      <h2 class="box-8 font-weight-bold">2023年4月1日</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-1 col-md-2 m-0 p-0 media about-image jumbotron" style="width: 80px; height: 80px;"></div>
+      </div>
+      <div class="row mx-3">
+        <span class="h4 mt-3 font-weight-bold border-bottom border-green-10">レオちゃんのひとこと</span><br>
+        <div class="col-11 diary-memo w-75" style="height: 100px;">
+          <span>
+            今日も元気にお散歩したからお腹ぺこぺこ！<br>
+            暑くなってきたからお散歩は早い時間にしたいな。<br>
+            いい子にするからお菓子たくさんちょうだいね(^^♪
+          </span>
+        </div>
+        <table class="mt-3 table table-borderless">
+          <tr>
+            <th class="py-1 px-0">
+              <span class="border-bottom border-pink-medium">食欲</span>
+            </th>
+            <td class="py-1 px-0">やや多い</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">
+              <span class="border-bottom border-pink-medium">排せつ</span>
+            </th>
+            <td class="py-1 px-0">普通</td>
+          </tr>
+        </table>
+        <span class="btn btn-lightpink font-weight-bold text-success">ひとこと、食欲、排せつを変更する</span>
+
+        <!--写真-->
+        <span class="h4 mt-4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
+        <div class="row mt-3 justify-content-start">
+        <div class="row mt-3 justify-content-center">
+          <div class="col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 160px;"></div>
+          <div class="col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+        </div>
+        <table class="table table-borderless">
+          <tr>
+            <th colspan="2" class="py-3 px-0">
+              <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="col-4 py-1 px-0 small">タイトル</th>
+            <td class="p-0 small">
+              <div class="border w-50">タイトルを入力</div>
+            </td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0 small">コメント</th>
+            <td class="p-0 small">
+              <div class="border w-50">コメントを入力</div>
+            </td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0 small">写真</th>
+            <td class="p-0 small">
+              <div class="border w-50">ファイルを選択</div>選択されていません
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td class="py-1 px-0 small">
+              <span class="btn btn-lightpink font-weight-bold text-success">保存</span>
+            </td>
+          </tr>
+        </table>
+
+        <!--散歩情報-->
+        <span class="h4 mt-3 font-weight-bold border-bottom border-green-10">レオちゃんの散歩</span>
+        <div class="ml-5 text-right">
+          <span class="btn btn-lightpink font-weight-bold text-success">散歩情報を登録する</span>
+        </div>
+        <table class="mt-4">
+          <tr>
+            <th colspan="2" class="py-3 px-0">
+              <span class="h5 font-weight-bold border-bottom border-pink-medium">1回目の散歩</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">元気の良さ</th>
+            <td class="py-1 px-0">元気</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0" style="max-height: 30px;">散歩メモ</th>
+            <td class="py-1 px-0">
+              <div style="max-width: 150px;">涼しくて歩きやすかった</div>
+            </td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">開始時間</th>
+            <td class="py-1 px-0">7:30</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">終了時間</th>
+            <td class="py-1 px-0">8:30</td>
+          </tr>
+          <tr>
+            <th colspan="2" class="mb-3 py-1 px-0 text-right">
+              <span class="btn btn-lightpink font-weight-bold text-success">元気の良さ、散歩メモ、時間を変更する</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">お散歩ルート</th>
+            <td class="py-1 px-0">お気に入り</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">お散歩距離</th>
+            <td class="py-1 px-0">2540 m</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">お散歩時間</th>
+            <td class="py-1 px-0">60 分</td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">スピード</th>
+            <td class="py-1 px-0">42 m／分</td>
+          </tr>
+          <tr>
+            <th colspan="2" class="mb-3 py-1 px-0 text-right">
+              <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを地図で確認する</span>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="2" class="py-1 px-0">お散歩ルートを登録してください</th>
+          </tr>
+          <tr>
+            <th colspan="2" class="mb-3 py-1 px-0 text-right">
+              <span class="btn btn-lightpink font-weight-bold text-success">お散歩ルートを登録する</span>
+            </th>
+          </tr>
+        </table>
+        <table class="mt-2">
+          <tr>
+            <th colspan="2" class="py-3 px-0">
+              <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="py-1 pr-5">距離</th>
+            <td class="py-1 px-0">2540 m</td>
+          </tr>
+          <tr>
+            <th class="py-1 pr-5">時間</th>
+            <td class="py-1 px-0">60 分</td>
+          </tr>
+          <tr>
+            <th class="py-1 pr-5">スピード</th>
+            <td class="py-1 px-0">42 m／分</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
