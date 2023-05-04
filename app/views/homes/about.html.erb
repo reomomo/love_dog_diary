@@ -76,6 +76,7 @@
   <!--カレンダーの見本を選択した場合-->
   <div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; height: 100%;">
     <div class="box-8 py-4 px-0">
+      <!--画面幅 992px以上の場合-->
       <div class="d-none d-lg-block">
         <div class="ml-4 border-bottom border-green-10 w-25">
           <h1 class="text-center">カレンダー見本</h1>
@@ -95,7 +96,7 @@
             <%= image_tag('speed.png') %>：散歩のスピード
           </span>
         </div>
-        <!--愛犬ごとのカレンダー表示-->
+        <!--愛犬のカレンダー表示-->
         <div class="mb-4 border-top border-pink">
           <div class="row mt-5 ml-5">
             <div class="mr-4 h3 font-weight-bold">レオちゃんのカレンダー</div>
@@ -106,7 +107,7 @@
             <span class="text-success"><%= date.day %></span><br>
             <div class="row justify-content-center">
               <div class="col-10">
-                <!--それぞれの配列からランダムに出力-->
+                <!--それぞれの配列（コントローラに記述）からランダムに出力-->
                 <% food = @foods[random.rand(1..@foods.count-1)] %>
                 <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
                 <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
@@ -129,6 +130,7 @@
           <% end %>
         </div>
       </div>
+
       <!--画面幅 768px以上 992px 未満は散歩スピード非表示-->
       <div class="d-none d-md-block d-lg-none">
         <div class="ml-4 border-bottom border-green-10 w-50">
@@ -148,7 +150,7 @@
             <%= image_tag('distance.png') %>：散歩距離
           </span>
         </div>
-        <!--愛犬ごとのカレンダー表示-->
+        <!--愛犬のカレンダー表示-->
         <div class="mb-4 border-top border-pink">
           <div class="row mt-5 ml-5">
               <div class="mr-4 h3 font-weight-bold">レオちゃんのカレンダー</div>
@@ -166,7 +168,7 @@
                 <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
                 <% time = @times[random.rand(1..@times.count-1)] %>
                 <% if time != 0 %>
-                  <!--一日トータルの散歩時間が0以外ならトータル時間、距離、スピードを表示する-->
+                  <!--一日トータルの散歩時間が0以外ならトータル時間、距離を表示する-->
                   <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
                   <% distance = @distances[random.rand(1..@distances.count-1)] %>
                   <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
@@ -180,6 +182,7 @@
           <% end %>
         </div>
       </div>
+
       <!--画面幅 768px 未満はアイコンのみ表示-->
       <div class="d-block d-md-none">
         <div class="ml-4 border-bottom border-green-10 w-75">
@@ -199,7 +202,7 @@
           <div class="col-5 offset-1"><%= image_tag('time.png') %>：散歩時間</div>
           <div class="col-5"><%= image_tag('distance.png') %>：散歩距離</div>
         </div>
-        <!--愛犬ごとのカレンダー表示-->
+        <!--愛犬のカレンダー表示-->
         <div class="mb-4 border-top border-pink">
           <div class="row mt-3 ml-2 justify-content-end">
             <div class="col-12 h4 font-weight-bold">レオちゃんのカレンダー</div>
@@ -230,7 +233,7 @@
 <% else %>
   <!--日記の見本を選択した場合-->
   <div class="container_fuluid diaries-image0 jumbotron m-0">
-    <!--画面幅 576px 以上は以下の表示-->
+    <!--画面幅 576px 以上の場合-->
     <div class="d-none d-sm-block">
       <h1 class="border-bottom border-green-10" style="width: 160px;">日記見本</h1>
       <div class="row my-2 justify-content-center">

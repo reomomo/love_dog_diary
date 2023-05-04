@@ -1,5 +1,40 @@
-
+<div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; min-height: 600px;">
+  <div class="box-8">
+  <!--画面幅 576px 以上は以下の表示-->
+  <div class="d-none d-sm-block">
+  <div class="row justify-content-center">
+    <div class="col-10 box-8 my-5">
   <h1>写真一覧</h1>
+<p>写真の追加は、撮影日の日記から登録できます</p>
+<div class="row">
+<% @photos.each do |photo| %>
+
+  <div class="col-3">
+    <!--それぞれの写真詳細画面へ遷移する-->
+    <%= link_to photo_path(photo.id) do %>
+    　<%= image_tag photo.get_image(100,100) %>
+    　<p>タイトル</p>
+      <span><%= photo.title %></span>
+    <% end %>
+    <%= link_to diary_path(photo.diary.id) do %>
+      <p>撮影日</p>
+      <span><%= photo.diary.diary_date %></span>
+    <% end %>
+  </div>
+
+<% end %>
+</div>
+
+<%= paginate @photos %>
+  </div>
+  </div>
+  </div>
+
+  <!--画面幅 576px 未満は以下の表示-->
+  <div class="d-block d-sm-none">
+  <div class="row justify-content-center">
+    <div class="col-11 box-8 my-3">
+      <h3>写真一覧</h3>
 <p>写真の追加は、撮影日の日記から登録できます</p>
 
 <% @photos.each do |photo| %>
@@ -18,3 +53,7 @@
 <% end %>
 
 <%= paginate @photos %>
+        </div>
+  </div>
+  </div>
+  </div>

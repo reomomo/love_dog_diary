@@ -43,6 +43,7 @@
               </table>
             </div>
           </div>
+
           <!--写真-->
           <div class="row mt-3">
             <div class="col-12">
@@ -106,6 +107,7 @@
           </div>
         </div>
       </div>
+
       <!--散歩情報-->
       <div class="col-lg-5 col-11 border-left border-pink-medium">
         <div class="box-8">
@@ -152,6 +154,7 @@
                 </td>
               </tr>
               <% if stroll.pins.present? %>
+                <!--お散歩ルートの登録がある場合下記表示-->
                 <tr>
                   <th class="col-3 py-1 px-0">お散歩ルート</th>
                   <td class="py-1 px-0">
@@ -211,6 +214,7 @@
               <td class="py-1 px-0"><%= @total_min %> 分</td>
             </tr>
             <% if @total_min > 0 %>
+              <!--一日の合計散歩時間が0より多い場合スピード表示-->
               <tr>
                 <th class="col-3 py-1 px-0">スピード</th>
                 <td class="py-1 px-0">
@@ -238,6 +242,7 @@
           <span><%= @diary.memo %></span>
         </div>
       <% else %>
+        <!--メモが100字未満なら全て表示-->
         <span><%= @diary.memo %></span>
       <% end %>
       <table class="mt-3 table table-borderless">
@@ -255,6 +260,7 @@
         </tr>
       </table>
       <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+
       <!--写真-->
       <span class="h4 mt-4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
       <% if @photos.present? %>
@@ -307,6 +313,7 @@
           </tr>
         </table>
       <% end %>
+
       <!--散歩情報-->
       <span class="h4 mt-3 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
       <div class="ml-5 text-right"><%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %></div>
@@ -330,6 +337,7 @@
                   <%= stroll.memo %>
                 </div>
               <% else %>
+                <!--メモが30字未満なら全て表示-->
                 <div style="max-width: 150px;"><%= stroll.memo %></div>
               <% end %>
             </td>
@@ -407,6 +415,7 @@
           <td class="py-1 px-0"><%= @total_min %> 分</td>
         </tr>
         <% if @total_min > 0 %>
+          <!--一日の合計散歩時間が0より多い場合スピード表示-->
           <tr>
             <th class="py-1 pr-5">スピード</th>
             <td class="py-1 px-0">
