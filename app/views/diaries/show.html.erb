@@ -1,223 +1,429 @@
 <div class="container_fuluid diaries-image0 jumbotron m-0">
-  <div class="row my-2 justify-content-center">
-    <!--日記-->
-    <h1 class="box-8 font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
-    <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-11">
-      <div class="box-8">
-        <div class="row">
-          <div class="col-12">
-            <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんのひとこと</span><br>
+  <!--画面幅 576px 以上は以下の表示-->
+  <div class="d-none d-sm-block">
+    <div class="row my-2 justify-content-center">
+      <!--日記-->
+      <h1 class="box-8 font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
+      <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-11">
+        <div class="box-8">
+          <div class="row">
+            <div class="col-12">
+              <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんのひとこと</span>
+            </div>
           </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-11 diary-memo w-75" style="height: 150px;">
-            <span><%= @diary.memo %></span>
+          <div class="row mt-3">
+            <div class="col-11 diary-memo w-75" style="height: 150px;">
+              <span><%= @diary.memo %></span>
+            </div>
           </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <div class="col-11 px-0">
-            <table class="mt-3 table table-borderless">
-              <tr>
-                <th class="py-1 px-0">
-                  <span class="border-bottom border-pink-medium">食欲</span>
-                </th>
-                <td class="py-1 px-0"><%= @diary.appetite_i18n %></td>
-              </tr>
-              <tr>
-                <th class="py-1 px-0">
-                  <span class="border-bottom border-pink-medium">排せつ</span>
-                </th>
-                <td class="py-1 px-0"><%= @diary.excreta_i18n %></td>
-              </tr>
-              <tr>
-                <th class="py-1 px-0"></th>
-                <td class="row py-1 px-5 justify-content-end">
-                  <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <!--写真-->
-        <div class="row mt-3">
-          <div class="col-12">
-            <span class="h4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
-            <% if @photos.present? %>
-              <div class="row mt-3 justify-content-start">
-                <% @photos.each do |photo| %>
-                  <!--写真詳細画面へ遷移する-->
-                  <%= link_to photo_path(photo.id) do %>
-                    <div class="col-11 my-1">
-                      <div style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(100,100) %></div>
-                      <div class="daiary-photo" style="width: 110px;"><%= photo.title %></div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="row mt-2 py-1 px-5 justify-content-end">
-                <!--写真一覧へ遷移する-->
-                <%= link_to "全ての写真を見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
-              </div>
-            <% else %>
-              <div class="row mt-3 justify-content-center">
-                <div class="col-sm-4 col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 160px; height: 200px;"></div>
-                <div class="col-sm-4 col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
-              </div>
-            <% end %>
-            <%= paginate @photos %>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <div class="col-sm-7 col-12 px-0">
-            <%= form_with model: @photo do |f| %>
-              <table class="table table-borderless">
+          <div class="row mt-2 justify-content-center">
+            <div class="col-11 px-0">
+              <table class="mt-3 table table-borderless">
                 <tr>
-                  <th colspan="2" class="py-3 px-0">
-                    <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+                  <th class="py-1 px-0">
+                    <span class="border-bottom border-pink-medium">食欲</span>
                   </th>
+                  <td class="py-1 px-0"><%= @diary.appetite_i18n %></td>
                 </tr>
                 <tr>
-                  <th class="col-4 py-1 px-0 small">タイトル</th>
-                  <td class="p-0 small"><%= f.text_field :title %></td>
+                  <th class="py-1 px-0">
+                    <span class="border-bottom border-pink-medium">排せつ</span>
+                  </th>
+                  <td class="py-1 px-0"><%= @diary.excreta_i18n %></td>
                 </tr>
                 <tr>
-                  <th class="py-1 px-0 small">コメント</th>
-                  <td class="p-0 small"><%= f.text_area :body %></td>
-                </tr>
-                <tr>
-                  <th class="py-1 px-0 small">写真</th>
-                  <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
-                </tr>
-                <tr>
-                  <th></th>
-                  <%= f.hidden_field :diary_id, :value => @diary.id %>
-                  <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
-                  <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
+                  <th class="py-1 px-0"></th>
+                  <td class="row py-1 px-5 justify-content-end">
+                    <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  </td>
                 </tr>
               </table>
-            <% end %>
+            </div>
           </div>
-          <div class="col-sm-4 col-9 m-0 p-0 media diaries-image2 jumbotron" style="width: 160px; height: 255px;"></div>
+
+          <!--写真-->
+          <div class="row mt-3">
+            <div class="col-12">
+              <span class="h4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
+              <% if @photos.present? %>
+                <div class="row mt-3 justify-content-start">
+                  <% @photos.each do |photo| %>
+                    <!--写真詳細画面へ遷移する-->
+                    <%= link_to photo_path(photo.id) do %>
+                      <div class="col-11 my-1">
+                        <div style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(100,100) %></div>
+                        <div class="photo-title" style="width: 110px;"><%= photo.title %></div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="row mt-2 py-1 px-5 justify-content-end">
+                  <!--写真一覧へ遷移する-->
+                  <%= link_to "全ての写真を見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
+                </div>
+              <% else %>
+                <div class="row mt-3 justify-content-center">
+                  <div class="col-sm-4 m-0 p-0 media diaries-image1 jumbotron" style="width: 160px; height: 200px;"></div>
+                  <div class="col-sm-4 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+                </div>
+              <% end %>
+              <%= paginate @photos %>
+            </div>
+          </div>
+          <div class="row mt-2 justify-content-center">
+            <div class="col-sm-7 px-0">
+              <%= form_with model: @photo do |f| %>
+                <table class="table table-borderless">
+                  <tr>
+                    <th colspan="2" class="py-3 px-0">
+                      <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="col-4 py-1 px-0 small">タイトル</th>
+                    <td class="p-0 small"><%= f.text_field :title %></td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0 small">コメント</th>
+                    <td class="p-0 small"><%= f.text_area :body %></td>
+                  </tr>
+                  <tr>
+                    <th class="py-1 px-0 small">写真</th>
+                    <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <%= f.hidden_field :diary_id, :value => @diary.id %>
+                    <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
+                    <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
+                  </tr>
+                </table>
+              <% end %>
+            </div>
+            <div class="col-sm-4 m-0 p-0 media diaries-image2 jumbotron" style="width: 160px; height: 255px;"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <!--散歩情報-->
-    <div class="col-lg-5 col-11 border-left border-pink-medium">
-      <div class="box-8">
-        <table class="table table-borderless">
-          <tr>
-            <th colspan="2" class="py-3 px-0">
-              <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
-            </th>
-          </tr>
-          <tr>
-            <th class="col-3 py-1 px-0"></th>
-            <td class="row mb-1 py-1 px-5 justify-content-end">
-              <%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %>
-            </td>
-          </tr>
-          <% @strolls.each_with_index do |stroll, index| %>
+
+      <!--散歩情報-->
+      <div class="col-lg-5 col-11 border-left border-pink-medium">
+        <div class="box-8">
+          <table class="table table-borderless">
             <tr>
               <th colspan="2" class="py-3 px-0">
-                <span class="h5 font-weight-bold border-bottom border-pink-medium"><%= index + 1 %>回目の散歩</span>
+                <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
               </th>
             </tr>
             <tr>
-              <th class="col-3 py-1 px-0">元気の良さ</th>
-              <td class="py-1 px-0"><%= stroll.vitality_condition_i18n %></td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
-              <td class="py-1 px-0">
-                <div class="diary-memo w-75" style="height: 50px;"><%= stroll.memo %></div>
-              </td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">開始時間</th>
-              <td class="py-1 px-0"><%= stroll.start_time.strftime("%H:%M") %></td>
-            </tr>
-            <tr>
-              <th class="col-3 py-1 px-0">終了時間</th>
-              <td class="py-1 px-0"><%= stroll.end_time.strftime("%H:%M") %></td>
-            </tr>
-            <tr>
               <th class="col-3 py-1 px-0"></th>
-              <td class="row mb-3 py-1 px-5 justify-content-end">
-                <%= link_to "元気の良さ、散歩メモ、時間を変更する", edit_stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+              <td class="row mb-1 py-1 px-5 justify-content-end">
+                <%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %>
               </td>
             </tr>
-            <% if stroll.pins.present? %>
+            <% @strolls.each_with_index do |stroll, index| %>
               <tr>
-                <th class="col-3 py-1 px-0">お散歩ルート</th>
+                <th colspan="2" class="py-3 px-0">
+                  <span class="h5 font-weight-bold border-bottom border-pink-medium"><%= index + 1 %>回目の散歩</span>
+                </th>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0">元気の良さ</th>
+                <td class="py-1 px-0"><%= stroll.vitality_condition_i18n %></td>
+              </tr>
+              <tr>
+                <th class="col-3 py-1 px-0" style="max-height: 30px;">散歩メモ</th>
                 <td class="py-1 px-0">
-                  <%= stroll.pins.order(updated_at: :desc).first.title %>
+                  <div class="diary-memo w-75" style="height: 50px;"><%= stroll.memo %></div>
                 </td>
               </tr>
               <tr>
-                <th class="col-3 py-1 px-0">お散歩距離</th>
-                <td class="py-1 px-0">
-                  <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                  <% total = 0 %>
-                  <% stroll.pins.all.each do |pin| %>
-                    <% total += pin.distance %>
-                  <% end %>
-                  <%= total.to_i %> m
-                </td>
+                <th class="col-3 py-1 px-0">開始時間</th>
+                <td class="py-1 px-0"><%= stroll.start_time.strftime("%H:%M") %></td>
               </tr>
               <tr>
-                <th class="col-3 py-1 px-0">お散歩時間</th>
-                <td class="py-1 px-0"><%= stroll.time_of_stroll %> 分</td>
+                <th class="col-3 py-1 px-0">終了時間</th>
+                <td class="py-1 px-0"><%= stroll.end_time.strftime("%H:%M") %></td>
               </tr>
+              <tr>
+                <th class="col-3 py-1 px-0"></th>
+                <td class="row mb-3 py-1 px-5 justify-content-end">
+                  <%= link_to "元気の良さ、散歩メモ、時間を変更する", edit_stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                </td>
+              </tr>
+              <% if stroll.pins.present? %>
+                <!--お散歩ルートの登録がある場合下記表示-->
+                <tr>
+                  <th class="col-3 py-1 px-0">お散歩ルート</th>
+                  <td class="py-1 px-0">
+                    <%= stroll.pins.order(updated_at: :desc).first.title %>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-3 py-1 px-0">お散歩距離</th>
+                  <td class="py-1 px-0">
+                    <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
+                    <% total = 0 %>
+                    <% stroll.pins.all.each do |pin| %>
+                      <% total += pin.distance %>
+                    <% end %>
+                    <%= total.to_i %> m
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-3 py-1 px-0">お散歩時間</th>
+                  <td class="py-1 px-0"><%= stroll.time_of_stroll %> 分</td>
+                </tr>
+                <tr>
+                  <th class="col-3 py-1 px-0">スピード</th>
+                  <td class="py-1 px-0">
+                    <%= total.to_i / stroll.time_of_stroll %> m／分
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-3 py-1 px-0"></th>
+                  <td class="row mb-3 py-1 px-5 justify-content-end">
+                    <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  </td>
+                </tr>
+              <% else %>
+                <tr>
+                  <th colspan="2" class="col-3 py-1 px-0">お散歩ルートを登録してください</th>
+                </tr>
+                <tr>
+                  <th class="col-3 py-1 px-0"></th>
+                  <td class="row mb-3 py-1 px-5 justify-content-end">
+                    <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <th colspan="2" class="py-3 px-0">
+                <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+              </th>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">距離</th>
+              <td class="py-1 px-0"><%= @total_distances.to_i %> m</td>
+            </tr>
+            <tr>
+              <th class="col-3 py-1 px-0">時間</th>
+              <td class="py-1 px-0"><%= @total_min %> 分</td>
+            </tr>
+            <% if @total_min > 0 %>
+              <!--一日の合計散歩時間が0より多い場合スピード表示-->
               <tr>
                 <th class="col-3 py-1 px-0">スピード</th>
                 <td class="py-1 px-0">
-                  <%= total.to_i / stroll.time_of_stroll %> m／分
-                </td>
-              </tr>
-              <tr>
-                <th class="col-3 py-1 px-0"></th>
-                <td class="row mb-3 py-1 px-5 justify-content-end">
-                  <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
-                </td>
-              </tr>
-            <% else %>
-              <tr>
-                <th colspan="2" class="col-3 py-1 px-0">お散歩ルートを登録してください</th>
-              </tr>
-              <tr>
-                <th class="col-3 py-1 px-0"></th>
-                <td class="row mb-3 py-1 px-5 justify-content-end">
-                  <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  <%= @total_distances.to_i / @total_min %> m／分
                 </td>
               </tr>
             <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--画面幅 576px 未満は以下の表示-->
+  <div class="d-block d-sm-none">
+    <h1 class="box-8 font-weight-bold"><%= @diary.diary_date %></h1>
+    <div class="row justify-content-center">
+      <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
+    </div>
+    <div class="row mx-3">
+      <span class="h4 mt-3 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんのひとこと</span><br>
+      <% if @diary.memo.length >= 100 %>
+        <!--メモが100字以上なら全て表示せずスクロールで表示-->
+        <div class="col-11 diary-memo w-75" style="height: 100px;">
+          <span><%= @diary.memo %></span>
+        </div>
+      <% else %>
+        <!--メモが100字未満なら全て表示-->
+        <span><%= @diary.memo %></span>
+      <% end %>
+      <table class="mt-3 table table-borderless">
+        <tr>
+          <th class="py-1 px-0">
+            <span class="border-bottom border-pink-medium">食欲</span>
+          </th>
+          <td class="py-1 px-0"><%= @diary.appetite_i18n %></td>
+        </tr>
+        <tr>
+          <th class="py-1 px-0">
+            <span class="border-bottom border-pink-medium">排せつ</span>
+          </th>
+          <td class="py-1 px-0"><%= @diary.excreta_i18n %></td>
+        </tr>
+      </table>
+      <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+
+      <!--写真-->
+      <span class="h4 mt-4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
+      <% if @photos.present? %>
+        <div class="row mt-3 justify-content-start">
+          <% @photos.each do |photo| %>
+            <!--写真詳細画面へ遷移する-->
+            <%= link_to photo_path(photo.id) do %>
+              <div class="col-11 my-1">
+                <div style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(80,80) %></div>
+                <div class="daiary-photo" style="width: 110px;"><%= photo.title %></div>
+              </div>
+            <% end %>
           <% end %>
+        </div>
+        <div class="row mt-2 py-1 px-5 justify-content-end">
+          <!--写真一覧へ遷移する-->
+          <%= link_to "全ての写真を見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
+        </div>
+      <% else %>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 160px;"></div>
+          <div class="col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+        </div>
+      <% end %>
+      <%= paginate @photos %>
+      <%= form_with model: @photo do |f| %>
+        <table class="table table-borderless">
           <tr>
             <th colspan="2" class="py-3 px-0">
-              <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+              <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
             </th>
           </tr>
           <tr>
-            <th class="col-3 py-1 px-0">距離</th>
-            <td class="py-1 px-0"><%= @total_distances.to_i %> m</td>
+            <th class="col-4 py-1 px-0 small">タイトル</th>
+            <td class="p-0 small"><%= f.text_field :title %></td>
           </tr>
           <tr>
-            <th class="col-3 py-1 px-0">時間</th>
-            <td class="py-1 px-0"><%= @total_min %> 分</td>
+            <th class="py-1 px-0 small">コメント</th>
+            <td class="p-0 small"><%= f.text_area :body %></td>
           </tr>
-          <% if @total_min > 0 %>
+          <tr>
+            <th class="py-1 px-0 small">写真</th>
+            <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th></th>
+              <%= f.hidden_field :diary_id, :value => @diary.id %>
+              <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
+            <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
+          </tr>
+        </table>
+      <% end %>
+
+      <!--散歩情報-->
+      <span class="h4 mt-3 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
+      <div class="ml-5 text-right"><%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %></div>
+      <% @strolls.each_with_index do |stroll, index| %>
+        <table class="mt-4">
+          <tr>
+            <th colspan="2" class="py-3 px-0">
+              <span class="h5 font-weight-bold border-bottom border-pink-medium"><%= index + 1 %>回目の散歩</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">元気の良さ</th>
+            <td class="py-1 px-0"><%= stroll.vitality_condition_i18n %></td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0" style="max-height: 30px;">散歩メモ</th>
+            <td class="py-1 px-0">
+              <% if stroll.memo.length >= 30 %>
+                <!--メモが30字以上なら全て表示せずスクロールで表示-->
+                <div class="diary-memo" style="max-width: 150px; max-height: 80px">
+                  <%= stroll.memo %>
+                </div>
+              <% else %>
+                <!--メモが30字未満なら全て表示-->
+                <div style="max-width: 150px;"><%= stroll.memo %></div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">開始時間</th>
+            <td class="py-1 px-0"><%= stroll.start_time.strftime("%H:%M") %></td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0">終了時間</th>
+            <td class="py-1 px-0"><%= stroll.end_time.strftime("%H:%M") %></td>
+          </tr>
+          <tr>
+            <th colspan="2" class="mb-3 py-1 px-0 text-right">
+              <%= link_to "元気の良さ、メモ、時間を変更する", edit_stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+            </th>
+          </tr>
+          <% if stroll.pins.present? %>
             <tr>
-              <th class="col-3 py-1 px-0">スピード</th>
+              <th class="py-1 px-0">お散歩ルート</th>
               <td class="py-1 px-0">
-                <%= @total_distances.to_i / @total_min %> m／分
+                <%= stroll.pins.order(updated_at: :desc).first.title %>
               </td>
+            </tr>
+            <tr>
+              <th class="py-1 px-0">お散歩距離</th>
+              <td class="py-1 px-0">
+                <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
+                <% total = 0 %>
+                <% stroll.pins.all.each do |pin| %>
+                  <% total += pin.distance %>
+                <% end %>
+                <%= total.to_i %> m
+              </td>
+            </tr>
+            <tr>
+              <th class="py-1 px-0">お散歩時間</th>
+              <td class="py-1 px-0"><%= stroll.time_of_stroll %> 分</td>
+            </tr>
+            <tr>
+              <th class="py-1 px-0">スピード</th>
+              <td class="py-1 px-0">
+                <%= total.to_i / stroll.time_of_stroll %> m／分
+              </td>
+            </tr>
+            <tr>
+              <th colspan="2" class="mb-3 py-1 px-0 text-right">
+                <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+              </th>
+            </tr>
+          <% else %>
+            <tr>
+              <th colspan="2" class="py-1 px-0">お散歩ルートを登録してください</th>
+            </tr>
+            <tr>
+              <th colspan="2" class="mb-3 py-1 px-0 text-right">
+                <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+              </th>
             </tr>
           <% end %>
         </table>
-      </div>
+      <% end %>
+      <table>
+        <tr>
+          <th colspan="2" class="py-3 px-0">
+            <span class="h5 font-weight-bold border-bottom border-pink-medium">今日の合計</span>
+          </th>
+        </tr>
+        <tr>
+          <th class="py-1 pr-5">距離</th>
+          <td class="py-1 px-0"><%= @total_distances.to_i %> m</td>
+        </tr>
+        <tr>
+          <th class="py-1 pr-5">時間</th>
+          <td class="py-1 px-0"><%= @total_min %> 分</td>
+        </tr>
+        <% if @total_min > 0 %>
+          <!--一日の合計散歩時間が0より多い場合スピード表示-->
+          <tr>
+            <th class="py-1 pr-5">スピード</th>
+            <td class="py-1 px-0">
+              <%= @total_distances.to_i / @total_min %> m／分
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

@@ -1,27 +1,94 @@
-<div class="container_fuluid other-images" style="width: 100%; min-height: 600px;">
-  <div class="beige-box">
-    <h1>散歩情報の登録</h1>
-<%= form_with model: @stroll do |f| %>
-  <p>散歩開始時間</p>
-  <%= f.time_field :start_time %>
-  <p>散歩終了時間</p>
-  <%= f.time_field :end_time %>
-  <p>散歩メモ</p>
-  <%= f.text_area :memo %>
-  <p>散歩中の元気の良さ</p>
-  <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
-  <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
-  <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
-  <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly] %><br />
-  <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
-  <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually] %><br />
-  <%= f.radio_button :vitality_condition, @vitality_conditions.key(3) %>
-  <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality] %><br />
-  <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
-  <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
-  <%= f.hidden_field :diary_id, :value => @diary_id %>
-  <%= f.hidden_field :my_dog_id, :value => @dog_id %>
-  <%= f.submit "保存する" %>
-<% end %>
-</div>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <!--画面幅 768px 以上は以下の表示-->
+  <div class="d-none d-md-block">
+    <div class="row mx-0auto justify-content-center">
+      <div class="col-lg-8 col-md-9  col-12 beige-box my-5">
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-lg-5 col-md-6 col-11 mt-5">
+            <h3 class="text-center border-bottom border-green-10">散歩概要の登録</h3>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-center">
+          <%= form_with model: @stroll do |f| %>
+            <table class="table">
+              <tr>
+                <th class="pl-4">開始時間</th>
+                <td><%= f.time_field :start_time %></td>
+              </tr>
+              <tr>
+                <th class="pl-4">終了時間</th>
+                <td><%= f.time_field :end_time %></td>
+              </tr>
+              <tr>
+                <th class="pl-4">散歩メモ</th>
+                <td>
+                  <div><%= f.text_area :memo, style: "width: 90%; min-height: 70px;" %></div>
+                </td>
+              </tr>
+              <tr>
+                <th class="pl-4">散歩中の元気の良さ</th>
+                <td>
+                  <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
+                  <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
+                  <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
+                  <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly] %><br />
+                  <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
+                  <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually] %><br />
+                  <%= f.radio_button :vitality_condition, @vitality_conditions.key(3) %>
+                  <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality] %><br />
+                  <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
+                  <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
+                </td>
+              </tr>
+              <%= f.hidden_field :diary_id, :value => @diary_id %>
+              <%= f.hidden_field :my_dog_id, :value => @dog_id %>
+              <tr>
+                <th class="px-0 text-right"></th>
+                <td class="px-0 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--画面幅 768px 未満は以下の表示-->
+  <div class="d-block d-md-none">
+    <div class="row justify-content-center">
+      <div class="beige-box m-0auto py-5 px-4" style="width: 80%;">
+        <div class="row justify-content-center">
+          <div class="col-sm-8 col-11 m-4">
+            <h3 class="text-center border-bottom border-green-10">散歩概要の登録</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= form_with model: @stroll do |f| %>
+            <div class="mb-1 text-left font-weight-bold">開始時間</div>
+            <div class="pl-5"><%= f.time_field :start_time %></div>
+            <div class="mt-4 mb-1 text-left font-weight-bold">終了時間</div>
+            <div class="pl-5"><%= f.time_field :end_time %></div>
+            <div class="mt-4 mb-1 text-left font-weight-bold">散歩メモ</div>
+            <div class="pl-5"><%= f.text_area :memo, style: "width: 90%; min-height: 70px;" %></div>
+            <div class="mt-4 mb-1 text-left font-weight-bold">散歩中の元気の良さ</div>
+            <div class="mb-4 pl-5">
+              <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
+              <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
+              <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
+              <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly] %><br />
+              <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
+              <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually] %><br />
+              <%= f.radio_button :vitality_condition, @vitality_conditions.key(3) %>
+              <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality] %><br />
+              <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
+              <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
+            </div>
+            <%= f.hidden_field :diary_id, :value => @diary_id %>
+            <%= f.hidden_field :my_dog_id, :value => @dog_id %>
+            <div class="pl-4 text-right"><%= f.submit "保存する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
