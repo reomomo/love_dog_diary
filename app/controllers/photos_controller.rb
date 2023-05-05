@@ -2,7 +2,8 @@ class PhotosController < ApplicationController
   before_action :check_dog, only:[:index, :show, :edit]
 
   def index
-    @photos = current_user.photos.page(params[:page]).per(8)
+    @user = current_user
+    @photos = @user.photos.all.order(:diary_date).page(params[:page]).per(12)
   end
 
   def create
@@ -44,7 +45,7 @@ class PhotosController < ApplicationController
 
   def check_dog
     if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
+      flash[:info] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     end
   end

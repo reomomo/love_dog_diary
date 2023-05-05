@@ -18,7 +18,8 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
+    @user = current_user
+    @my_dogs = @user.my_dogs.page(params[:page]).per(2)
   end
 
   def show
@@ -65,7 +66,7 @@ class DiariesController < ApplicationController
 
   def check_dog
     if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
+      flash[:info] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     end
   end
