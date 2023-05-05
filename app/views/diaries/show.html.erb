@@ -55,7 +55,7 @@
                     <%= link_to photo_path(photo.id) do %>
                       <div class="col-11 my-1">
                         <div style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(100,100) %></div>
-                        <div class="daiary-photo" style="width: 110px;"><%= photo.title %></div>
+                        <div class="photo-title" style="width: 110px;"><%= photo.title %></div>
                       </div>
                     <% end %>
                   <% end %>

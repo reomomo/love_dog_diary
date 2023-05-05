@@ -1,59 +1,158 @@
 <div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; min-height: 600px;">
   <div class="box-8">
-  <!--画面幅 576px 以上は以下の表示-->
-  <div class="d-none d-sm-block">
-  <div class="row justify-content-center">
-    <div class="col-10 box-8 my-5">
-  <h1>写真一覧</h1>
-<p>写真の追加は、撮影日の日記から登録できます</p>
-<div class="row">
-<% @photos.each do |photo| %>
-
-  <div class="col-3">
-    <!--それぞれの写真詳細画面へ遷移する-->
-    <%= link_to photo_path(photo.id) do %>
-    　<%= image_tag photo.get_image(100,100) %>
-    　<p>タイトル</p>
-      <span><%= photo.title %></span>
-    <% end %>
-    <%= link_to diary_path(photo.diary.id) do %>
-      <p>撮影日</p>
-      <span><%= photo.diary.diary_date %></span>
-    <% end %>
-  </div>
-
-<% end %>
-</div>
-
-<%= paginate @photos %>
-  </div>
-  </div>
-  </div>
-
-  <!--画面幅 576px 未満は以下の表示-->
-  <div class="d-block d-sm-none">
-  <div class="row justify-content-center">
-    <div class="col-11 box-8 my-3">
-      <h3>写真一覧</h3>
-<p>写真の追加は、撮影日の日記から登録できます</p>
-
-<% @photos.each do |photo| %>
-  <div>
-    <!--それぞれの写真詳細画面へ遷移する-->
-    <%= link_to photo_path(photo.id) do %>
-    　<%= image_tag photo.get_image(100,100) %>
-    　<p>タイトル</p>
-      <span><%= photo.title %></span>
-    <% end %>
-    <%= link_to diary_path(photo.diary.id) do %>
-      <p>撮影日</p>
-      <span><%= photo.diary.diary_date %></span>
-    <% end %>
-  </div>
-<% end %>
-
-<%= paginate @photos %>
+    <!--画面幅によって、写真サイズと横並びの数を変更。 1200px 以上は写真(大)、横並び(6個)-->
+    <div class="d-none d-xl-block">
+      <div class="row justify-content-center">
+        <div class="col-10 box-8 my-5">
+          <h1>写真一覧</h1>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+          <div class="row mt-4">
+            <% @photos.each do |photo| %>
+              <div class="col-2 px-0">
+                <div class="row mb-5 ml-4 justify-content-start">
+                  <div class="col-12 px-0">
+                    <%= link_to photo_path(photo.id) do %>
+                      <!--写真の詳細画面へ遷移-->
+                      <div style="width: 150px; min-height: 150px;"><%= image_tag photo.get_image(150,150) %></div>
+                      <div class="photo-title text-pink" style="width: 160px;"><%= photo.title %></div>
+                    <% end %>
+                    <%= link_to diary_path(photo.diary.id) do %>
+                      <!--撮影した日の日記へ遷移-->
+                      <span class="text-pink">撮影日</span>
+                      <span class="text-pink"><%= photo.diary.diary_date %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @photos %>
         </div>
+      </div>
+    </div>
+
+    <!--画面幅 1200px 未満 992px 以上は写真(中)、横並び(6個)-->
+    <div class="d-none d-lg-block d-xl-none">
+      <div class="row justify-content-center">
+        <div class="col-10 box-8 my-5">
+          <h1>写真一覧</h1>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+          <div class="row mt-4">
+            <% @photos.each do |photo| %>
+              <div class="col-2 px-0">
+                <div class="row mb-5 ml-4 justify-content-start">
+                  <div class="col-11 px-0">
+                    <%= link_to photo_path(photo.id) do %>
+                      <!--写真の詳細画面へ遷移-->
+                      <div style="width: 130px; min-height: 130px;"><%= image_tag photo.get_image(130,130) %></div>
+                      <div class="photo-title text-pink" style="width: 140px;"><%= photo.title %></div>
+                    <% end %>
+                    <%= link_to diary_path(photo.diary.id) do %>
+                      <!--撮影した日の日記へ遷移-->
+                      <span class="text-pink">撮影日</span><br>
+                      <span class="pl-3 text-pink"><%= photo.diary.diary_date %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @photos %>
+        </div>
+      </div>
+    </div>
+
+    <!--画面幅 992px 未満 768px 以上は写真(中)、横並び(4個)-->
+    <div class="d-none d-md-block d-lg-none">
+      <div class="row justify-content-center">
+        <div class="col-10 box-8 my-5">
+          <h1>写真一覧</h1>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+          <div class="row mt-4">
+            <% @photos.each do |photo| %>
+              <div class="col-3 text-left">
+                <div class="row mb-5 ml-3 justify-content-start">
+                  <div class="col-11 px-0">
+                    <%= link_to photo_path(photo.id) do %>
+                      <!--写真の詳細画面へ遷移-->
+                      <div style="width: 130px; min-height: 130px;"><%= image_tag photo.get_image(130,130) %></div>
+                      <div class="photo-title text-pink" style="width: 140px;"><%= photo.title %></div>
+                    <% end %>
+                    <%= link_to diary_path(photo.diary.id) do %>
+                      <!--撮影した日の日記へ遷移-->
+                      <span class="text-pink">撮影日</span><br>
+                      <span class="pl-3 text-pink"><%= photo.diary.diary_date %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @photos %>
+        </div>
+      </div>
+    </div>
+
+    <!--画面幅 786px 未満 576px 以上は写真(中)、横並び(3個)-->
+    <div class="d-none d-sm-block d-md-none">
+      <div class="row justify-content-center">
+        <div class="col-10 box-8 my-5">
+          <h1>写真一覧</h1>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+          <div class="row mt-4">
+            <% @photos.each do |photo| %>
+              <div class="col-4 px-0 text-left">
+                <div class="row mb-5 ml-5 justify-content-start">
+                  <div class="col-10 px-0">
+                    <%= link_to photo_path(photo.id) do %>
+                      <!--写真の詳細画面へ遷移-->
+                      <div style="min-height: 130px;"><%= image_tag photo.get_image(130,130) %></div>
+                      <div class="photo-title text-pink" style="width: 140px;"><%= photo.title %></div>
+                    <% end %>
+                    <%= link_to diary_path(photo.diary.id) do %>
+                      <!--撮影した日の日記へ遷移-->
+                      <span class="text-pink">撮影日</span><br>
+                      <span class="pl-3 text-pink"><%= photo.diary.diary_date %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @photos %>
+        </div>
+      </div>
+    </div>
+
+    <!--画面幅 576px 未満は以下は写真(小)、横並び(3個)-->
+    <div class="d-block d-sm-none">
+      <div class="row justify-content-center">
+        <div class="col-10 box-8 my-5">
+          <h1>写真一覧</h1>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+          <div class="row mt-4">
+            <% @photos.each do |photo| %>
+              <div class="col-4 px-0 text-left">
+                <div class="row mb-5 ml-4 justify-content-start">
+                  <div class="col-12 px-0">
+                    <%= link_to photo_path(photo.id) do %>
+                      <!--写真の詳細画面へ遷移-->
+                      <div style="min-height: 90px;"><%= image_tag photo.get_image(90,90) %></div>
+                      <div class="photo-title mx-0 text-pink" style="width: 90%;"><%= photo.title %></div>
+                    <% end %>
+                    <%= link_to diary_path(photo.diary.id) do %>
+                      <!--撮影した日の日記へ遷移-->
+                      <span class="text-pink">撮影日</span><br>
+                      <span class="text-pink"><%= photo.diary.diary_date %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @photos %>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-  </div>
+</div>

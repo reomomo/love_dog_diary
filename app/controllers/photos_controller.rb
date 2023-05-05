@@ -2,7 +2,8 @@ class PhotosController < ApplicationController
   before_action :check_dog, only:[:index, :show, :edit]
 
   def index
-    @photos = current_user.photos.page(params[:page]).per(8)
+    @user = current_user
+    @photos = @user.photos.all.order(:diary_date).page(params[:page]).per(12)
   end
 
   def create

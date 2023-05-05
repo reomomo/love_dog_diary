@@ -1,17 +1,39 @@
+<div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; min-height: 600px;">
+  <div class="box-8 p-3">
+    <span class="h3 pl-3"><%= @photo.my_dog.name %>ちゃんの</span><br>
+    <!--撮影日の日記へ遷移する-->
+    <%= link_to diary_path(@photo.diary.id) do %>
+      <span class="h3 pl-5 text-pink"><%= @photo.diary.diary_date %></span>
+    <% end %>
+    <div class="row justify-content-center">
+    <span class="h3">の写真</span>
+    <%= image_tag @photo.get_image(350,350) %>
+    <div class="mt-4 pl-2 text-left">＜タイトル＞</div>
+    <%= @photo.title %><br>
+    <div class="mt-4 pl-2 text-left">＜コメント＞</div>
+    <% if @photo.body.length >= 100 %>
+      <!--コメントが100字以上なら全て表示せずスクロールで表示-->
+      <div class="col-11 diary-memo w-100" style="height: 100px;">
+        <span><%= @photo.body %></span>
+      </div>
+    <% else %>
+      <!--コメントが100字未満なら全て表示-->
+      <span><%= @photo.body %></span>
+    <% end %>
+    </div>
 
-  <h1>写真詳細</h1>
+    <div class="row mt-4 justify-content-center">
+      <div class="col-5">
+        <%= link_to "内容を変更する", edit_photo_path(@photo.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+      </div>
+      <div class="col-5">
+        <%= link_to "写真を削除する", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-lightpink font-weight-bold text-success" %>
+      </div>
+      <div class="col-5 mt-4">
+        <%= link_to "写真一覧画面へ", photos_path(@photo.id), class: "btn btn-green font-weight-bold text-pink" %>
+      </div>
+    </div>
 
-<p>撮影日</p>
-<!--撮影日の日記へ遷移する-->
-<%= link_to diary_path(@photo.diary.id) do %>
-  <%= @photo.my_dog.name %>ちゃんの<%= @photo.diary.diary_date %>の写真
-<% end %>
-<%= image_tag @photo.get_image(350,350) %>
-<p>タイトル</p>
-<p><%= @photo.title %></p>
-<p>コメント</p>
-<p><%= @photo.body %></p>
 
-<%= link_to "内容を変更する", edit_photo_path(@photo.id) %>
-<%= link_to "削除", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<%= link_to "写真一覧画面へ", photos_path(@photo.id) %>
+  </div>
+</div>
