@@ -1,38 +1,55 @@
 <div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; min-height: 600px;">
   <div class="box-8 p-3">
-    <span class="h3 pl-3"><%= @photo.my_dog.name %>ちゃんの</span><br>
-    <!--撮影日の日記へ遷移する-->
-    <%= link_to diary_path(@photo.diary.id) do %>
-      <span class="h3 pl-5 text-pink"><%= @photo.diary.diary_date %></span>
-    <% end %>
-    <div class="row justify-content-center">
-    <span class="h3">の写真</span>
-    <%= image_tag @photo.get_image(350,350) %>
-    <div class="mt-4 pl-2 text-left">＜タイトル＞</div>
-    <%= @photo.title %><br>
-    <div class="mt-4 pl-2 text-left">＜コメント＞</div>
-    <% if @photo.body.length >= 100 %>
-      <!--コメントが100字以上なら全て表示せずスクロールで表示-->
-      <div class="col-11 diary-memo w-100" style="height: 100px;">
-        <span><%= @photo.body %></span>
+
+    <!--画面幅 576px 以上は以下の表示-->
+    <div class="d-none d-sm-block">
+      <span class="h3 pl-5"><%= @photo.my_dog.name %>ちゃんの</span>
+      <!--撮影日の日記へ遷移する-->
+      <%= link_to diary_path(@photo.diary.id) do %>
+        <span class="h3 text-pink"><%= @photo.diary.diary_date %></span>
+      <% end %>
+      <span class="h3">の写真</span>
+      <div class="row mt-3 justify-content-center">
+        <%= image_tag @photo.get_image(350,350) %>
+        <div class="col-10">
+          <div class="mt-4 pl-4">＜タイトル＞</div>
+          <span class="pl-3"><%= @photo.title %></span><br>
+          <div class="mt-4 pl-4">＜コメント＞</div>
+          <span class="pl-3"><%= @photo.body %></span>
+        </div>
       </div>
-    <% else %>
-      <!--コメントが100字未満なら全て表示-->
-      <span><%= @photo.body %></span>
-    <% end %>
     </div>
 
-    <div class="row mt-4 justify-content-center">
-      <div class="col-5">
+    <!--画面幅 576px 未満は以下の表示-->
+    <div class="d-block d-sm-none">
+      <span class="h3 pl-3"><%= @photo.my_dog.name %>ちゃんの</span><br>
+      <!--撮影日の日記へ遷移する-->
+      <%= link_to diary_path(@photo.diary.id) do %>
+        <span class="h3 pl-5 text-pink"><%= @photo.diary.diary_date %></span>
+      <% end %>
+      <span class="h3">の写真</span>
+      <div class="row mt-3 justify-content-center">
+        <%= image_tag @photo.get_image(300,300) %>
+      </div>
+      <div class="mt-4 pl-2">＜タイトル＞</div>
+      <span><%= @photo.title %></span><br>
+      <div class="mt-4 pl-2">＜コメント＞</div>
+      <span><%= @photo.body %></span>
+    </div>
+
+    <!--ここから共通-->
+    <div class="row mt-5 justify-content-center">
+      <div class="col-5 text-center">
         <%= link_to "内容を変更する", edit_photo_path(@photo.id), class: "btn btn-lightpink font-weight-bold text-success" %>
       </div>
-      <div class="col-5">
+      <div class="col-5 text-center">
         <%= link_to "写真を削除する", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-lightpink font-weight-bold text-success" %>
       </div>
-      <div class="col-5 mt-4">
+      <div class="col-5 mt-4 text-center">
         <%= link_to "写真一覧画面へ", photos_path(@photo.id), class: "btn btn-green font-weight-bold text-pink" %>
       </div>
     </div>
+
 
 
   </div>
