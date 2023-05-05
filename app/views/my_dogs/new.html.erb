@@ -8,6 +8,9 @@
             <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
         </div>
+        <div>
+        　<span class="pl-5 font-weight-bold text-pink"><%= flash[:info] %></span>
+        </div>
         <% if @my_dog.errors.any? %>
           <div class="row justify-content-center">
             <%= @my_dog.errors.count %>件のエラーが発生しました
@@ -62,7 +65,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--画面幅 576px 未満は以下の表示-->
   <div class="d-block d-sm-none">
     <div class="row justify-content-center">
@@ -71,6 +74,9 @@
           <div class="col-11 m-4">
             <h3 class="text-center border-bottom border-green-10">愛犬の情報登録</h3>
           </div>
+        </div>
+        <div>
+        　<span class="pl-5 font-weight-bold text-pink"><%= flash[:info] %></span>
         </div>
         <% if @my_dog.errors.any? %>
           <div class="row justify-content-center">
