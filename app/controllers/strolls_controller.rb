@@ -17,7 +17,6 @@ class StrollsController < ApplicationController
 
   def index
       @strolls = current_user.strolls.page(params[:page]).per(10)
-      # cats_species = Cat.select(:species).distinct
   end
 
   def show

@@ -7,7 +7,7 @@
         width: 100%;
        }
     </style>
-  
+
     <!--地図とメッセージの要素 -->
     <div id="map"></div>
     <div id="msg"></div>
@@ -25,13 +25,13 @@
         let mk = []
         <% @pins.each_with_index do |pin,index| %>
           road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
-          mk[<%= index %>] = new google.maps.Marker({position: road_pin[<%= index %>], map: map});
+          mk[<%= index %>] = new google.maps.Marker({position: road_pin[0], map: map});
           <% if index != 0 %>
           // ポリラインの描画
             new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
           <% end %>
         <% end %>
-  
+
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
