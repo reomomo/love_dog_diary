@@ -43,7 +43,7 @@ function drawOneLine(latLng) {
     let textlatlng_value = document.getElementById('txtLatLng').value;
     document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = textlatlng_value + ":" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
 
   }
 

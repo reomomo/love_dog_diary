@@ -12,6 +12,7 @@ class PinsController < ApplicationController
     distance = params[:pin][:distances].split(":")
     pin = Pin.new
     latlngs.each_with_index do |latlng, index|
+      pin = Pin.new
       pin.user_id = current_user.id
       pin.stroll_id = params[:pin][:stroll_id]
       pin.latitude = latlng.split(",")[0]
