@@ -14,16 +14,18 @@
 愛犬の健康管理、楽しい思い出を残すために活用していただけたら嬉しいです。
 
 ### ターゲットユーザー
-* 愛犬とのお散歩を記録に残したい方
+* 愛犬とのお散歩時間、ルートや距離を記録に残したい方
 * 愛犬といろんな道を歩きたいけれど、同じ程度の距離をお散歩させたい方
 * 愛犬の健康記録を残したい方
+* 愛犬と遠出した思い出を残したい方
 * 愛犬の様子を日記に残したい方
-* 愛犬との写真を日付ごと・場所ごとに管理したい方
+* 愛犬との写真を管理したい方
 
 ### 主な利用シーン
-* 愛犬の健康状態を日記として残したいとき
+* 愛犬の健康状態を日記に残したいとき
 * 愛犬との散歩記録を残したいとき
 * 新しい散歩コースで距離を事前に確認しておきたいとき
+* お散歩で撮った写真を日記と共に残したいとき
 
 ## 設計書
 * ER図：https://drive.google.com/file/d/1XjYAIZCCYJpxp3aSQWt24m3Wx_f-BiGB/view?usp=sharing
@@ -31,13 +33,14 @@
 
 
 ## 開発環境
-* OS：Linux(CentOS)
 * 言語：HTML,CSS,JavaScript,Ruby,SQL
 * フレームワーク：Ruby on Rails
-* JSライブラリ：jQuery
 * IDE：Cloud9
 
 ## 使用素材
 * Maps Javascript API
-* https://fukufukuyama-petsougi.com/wp-content/uploads/2016/03/inu_nenrei.jpg
 * 犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）
+ (https://fukufukuyama-petsougi.com/wp-content/uploads/2016/03/inu_nenrei.jpg)
+* https://www.ac-illust.com/
+* https://icooon-mono.com/
+* https://www.pakutaso.com/
