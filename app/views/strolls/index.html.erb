@@ -30,8 +30,8 @@
                 <th class="px-0 text-right">お散歩距離</th>
               </tr>
               <% @strolls.each do |stroll| %>
-                <tr>
-                  <% stroll.pins.pluck(:title).uniq.each do |title| %>
+                <% stroll.pins.pluck(:title).uniq.each do |title| %>
+                  <tr>
                     <th class="px-0 text-left">
                       <%= link_to stroll_path(stroll.id) do %>
                         <div class="scroll" style="width: 150px; max-height: 40px;"><%= title %></div>
@@ -45,8 +45,8 @@
                       <% end %>
                       <%= @total.to_i %> m
                     </td>
-                  <% end %>
-                </tr>
+                  </tr>
+                <% end %>
               <% end %>
             </table>
             <%= paginate @strolls %>
@@ -87,8 +87,8 @@
                 <th class="pr-4 text-right">お散歩距離</th>
               </tr>
               <% @strolls.each do |stroll| %>
-                <tr>
-                  <% stroll.pins.pluck(:title).uniq.each do |title| %>
+                <% stroll.pins.pluck(:title).uniq.each do |title| %>
+                  <tr>
                     <th class="px-3 text-left">
                       <%= link_to stroll_path(stroll.id) do %>
                         <div class="scroll pr-0 pl-2" style="width: 100%; max-height: 40px;"><%= title %></div>
@@ -102,8 +102,8 @@
                       <% end %>
                       <%= @total.to_i %> m
                     </td>
-                  <% end %>
-                </tr>
+                  </tr>
+                <% end %>
               <% end %>
             </table>
             <%= paginate @strolls %>
