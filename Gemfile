@@ -64,3 +64,5 @@ gem "simple_calendar", "~> 2.4"
 gem 'dotenv-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'rails-i18n'
+
+gem 'net-smtp'
