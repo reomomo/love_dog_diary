@@ -42,16 +42,15 @@ class PhotosController < ApplicationController
   end
 
   private
-
-  def check_dog
-    if current_user.my_dogs.empty?
-      flash[:info] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
+    def check_dog
+      if current_user.my_dogs.empty?
+        flash[:info] = "先に愛犬情報を登録してください"
+        redirect_to new_my_dog_path
+      end
     end
-  end
 
-  def photo_params
-    params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)
-  end
+    def photo_params
+      params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)
+    end
 
 end

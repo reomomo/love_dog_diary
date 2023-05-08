@@ -63,13 +63,12 @@ class DiariesController < ApplicationController
   end
 
   private
-
-  def check_dog
-    if current_user.my_dogs.empty?
-      flash[:info] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
+    def check_dog
+      if current_user.my_dogs.empty?
+        flash[:info] = "先に愛犬情報を登録してください"
+        redirect_to new_my_dog_path
+      end
     end
-  end
 
   def diary_params
     params.require(:diary).permit(:user_id, :my_dog_id, :diary_date, :memo, :appetite, :excreta)

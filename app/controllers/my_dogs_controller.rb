@@ -29,8 +29,7 @@ class MyDogsController < ApplicationController
   end
 
   private
-
-  def my_dog_params
-    params.require(:my_dog).permit(:user_id, :name, :size, :birthdate, :age, :human_age, :dog_image)
-  end
+    def my_dog_params
+      params.require(:my_dog).permit(:user_id, :name, :size, :birthdate, :age, :human_age, :dog_image)
+    end
 end
