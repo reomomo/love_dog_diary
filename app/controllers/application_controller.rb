@@ -12,14 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name, :first_name, :user_name])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name, :first_name, :user_name])
+    end
 
   private
-  def set_beginning_of_week
-    Date.beginning_of_week = :sunday
-  end
+    def set_beginning_of_week
+      Date.beginning_of_week = :sunday
+    end
 
 end
