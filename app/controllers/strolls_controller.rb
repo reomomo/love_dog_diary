@@ -44,7 +44,6 @@ class StrollsController < ApplicationController
   end
 
   private
-
   def stroll_params
     params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
   end
