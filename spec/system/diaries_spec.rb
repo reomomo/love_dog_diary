@@ -3,7 +3,12 @@
 require "rails_helper"
 
 describe "日記保存のテスト" do
-  let!(:diary) { create(:diary, user_id: 3, my_dog_id: 9, diary_date: "2023年5月7日", memo: "涼しくてよく歩いた", appetite: "usually",excreta: "usually") }
+  before do
+    @user = create(:user)
+    @my_dog = create(:my_dog, user_id: @user.id)
+  end
+
+  let!(:diary) { create(:diary, user_id: @user.id, my_dog_id: @my_dog.id, diary_date: "2023年5月7日", memo: "涼しくてよく歩いた", appetite: "usually",excreta: "usually") }
   describe "トップ画面(root_path)のテスト" do
     before do
       visit root_path
