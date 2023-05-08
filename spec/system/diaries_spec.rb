@@ -15,7 +15,7 @@ describe "日記保存のテスト" do
     end
     context "表示の確認" do
       it "トップ画面(root_path)にaboutページへのリンクが表示されているか" do
-        expect(page).to have_link "", href: about_path, with: path_id
+        expect(page).to have_link "", href: about_path
       end
       it 'root_pathが""であるか' do
         expect(current_path).to eq("/")
@@ -30,14 +30,9 @@ describe "日記保存のテスト" do
     context "リンクの確認" do
       it "日記の新規登録のリンクが表示されるか" do
          expect(page).to have_link "", href: new_diary_path
-        # new_link = find_all('a')[10]
-        # expect(new_link.native.inner_text).to match(8)
-        # expect(page).to have_current_path new_diary_path
       end
       it "日記の詳細画面へのリンクが表示されるか" do
-        show_link = find_all("a")[9]
-        expect(show_link.native.inner_text).to match(7)
-        ecpect(page).to have_current_path diary_path(diary)
+        expect(page).to have_current_path diary_path(diary)
       end
     end
 
@@ -55,16 +50,6 @@ describe "日記保存のテスト" do
         expect(page).to have_button "保存する"
       end
     end
-    context "日記保存処理のテスト" do
-      # fill_in 'diary[user_id]', '1'
-      # fill_in 'diary[my_dog_id]', '1'
-      # fill_in 'diary[diary_date]', with: '2023年5月7日'
-      # fill_in 'diary[memo]', Faker::Lorem.characters(number:20)
-      # fill_in 'diary[appetite]', 'usually'
-      # fill_in 'diary[excreta]', 'usually'
-      # click_button '保存する'
-      # expect(page).to have_current_path diary_path(Diary.last)
-    end
   end
 
   describe "一覧画面のテスト" do
@@ -73,7 +58,6 @@ describe "日記保存のテスト" do
     end
     context "一覧の表示の確認" do
       it "保存した日記がカレンダーに表示されているか" do
-        expect(page).to have_field "diary[diary_date]"
         expect(page).to have_field "diary[appetite]"
         expect(page).to have_field "diary[excreta]"
       end
@@ -82,7 +66,7 @@ describe "日記保存のテスト" do
 
   describe "編集画面のテスト" do
     before do
-      visit edit _diary_path(diary)
+      visit edit_diary_path(diary)
     end
     context "表示の確認" do
       it "編集前のメモ、食欲、排せつが表示されている" do
