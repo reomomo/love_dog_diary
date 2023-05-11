@@ -7,7 +7,7 @@ RSpec.describe Diary, "モデルに関するテスト", type: :model do
     before do
       @user = create(:user)
     end
-    it "有効な日記内容の場合は保存されるか" do
+    it "有効な愛犬情報の場合は保存されるか" do
       expect(FactoryBot.build(:my_dog)).to be_valid
     end
   end
