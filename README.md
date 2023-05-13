@@ -44,6 +44,7 @@
 * https://www.ac-illust.com/
 * https://icooon-mono.com/
 * https://www.pakutaso.com/
+* https://o-dan.net/ja/
 * gem 'rspec-rails'
 * gem 'devise'
 * gem "enum_help"
