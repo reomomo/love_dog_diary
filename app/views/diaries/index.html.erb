@@ -224,5 +224,9 @@
         </div>
       </div>
     <% end %>
+    <% if MyDog.where(user_id: @user.id).count >= 3 %>
+      <div class="pr-3 text-center font-weight-bold">他の愛犬の表示はこちらから</div>
+      <%= paginate @my_dogs %>
+    <% end %>
   </div>
 </div>
