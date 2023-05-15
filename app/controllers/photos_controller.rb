@@ -3,8 +3,6 @@ class PhotosController < ApplicationController
 
   def index
     @user = current_user
-    # @photos = @user.photos.all.order(:diary_date).page(params[:page]).per(12)
-
     @photos = @user.photos.all.includes(:diary).order("diaries.diary_date").page(params[:page]).per(12)
   end
 
