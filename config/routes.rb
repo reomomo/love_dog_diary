@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   delete "/pins/destroy_all" => "pins#destroy"
   resources :pins, only: [:new, :create]
 
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
 end
