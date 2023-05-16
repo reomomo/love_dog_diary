@@ -13,8 +13,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to my_page_path(current_user.id)
+    if @user.email == 'guest@example.com'
+      flash[:alert] = 'ゲストユーザーは編集できません。'
+      redirect_to my_page_path
+    else
+      @user.update(user_params)
+      redirect_to my_page_path(current_user.id)
+    end
   end
 
   def unsubscribe
@@ -23,8 +28,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_user
-    @user.destroy
-    redirect_to root_path
+    if @user.email == 'guest@example.com'
+      flash[:alert] = 'ゲストユーザーは削除できません。'
+      redirect_to my_page_path
+    else
+      @user.destroy
+      redirect_to root_path
+    end
   end
 
 
