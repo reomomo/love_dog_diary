@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    flash[:guest] = 'ゲストユーザーとしてログインしました。'
+    flash[:alert] = 'ゲストユーザーとしてログインしました。'
     redirect_to my_page_path
   end
 end

@@ -5,12 +5,9 @@
         <h2 class="box-8 text-center border-bottom border-green-10">マイページ</h2>
       </div>
     </div>
-    <div>
-      <span class="pl-5 font-weight-bold text-pink"><%= flash[:guest] %></span>
-      <span class="pl-5 font-weight-bold text-pink"><%= flash[:alert] %></span>
-    </div>
     <div class="row mx-3 justify-content-center">
-      <div class="col-lg-7 offset-lg-4 col-md-11 box-8 p-4 border border-green">
+      <div class="col-lg-7 offset-lg-4 col-md-11 box-8 pt-0 pb-4 px-4 border border-green">
+        <span class="pl-5 font-weight-bold text-pink"><%= flash[:alert] %></span>
         <div class="row justify-content-end">
           <div class="col-md-10 col-12 px-0">
             <table class="table table-borderless my-3">
