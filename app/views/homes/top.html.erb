@@ -48,6 +48,11 @@
                 <strong><%= link_to "ログイン", new_user_session_path, class: 'text-pink' %></strong>
               </div>
             </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "text-dark" %></strong>
+              </div>
+            </div>
           </div>
           <div class="col-md-3 col-3 top-balloon2">
             <div class="row">
