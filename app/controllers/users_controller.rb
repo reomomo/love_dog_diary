@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       redirect_to my_page_path
     else
       @user.update(user_params)
-      flash[:notice] = 'ユーザー情報を編集しました。'
+      flash[:notice_user] = 'ユーザー情報を編集しました。'
       redirect_to my_page_path(current_user.id)
     end
   end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to my_page_path
     else
       @user.destroy
-      flash[:notice] = '退会しました。またのご利用をお待ちしています！'
+      flash[:notice_user] = '退会しました。またのご利用をお待ちしています！'
       redirect_to root_path
     end
   end

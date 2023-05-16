@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
     @photo.save
-    flash[:notice] = '写真を登録しました。'
+    flash[:notice_photo] = '写真を登録しました。'
     redirect_to diary_path(@photo.diary.id)
   end
 
@@ -40,6 +40,7 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     photo.user_id = current_user.id
     photo.destroy
+    flash[:notice] = '写真を削除しました。'
     redirect_to photos_path
   end
 

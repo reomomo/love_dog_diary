@@ -9,6 +9,7 @@
         <span class="h3 text-pink"><%= @photo.diary.diary_date %></span>
       <% end %>
       <span class="h3">の写真</span>
+      <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
       <div class="row mt-3 justify-content-center">
         <%= image_tag @photo.get_image(350,350) %>
         <div class="col-10">
@@ -28,6 +29,7 @@
         <span class="h3 pl-5 text-pink"><%= @photo.diary.diary_date %></span>
       <% end %>
       <span class="h3">の写真</span>
+      <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
       <div class="row mt-3 justify-content-center">
         <%= image_tag @photo.get_image(300,300) %>
       </div>
@@ -49,8 +51,5 @@
         <%= link_to "写真一覧画面へ", photos_path(@photo.id), class: "btn btn-green font-weight-bold text-pink" %>
       </div>
     </div>
-
-
-
   </div>
 </div>
