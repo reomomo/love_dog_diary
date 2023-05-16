@@ -37,6 +37,7 @@
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
               </li>
             <% else %>
+              <span class="py-3 font-weight-bold"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "text-pink" %></span>
               <li class="nav-item btn btn-lightpink my-3 mx-1 p-0">
                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link py-0 px-1 text-success font-weight-bold' %>
               </li>
