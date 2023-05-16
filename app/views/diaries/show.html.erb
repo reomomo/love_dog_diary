@@ -265,68 +265,68 @@
             <td class="py-1 px-0"><%= @diary.excreta_i18n %></td>
           </tr>
         </table>
-        <div class="row mx-3">
-          <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
-        </div>
-        <!--写真-->
-        <div class="row mx-3">
-          <span class="h4 mt-4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_photo] %></span>
-        </div>
-        <% if @photos.present? %>
-          <div class="row mt-3 justify-content-start">
-            <% @photos.each do |photo| %>
-              <!--写真詳細画面へ遷移する-->
-              <%= link_to photo_path(photo.id) do %>
-                <div class="col-11 my-1">
-                  <div class="text-center" style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(80,80) %></div>
-                  <div class="daiary-photo" style="width: 110px;"><%= photo.title %></div>
-                </div>
-              <% end %>
+        <%= link_to "ひとこと、食欲、排せつを変更する", edit_diary_path(@diary.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+      </div>
+      <!--写真-->
+      <div class="row mx-3">
+        <span class="h4 mt-4 font-weight-bold border-bottom border-green-10">今日の写真</span><br>
+        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_photo] %></span>
+      </div>
+      <% if @photos.present? %>
+        <div class="row mt-3 justify-content-start">
+          <% @photos.each do |photo| %>
+            <!--写真詳細画面へ遷移する-->
+            <%= link_to photo_path(photo.id) do %>
+              <div class="col-11 my-1">
+                <div class="text-center" style="width: 110px; min-height: 110px;"><%= image_tag photo.get_image(80,80) %></div>
+                <div class="daiary-photo" style="width: 110px;"><%= photo.title %></div>
+              </div>
             <% end %>
-          </div>
-          <div class="row mt-2 py-1 px-5 justify-content-end">
-            <!--写真一覧へ遷移する-->
-            <%= link_to "全ての写真を見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
-          </div>
-        <% else %>
-          <div class="row mt-3 justify-content-center">
-            <div class="col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 160px;"></div>
-            <div class="col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
-          </div>
-        <% end %>
-        <%= paginate @photos %>
-        <%= form_with model: @photo do |f| %>
-          <table class="table table-borderless">
-            <tr>
-              <th colspan="2" class="py-3 px-0">
-                <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
-              </th>
-            </tr>
-            <tr>
-              <th class="col-4 py-1 px-0 small">タイトル</th>
-              <td class="p-0 small"><%= f.text_field :title %></td>
-            </tr>
-            <tr>
-              <th class="py-1 px-0 small">コメント</th>
-              <td class="p-0 small"><%= f.text_area :body %></td>
-            </tr>
-            <tr>
-              <th class="py-1 px-0 small">写真</th>
-              <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
-            </tr>
-            <tr>
-              <th></th>
-                <%= f.hidden_field :diary_id, :value => @diary.id %>
-                <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
-              <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
-            </tr>
-          </table>
-        <% end %>
+          <% end %>
+        </div>
+        <div class="row mt-2 py-1 px-5 justify-content-end">
+          <!--写真一覧へ遷移する-->
+          <%= link_to "全ての写真を見る", photos_path, class: "btn btn-lightpink font-weight-bold text-success" %>
+        </div>
+      <% else %>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-8 m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 160px;"></div>
+          <div class="col-9 my-5 ml-5 text-center font-weight-bold">写真がありません</div>
+        </div>
+      <% end %>
+      <%= paginate @photos %>
+      <%= form_with model: @photo do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <th colspan="2" class="py-3 px-0">
+              <span class="h5 font-weight-bold border-bottom border-pink-medium">写真の追加</span>
+            </th>
+          </tr>
+          <tr>
+            <th class="col-4 py-1 px-0 small">タイトル</th>
+            <td class="p-0 small"><%= f.text_field :title %></td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0 small">コメント</th>
+            <td class="p-0 small"><%= f.text_area :body %></td>
+          </tr>
+          <tr>
+            <th class="py-1 px-0 small">写真</th>
+            <td class="p-0 small"><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th></th>
+              <%= f.hidden_field :diary_id, :value => @diary.id %>
+              <%= f.hidden_field :my_dog_id, :value => @diary.my_dog.id %>
+            <td class="py-1 px-0 small"><%= f.submit "保存", class: "py-0 btn btn-lightpink font-weight-bold text-success" %></td>
+          </tr>
+        </table>
+      <% end %>
 
-        <!--散歩情報-->
-        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_stroll] %></span>
+      <!--散歩情報-->
+      <div class="row mx-3">
         <span class="h4 mt-3 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
+        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_stroll] %></span>
         <div class="ml-5 text-right"><%= link_to "散歩情報を登録する", new_stroll_path(diary_id: @diary.id, dog_id: @diary.my_dog.id), class: "btn btn-lightpink font-weight-bold text-success" %></div>
         <% @strolls.each_with_index do |stroll, index| %>
           <table class="mt-4">
