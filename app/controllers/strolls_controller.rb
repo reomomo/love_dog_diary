@@ -12,6 +12,7 @@ class StrollsController < ApplicationController
     @stroll = Stroll.new(stroll_params)
     @stroll.user_id = current_user.id
     @stroll.save
+    flash[:notice_stroll] = '散歩情報を登録しました。'
     redirect_to diary_path(@stroll.diary.id)
   end
 
@@ -40,6 +41,7 @@ class StrollsController < ApplicationController
     @stroll = Stroll.find(params[:id])
     @stroll.user_id = current_user.id
     @stroll.update(stroll_params)
+    flash[:notice_stroll] = '散歩情報を編集しました。'
     redirect_to diary_path(@stroll.diary.id)
   end
 
