@@ -14,6 +14,7 @@ class DiariesController < ApplicationController
     @diary = Diary.new(diary_params)
     @diary.user_id = current_user.id
     @diary.save
+    flash[:notice] = '日記を登録しました。'
     redirect_to diary_path(@diary.id)
   end
 
@@ -59,6 +60,7 @@ class DiariesController < ApplicationController
     diary = current_user.diaries.find(params[:id])
     diary.user_id = current_user.id
     diary.update(diary_params)
+    flash[:notice] = '日記を編集しました。'
     redirect_to diary_path(diary.id)
   end
 

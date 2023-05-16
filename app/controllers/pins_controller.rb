@@ -25,6 +25,7 @@ class PinsController < ApplicationController
       pin.title = params[:pin][:title]
       pin.save
     end
+    flash[:notice] = '散歩ルートを登録しました。'
     redirect_to diary_path(pin.stroll.diary.id)
   end
 
@@ -33,6 +34,7 @@ class PinsController < ApplicationController
     stroll.user_id = current_user.id
     pins = stroll.pins.all
     pins.destroy_all
+    flash[:notice] = '散歩ルートを削除しました。'
     redirect_to strolls_path
   end
 
