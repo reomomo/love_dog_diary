@@ -2,9 +2,17 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
 
-  devise_for :users
+  # devise_for :users, controllers: {
+  #   registrations: 'users/registrations'
+  # }
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   get "/my_page" => "users#show"
   get "/information/edit" => "users#edit"
@@ -19,5 +27,5 @@ Rails.application.routes.draw do
   delete "/pins/destroy_all" => "pins#destroy"
   resources :pins, only: [:new, :create]
 
-  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
 end
+
