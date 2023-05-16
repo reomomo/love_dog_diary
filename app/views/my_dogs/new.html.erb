@@ -76,13 +76,13 @@
           </div>
         </div>
         <div>
-        　<span class="pl-5 font-weight-bold text-pink"><%= flash[:info] %></span>
+        　<span class="font-weight-bold text-pink"><%= flash[:info] %></span>
         </div>
         <% if @my_dog.errors.any? %>
-          <div class="row justify-content-center">
+          <div class="row justify-content-start">
             <%= @my_dog.errors.count %>件のエラーが発生しました
           </div>
-          <div class="row ml-5 justify-content-center">
+          <div class="row justify-content-center">
             <ul>
               <% @my_dog.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
