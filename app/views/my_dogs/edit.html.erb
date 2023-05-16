@@ -1,21 +1,92 @@
-<h1>愛犬情報編集</h1>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <!--画面幅 576px 以上は以下の表示-->
+  <div class="d-none d-sm-block">
+    <div class="row mx-0auto justify-content-center">
+      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 beige-box my-5">
+        <div class="row justify-content-start">
+          <div class="col-xl-5 col-sm-5 mt-5 ml-5">
+            <h3 class="text-center border-bottom border-green-10">愛犬の情報編集</h3>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-center">
+          <%= form_with model: @my_dog do |f| %>
+            <table class="table">
+              <tr>
+                <th class="pl-4">愛犬の名前</th>
+                <td><%= f.text_field :name %></td>
+              </tr>
+              <tr>
+                <th class="pl-4">サイズ</th></th>
+                <td>
+                  <!--小型犬-->
+                  <%= f.radio_button :size, "small_size_dog" %>
+                  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
+                  <!--中型犬-->
+                  <%= f.radio_button :size, "medium_size_dog" %>
+                  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
+                  <!--大型犬-->
+                  <%= f.radio_button :size, "large_scale_dog" %>
+                  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
+                </td>
+              </tr>
+              <tr>
+                <th class="pl-4">
+                  愛犬の誕生日<br>
+                  (不明な場合は選択不要です)
+                </th>
+                <td><%= f.date_field :birthdate %></td>
+              </tr>
+              <tr>
+                <th class="pl-4">愛犬の写真</th>
+                <td><%= f.file_field :dog_image, accept: "image/*" %></td>
+              </tr>
+              <tr>
+                <th class="px-0"></th>
+                <td class="px-0 text-right"><%= f.submit '変更する', class: "btn btn-green font-weight-bold text-lightpink" %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= form_with model: @my_dog do |f| %>
-  <p>愛犬の名前</p>
-  <%= f.text_field :name %>
-  <p>サイズ</p>
-<!--小型犬-->
-  <%= f.radio_button :size, "small_size_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
-<!--中型犬-->
-  <%= f.radio_button :size, "medium_size_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
-<!--大型犬-->
-  <%= f.radio_button :size, "large_scale_dog" %>
-  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
-  <p>愛犬の誕生日(不明な場合は選択せず「変更」を押してください)</p>
-  <%= f.date_field :birthdate %>
-  <p>愛犬の写真</p>
-  <%= f.file_field :dog_image, accept: "image/*" %>
-  <%= f.submit '変更' %>
-<% end %>
+  <!--画面幅 576px 未満は以下の表示-->
+  <div class="d-block d-sm-none">
+    <div class="row justify-content-center">
+      <div class="beige-box m-0auto py-5 px-5" style="width: 90%;">
+        <div class="row justify-content-center">
+          <div class="col-11 m-4">
+            <h3 class="text-center border-bottom border-green-10">愛犬の情報編集</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= form_with model: @my_dog do |f| %>
+            <div class="mx-4 text-left font-weight-bold">愛犬の名前</div>
+            <div class="mb-4 mx-3 text-right"><%= f.text_field :name %></div>
+            <div class="mx-4 text-left font-weight-bold">サイズ</div>
+            <div class="mb-4 mx-3 text-right">
+              <!--小型犬-->
+              <%= f.radio_button :size, "small_size_dog" %>
+              <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
+              <!--中型犬-->
+              <%= f.radio_button :size, "medium_size_dog" %>
+              <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
+              <!--大型犬-->
+              <%= f.radio_button :size, "large_scale_dog" %>
+              <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
+            </div>
+            <div class="mx-4 text-left font-weight-bold">
+              愛犬の誕生日<br>
+              (不明な場合は選択不要です)
+            </div>
+            <div class="mb-4 mx-3 text-right"><%= f.date_field :birthdate %></div>
+            <div class="mx-4 text-left font-weight-bold">愛犬の写真</div>
+            <div class="mb-4 mx-3 text-right"><%= f.file_field :dog_image, accept: "image/*" %></div>
+            <div class="m-5 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,14 +8,15 @@ class PinsController < ApplicationController
   end
 
   def create
-    lat_lngs = params[:pin][:txtLatLng].split("\n")
+    latlngs = params[:pin][:txtLatLng].split("\r\n")
     distance = params[:pin][:distances].split(":")
     pin = Pin.new
-    lat_lngs.each_with_index do |latLng, index|
+    latlngs.each_with_index do |latlng, index|
+      pin = Pin.new
       pin.user_id = current_user.id
       pin.stroll_id = params[:pin][:stroll_id]
-      pin.latitude = latLng.split(",")[0]
-      pin.longitude = latLng.split(",")[1]
+      pin.latitude = latlng.split(",")[0]
+      pin.longitude = latlng.split(",")[1]
       if index == 0
         pin.distance = 0
       else
@@ -37,15 +38,14 @@ class PinsController < ApplicationController
 
 
   private
-
-  def check_dog
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
+    def check_dog
+      if current_user.my_dogs.empty?
+        flash[:info] = "先に愛犬情報を登録してください"
+        redirect_to new_my_dog_path
+      end
     end
-  end
 
-  def pin_params
-    params.require(:pin).permit(:user_id, :stroll_id, :latitude, :longitude, :distance, :title)
-  end
+    def pin_params
+      params.require(:pin).permit(:user_id, :stroll_id, :latitude, :longitude, :distance, :title)
+    end
 end

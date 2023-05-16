@@ -1,15 +1,76 @@
-<div class="top-bg-image">
-  <div class="top-box">
-    <p>ようこそ、Loveドッグダイアリーへ！</p>
-
-    <li>
-      <%= link_to "Loveドッグダイアリーってなに？？", about_path %>
-    </li>
-    <li>
-      <%= link_to "新規登録", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ログイン", new_user_session_path %>
-    </li>
+<div class="container_fuluid top-bg-image jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <div class="row justify-content-center" style="min-height: 350px;">
+    <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 top-box text-center">
+      <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
+      <div class="row mt-3 justify-content-md-center">
+        <div class="col-md-12">
+          <h2 class="font-weight-bold">ようこそ、Loveドッグダイアリーへ！</h2>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center">
+        <div class="col-sm-8 col-10 text-left">
+          <span class="mt-4 mx-0auto">Loveドッグダイアリーでは、<br>
+          わんちゃんとのお散歩ルートや<br>
+          距離、散歩時間、速度、<br>
+          その時に撮った写真、その日の健康状態などを<br>
+          日記として記録できます<br></span>
+        </div>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <% if user_signed_in? %>
+          <!--サインイン中は新規登録、ログインは非表示-->
+          <div class="col-md-3 ml-5 top-balloon2">
+            <div class="row">
+              <div class="col-12">
+                <strong><%= link_to "散歩ルート見本", about_path(path_id: 0), class: 'text-pink' %></strong><br>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to "カレンダー見本", about_path(path_id: 1), class: 'text-pink' %></strong>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to "日記見本", about_path(path_id: 2), class: 'text-pink' %></strong>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="col-md-3 col-3 ml-0 top-balloon">
+            <div class="row">
+              <div class="col-12">
+                <strong><%= link_to "新規登録", new_user_registration_path, class: 'text-pink' %></strong><br>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to "ログイン", new_user_session_path, class: 'text-pink' %></strong>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-3 top-balloon2">
+            <div class="row">
+              <div class="col-12">
+                <strong><%= link_to "散歩ルート見本", about_path(path_id: 0), class: 'text-pink' %></strong><br>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to "カレンダー見本", about_path(path_id: 1), class: 'text-pink' %></strong>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <strong><%= link_to "日記見本", about_path(path_id: 2), class: 'text-pink' %></strong>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+  <div class="row" style="min-height: 140px;">
   </div>
 </div>

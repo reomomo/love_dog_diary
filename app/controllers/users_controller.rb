@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @my_dogs = current_user.my_dogs.page(params[:page]).per(4)
+    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
     @date = Date.current
-    @size = MyDog.sizes.key(0)
+    # @bigは大型犬
+    @big = MyDog.sizes.key(0)
   end
 
   def edit
@@ -12,8 +13,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to my_page_path(current_user.id)
+    if @user.email == 'guest@example.com'
+      flash[:alert] = 'ゲストユーザーは編集できません。'
+      redirect_to my_page_path
+    else
+      @user.update(user_params)
+      redirect_to my_page_path(current_user.id)
+    end
   end
 
   def unsubscribe
@@ -22,14 +28,18 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_user
-    @user.destroy
-    redirect_to root_path
+    if @user.email == 'guest@example.com'
+      flash[:alert] = 'ゲストユーザーは削除できません。'
+      redirect_to my_page_path
+    else
+      @user.destroy
+      redirect_to root_path
+    end
   end
 
 
   private
-
-  def user_params
-    params.require(:user).permit(:email, :last_name, :first_name, :user_name)
-  end
+    def user_params
+      params.require(:user).permit(:email, :last_name, :first_name, :user_name)
+    end
 end

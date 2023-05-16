@@ -16,8 +16,7 @@ class StrollsController < ApplicationController
   end
 
   def index
-      @strolls = current_user.strolls.page(params[:page]).per(20)
-      # cats_species = Cat.select(:species).distinct
+      @strolls = current_user.strolls.page(params[:page]).per(10)
   end
 
   def show
@@ -45,14 +44,13 @@ class StrollsController < ApplicationController
   end
 
   private
-
   def stroll_params
     params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
   end
 
   def check_dog
     if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
+      flash[:info] = "先に愛犬情報を登録してください"
       redirect_to new_my_dog_path
     end
   end

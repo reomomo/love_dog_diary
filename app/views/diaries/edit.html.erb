@@ -1,33 +1,109 @@
-<h1><%= @diary.diary_date %>の編集画面</h1>
-<%= image_tag @diary.my_dog.get_dog_image(80,80) %>
-<%= @diary.my_dog.name %>
-<%= form_with model: @diary do |f| %>
-  <div>
-    <p>今日のひとこと</p>
-    <%= f.text_area :memo %>
-    <p>食欲</p>
-    <%= f.radio_button :appetite, @appetites.key(0) %>
-    <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
-    <%= f.radio_button :appetite, @appetites.key(1) %>
-    <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
-    <%= f.radio_button :appetite, @appetites.key(2) %>
-    <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
-    <%= f.radio_button :appetite, @appetites.key(3) %>
-    <%= f.label :good, Diary.appetites_i18n[:good] %><br />
-    <%= f.radio_button :appetite, @appetites.key(4) %>
-    <%= f.label :excellent, Diary.appetites_i18n[:excellent] %><br />
-    <p>排せつ</p>
-    <%= f.radio_button :excreta, @excreta.key(0) %>
-    <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
-    <%= f.radio_button :excreta, @excreta.key(1) %>
-    <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
-    <%= f.radio_button :excreta, @excreta.key(2) %>
-    <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
-    <%= f.radio_button :excreta, @excreta.key(3) %>
-    <%= f.label :good, Diary.excreta_i18n[:good] %><br />
-    <%= f.radio_button :excreta, @excreta.key(4) %>
-    <%= f.label :excellent, Diary.excreta_i18n[:excellent] %><br />
-
-    <%= f.submit "変更" %>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <div class="d-none d-sm-block">
+    <div class="row mx-0auto justify-content-center">
+      <div class="col-xl-10 col-lg-7 col-md-9 col-sm-11 beige-box my-5">
+        <div class="row justify-content-start">
+          <div class="col-xl-5 col-sm-7 mt-5 ml-5">
+            <div class="h3 text-center border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの日記</div>
+          </div>
+          <div class="h5 mt-5 mx-5"><%= @diary.diary_date %></div>
+        </div>
+        <div class="row m-4 justify-content-center">
+          <div class="col-10">
+            <%= form_with model: @diary do |f| %>
+              <table class="table">
+                <tr>
+                  <th class="pl-4" style="width: 30%;">今日のひとこと</th>
+                  <td class="w-100"><%= f.text_area :memo, style: "width: 100%; height: 200px;" %></td>
+                </tr>
+                <tr>
+                  <th class="pl-4">食欲</th>
+                  <td>
+                    <%= f.radio_button :appetite, @appetites.key(0) %>
+                    <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
+                    <%= f.radio_button :appetite, @appetites.key(1) %>
+                    <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
+                    <%= f.radio_button :appetite, @appetites.key(2) %>
+                    <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
+                    <%= f.radio_button :appetite, @appetites.key(3) %>
+                    <%= f.label :good, Diary.appetites_i18n[:good] %><br />
+                    <%= f.radio_button :appetite, @appetites.key(4) %>
+                    <%= f.label :excellent, Diary.appetites_i18n[:excellent] %>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="pl-4">排せつ</th>
+                  <td>
+                    <%= f.radio_button :excreta, @excreta.key(0) %>
+                    <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
+                    <%= f.radio_button :excreta, @excreta.key(1) %>
+                    <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
+                    <%= f.radio_button :excreta, @excreta.key(2) %>
+                    <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
+                    <%= f.radio_button :excreta, @excreta.key(3) %>
+                    <%= f.label :good, Diary.excreta_i18n[:good] %><br />
+                    <%= f.radio_button :excreta, @excreta.key(4) %>
+                    <%= f.label :excellent, Diary.excreta_i18n[:excellent] %>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="px-0"></th>
+                  <td class="px-0 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+  
+  <!--画面幅 576px 未満の場合-->
+  <div class="d-block d-sm-none">
+    <div class="row justify-content-center">
+      <div class="beige-box m-0auto py-5 px-5" style="width: 90%;">
+        <div class="row justify-content-center">
+          <div class="col-12 m-3">
+            <h3 class="text-center border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの日記</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="h5"><%= @diary.diary_date %></div>
+        </div>
+        <div class="row justify-content-center">
+          <%= form_with model: @diary do |f| %>
+            <div class="mt-4 text-left font-weight-bold">今日のひとこと</div>
+            <div class="mb-4 ml-5"><%= f.text_area :memo, style: "width: 100%; height: 100px;" %></div>
+            <div class="mx-0 text-left font-weight-bold">食欲</div>
+            <div class="mb-4 ml-5">
+              <%= f.radio_button :appetite, @appetites.key(0) %>
+              <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
+              <%= f.radio_button :appetite, @appetites.key(1) %>
+              <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
+              <%= f.radio_button :appetite, @appetites.key(2) %>
+              <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
+              <%= f.radio_button :appetite, @appetites.key(3) %>
+              <%= f.label :good, Diary.appetites_i18n[:good] %><br />
+              <%= f.radio_button :appetite, @appetites.key(4) %>
+              <%= f.label :excellent, Diary.appetites_i18n[:excellent] %><br />
+            </div>
+            <div class="mx-0 text-left font-weight-bold">排せつ</div>
+            <div class="mb-4 ml-5">
+              <%= f.radio_button :excreta, @excreta.key(0) %>
+              <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
+              <%= f.radio_button :excreta, @excreta.key(1) %>
+              <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
+              <%= f.radio_button :excreta, @excreta.key(2) %>
+              <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
+              <%= f.radio_button :excreta, @excreta.key(3) %>
+              <%= f.label :good, Diary.excreta_i18n[:good] %><br />
+              <%= f.radio_button :excreta, @excreta.key(4) %>
+              <%= f.label :excellent, Diary.excreta_i18n[:excellent] %></th>
+            </div>
+            <div class="m-4 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

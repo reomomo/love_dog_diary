@@ -1,14 +1,68 @@
-<h2>会員情報編集</h2>
+<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+  <!--画面幅 768px 以上は以下を表示-->
+  <div class="d-none d-md-block">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-10 col-md-11 beige-box p-4">
+        <div class="row">
+          <div class="col-md-4 m-4">
+            <h3 class="text-center border-bottom border-green-10">会員情報編集</h3>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-center">
+          <div class="col-md-12">
+            <%= form_with model: @user, url: information_path do |f| %>
+              <table class="table">
+                <tr>
+                  <th class="px-0 text-left">氏名</th>
+                  <td class="px-0 text-right"><%= f.label "姓" %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+                  <td class="px-0 text-right"><%= f.label "名" %> <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">ユーザーネーム</th>
+                  <td class="px-0 text-right"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
+                </tr>
+                <tr>
+                  <th class="px-0 text-left">メールアドレス</th>
+                  <td class="px-0 text-right"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+                </tr>
+                <tr class="pt-5">
+                  <th class="pt-5 px-0 text-left"></th>
+                  <td class="pt-5 px-0 text-left"><%= f.submit "変更する", class: "btn btn-pink2 font-weight-bold text-green" %></td>
+                  <td class="pt-5 px-0 text-left"><%= link_to "退会する", unsubscribe_path, class: "btn btn-green font-weight-bold text-lightpink" %></td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= form_with model: @user, url: information_path do |f| %>
-  <p>氏名</p>
-  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  <p>ユーザーネーム</p>
-  <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-  <p>メールアドレス</p>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  <%= f.submit "変更する" %>
-<% end %>
-
-<%= link_to "退会する", unsubscribe_path %>
+  <!--画面幅 768px 未満は以下を表示-->
+  <div class="d-block d-md-none">
+    <div class="row justify-content-center">
+      <div class="beige-box m-0auto py-5 px-4" style="width: 80%;">
+        <div class="row justify-content-center">
+          <div class="col-sm-6 col-10 m-4">
+            <h3 class="text-center border-bottom border-green-10">会員情報編集</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= form_with model: @user, url: information_path do |f| %>
+            <div class="col-12">
+              <div class="text-left">氏名</div>
+              <div class="pl-4 text-right"><%= f.label "姓" %> <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></div>
+              <div class="pl-4 text-right"><%= f.label "名" %> <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></div>
+              <div class="text-left">ユーザーネーム</div>
+              <div class="text-right"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></div>
+              <div class="text-left">メールアドレス</div>
+              <div class="text-right"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+              <div class="my-4 text-right"><%= f.submit "変更する", class: "btn btn-pink2 font-weight-bold text-green" %></div>
+              <div class="mb-4 text-right"><%= link_to "退会する", unsubscribe_path, class: "btn btn-green font-weight-bold text-lightpink" %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

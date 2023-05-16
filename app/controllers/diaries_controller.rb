@@ -18,7 +18,8 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @my_dogs = current_user.my_dogs.page(params[:page]).per(2)
+    @user = current_user
+    @my_dogs = @user.my_dogs.page(params[:page]).per(2)
   end
 
   def show
@@ -27,8 +28,22 @@ class DiariesController < ApplicationController
     redirect_to diaries_path
   end
     @photo = Photo.new
-    @photos = @diary.photos.page(params[:page]).per(4)
+    @photos = @diary.photos.page(params[:page]).per(8)
     @strolls = @diary.strolls.all
+    @total_distances = 0
+    @total_min = 0
+
+    @diary.strolls.all.each do |stroll|
+      total = 0
+      stroll.pins.all.each do |pin|
+        # 1回の散歩ごとの散歩距離（複数のポリラインの合計距離）
+        total += pin.distance
+      end
+      # 一日合計の散歩距離
+      @total_distances += total
+      # 一日合計の散歩
+      @total_min += stroll.time_of_stroll
+    end
   end
 
   def edit
@@ -47,20 +62,13 @@ class DiariesController < ApplicationController
     redirect_to diary_path(diary.id)
   end
 
-  def destroy
-    pins = current_user.strolls.pins.all
-    cart_items.destroy_all
-    redirect_to cart_items_path
-  end
-
   private
-
-  def check_dog
-    if current_user.my_dogs.empty?
-      flash[:notice] = "先に愛犬情報を登録してください"
-      redirect_to new_my_dog_path
+    def check_dog
+      if current_user.my_dogs.empty?
+        flash[:info] = "先に愛犬情報を登録してください"
+        redirect_to new_my_dog_path
+      end
     end
-  end
 
   def diary_params
     params.require(:diary).permit(:user_id, :my_dog_id, :diary_date, :memo, :appetite, :excreta)
