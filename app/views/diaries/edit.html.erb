@@ -20,30 +20,30 @@
                   <th class="pl-4">食欲</th>
                   <td>
                     <%= f.radio_button :appetite, @appetites.key(0) %>
-                    <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
+                    <%= f.label :a_little, Diary.appetites_i18n[:a_little], value: :a_little %><br />
                     <%= f.radio_button :appetite, @appetites.key(1) %>
-                    <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
+                    <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less], value: :slightly_less %><br />
                     <%= f.radio_button :appetite, @appetites.key(2) %>
-                    <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
+                    <%= f.label :usually, Diary.appetites_i18n[:usually], value: :usually %><br />
                     <%= f.radio_button :appetite, @appetites.key(3) %>
-                    <%= f.label :good, Diary.appetites_i18n[:good] %><br />
+                    <%= f.label :good, Diary.appetites_i18n[:good], value: :good %><br />
                     <%= f.radio_button :appetite, @appetites.key(4) %>
-                    <%= f.label :excellent, Diary.appetites_i18n[:excellent] %>
+                    <%= f.label :excellent, Diary.appetites_i18n[:excellent], value: :excellent %>
                   </td>
                 </tr>
                 <tr>
                   <th class="pl-4">排せつ</th>
                   <td>
                     <%= f.radio_button :excreta, @excreta.key(0) %>
-                    <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
+                    <%= f.label :a_little, Diary.excreta_i18n[:a_little], value: :a_little %><br />
                     <%= f.radio_button :excreta, @excreta.key(1) %>
-                    <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
+                    <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less], value: :slightly_less %><br />
                     <%= f.radio_button :excreta, @excreta.key(2) %>
-                    <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
+                    <%= f.label :usually, Diary.excreta_i18n[:usually], value: :usually %><br />
                     <%= f.radio_button :excreta, @excreta.key(3) %>
-                    <%= f.label :good, Diary.excreta_i18n[:good] %><br />
+                    <%= f.label :good, Diary.excreta_i18n[:good], value: :good %><br />
                     <%= f.radio_button :excreta, @excreta.key(4) %>
-                    <%= f.label :excellent, Diary.excreta_i18n[:excellent] %>
+                    <%= f.label :excellent, Diary.excreta_i18n[:excellent], value: :excellent %>
                   </td>
                 </tr>
                 <tr>
@@ -57,7 +57,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--画面幅 576px 未満の場合-->
   <div class="d-block d-sm-none">
     <div class="row justify-content-center">
@@ -77,28 +77,28 @@
             <div class="mx-0 text-left font-weight-bold">食欲</div>
             <div class="mb-4 ml-5">
               <%= f.radio_button :appetite, @appetites.key(0) %>
-              <%= f.label :a_little, Diary.appetites_i18n[:a_little] %><br />
+              <%= f.label :a_little, Diary.appetites_i18n[:a_little], value: :a_little %><br />
               <%= f.radio_button :appetite, @appetites.key(1) %>
-              <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less] %><br />
+              <%= f.label :slightly_less, Diary.appetites_i18n[:slightly_less], value: :slightly_less %><br />
               <%= f.radio_button :appetite, @appetites.key(2) %>
-              <%= f.label :usually, Diary.appetites_i18n[:usually] %><br />
+              <%= f.label :usually, Diary.appetites_i18n[:usually], value: :usually %><br />
               <%= f.radio_button :appetite, @appetites.key(3) %>
-              <%= f.label :good, Diary.appetites_i18n[:good] %><br />
+              <%= f.label :good, Diary.appetites_i18n[:good], value: :good %><br />
               <%= f.radio_button :appetite, @appetites.key(4) %>
-              <%= f.label :excellent, Diary.appetites_i18n[:excellent] %><br />
+              <%= f.label :excellent, Diary.appetites_i18n[:excellent], value: :excellent %><br />
             </div>
             <div class="mx-0 text-left font-weight-bold">排せつ</div>
             <div class="mb-4 ml-5">
               <%= f.radio_button :excreta, @excreta.key(0) %>
-              <%= f.label :a_little, Diary.excreta_i18n[:a_little] %><br />
+              <%= f.label :a_little, Diary.excreta_i18n[:a_little], value: :a_little %><br />
               <%= f.radio_button :excreta, @excreta.key(1) %>
-              <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less] %><br />
+              <%= f.label :slightly_less, Diary.excreta_i18n[:slightly_less], value: :slightly_less %><br />
               <%= f.radio_button :excreta, @excreta.key(2) %>
-              <%= f.label :usually, Diary.excreta_i18n[:usually] %><br />
+              <%= f.label :usually, Diary.excreta_i18n[:usually], value: :usually %><br />
               <%= f.radio_button :excreta, @excreta.key(3) %>
-              <%= f.label :good, Diary.excreta_i18n[:good] %><br />
+              <%= f.label :good, Diary.excreta_i18n[:good], value: :good %><br />
               <%= f.radio_button :excreta, @excreta.key(4) %>
-              <%= f.label :excellent, Diary.excreta_i18n[:excellent] %></th>
+              <%= f.label :excellent, Diary.excreta_i18n[:excellent], value: :excellent %></th>
             </div>
             <div class="m-4 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
           <% end %>

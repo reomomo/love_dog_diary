@@ -35,13 +35,13 @@
                 <td>
                   <!--小型犬-->
                   <%= f.radio_button :size, "small_size_dog" %>
-                  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog] %>
+                  <%= f.label :size, MyDog.sizes_i18n[:small_size_dog], value: :small_size_dog %>
                   <!--中型犬-->
                   <%= f.radio_button :size, "medium_size_dog" %>
-                  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog] %>
+                  <%= f.label :size, MyDog.sizes_i18n[:medium_size_dog], value: :medium_size_dog %>
                   <!--大型犬-->
                   <%= f.radio_button :size, "large_scale_dog" %>
-                  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog] %>
+                  <%= f.label :size, MyDog.sizes_i18n[:large_scale_dog], value: :large_scale_dog %>
                 </td>
               </tr>
               <tr>

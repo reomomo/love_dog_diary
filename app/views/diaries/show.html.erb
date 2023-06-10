@@ -113,11 +113,11 @@
       <!--散歩情報-->
       <div class="col-lg-5 col-11 border-left border-pink-medium">
         <div class="box-8">
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_stroll] %></span>
           <table class="table table-borderless">
             <tr>
               <th colspan="2" class="py-3 px-0">
                 <span class="h4 font-weight-bold border-bottom border-green-10"><%= @diary.my_dog.name %>ちゃんの散歩</span>
+                <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_stroll] %></span>
               </th>
             </tr>
             <tr>
@@ -169,10 +169,7 @@
                   <th class="col-3 py-1 px-0">お散歩距離</th>
                   <td class="py-1 px-0">
                     <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                    <% total = 0 %>
-                    <% stroll.pins.all.each do |pin| %>
-                      <% total += pin.distance %>
-                    <% end %>
+                    <% total = stroll.pins.sum(:distance) %>
                     <%= total.to_i %> m
                   </td>
                 </tr>
@@ -378,10 +375,7 @@
                 <th class="py-1 px-0">お散歩距離</th>
                 <td class="py-1 px-0">
                   <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                  <% total = 0 %>
-                  <% stroll.pins.all.each do |pin| %>
-                    <% total += pin.distance %>
-                  <% end %>
+                  <% total = stroll.pins.sum(:distance) %>
                   <%= total.to_i %> m
                 </td>
               </tr>

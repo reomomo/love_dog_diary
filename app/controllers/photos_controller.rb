@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :check_dog, only:[:index, :show, :edit]
+  before_action :ensure_user, only:[:show, :edit, :update]
 
   def index
     @user = current_user
@@ -9,23 +10,19 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
-    @photo.save
-    flash[:notice_photo] = '写真を登録しました。'
-    redirect_to diary_path(@photo.diary.id)
+    if @photo.save
+      flash[:notice_photo] = '写真を追加しました。'
+      redirect_to diary_path(@photo.diary.id)
+    else
+      flash[:notice_photo] = '写真を追加するには、「タイトル」の入力と写真の選択が必要です。'
+      redirect_to diary_path(@photo.diary.id)
+    end
   end
 
   def show
-    @photo = Photo.find(params[:id])
-    unless @photo.user_id == current_user.id
-      redirect_to photos_path
-    end
   end
 
   def edit
-    @photo = Photo.find(params[:id])
-    unless @photo.user_id == current_user.id
-      redirect_to photos_path
-    end
   end
 
   def update
@@ -45,15 +42,23 @@ class PhotosController < ApplicationController
   end
 
   private
-    def check_dog
-      if current_user.my_dogs.empty?
-        flash[:info] = "先に愛犬情報を登録してください"
-        redirect_to new_my_dog_path
-      end
-    end
 
-    def photo_params
-      params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)
+  def check_dog
+    if current_user.my_dogs.empty?
+      flash[:info] = "先に愛犬情報を登録してください"
+      redirect_to new_my_dog_path
     end
+  end
+
+  def ensure_user
+    @photo = Photo.find(params[:id])
+    unless @photo.user_id == current_user.id
+      redirect_to photos_path
+    end
+  end
+
+  def photo_params
+    params.require(:photo).permit(:title, :body, :image, :user_id, :diary_id, :my_dog_id)
+  end
 
 end

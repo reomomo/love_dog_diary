@@ -62,14 +62,12 @@
                   <tr>
                     <th class="pl-4 pr-2" style="width: 33%;">年齢</th>
                     <td class="px-0">
-                      <% months_old = (@date - my_dog.birthdate).to_i/30.416 %>
-                      <% years_old = (@date.strftime("%Y%m%d").to_i - my_dog.birthdate.strftime("%Y%m%d").to_i)/10000 %>
-                      <% if months_old < 1 %>
+                      <% if my_dog.months_old < 1 %>
                         <p>生後1ヶ月未満</p>
-                      <% elsif years_old < 1 %>
-                        <p>生後<%= months_old.to_i %>ヶ月</p>
+                      <% elsif my_dog.years_old < 1 %>
+                        <p>生後<%= my_dog.months_old.to_i %>ヶ月</p>
                       <% else %>
-                        <%= years_old %>歳
+                        <%= my_dog.years_old %>歳
                       <% end %>
                     </td>
                   </tr>
@@ -77,35 +75,35 @@
                     <th class="pl-4 pr-2" style="width: 33%;">人間年齢</th>
                     <td class="px-0">
                       <!--大型犬で1歳未満-->
-                      <% if my_dog.size == @big && years_old < 1 %>
+                      <% if my_dog.size == @big && my_dog.years_old < 1 %>
                         12歳未満
                       <!--大型犬で1歳以上-->
-                      <% elsif my_dog.size == @big && years_old >= 1 %>
-                        <%= (years_old - 1)*7 +12 %>歳から<%= (years_old - 1)*7 +19 %>歳ぐらい
+                      <% elsif my_dog.size == @big && my_dog.years_old >= 1 %>
+                        <%= (my_dog.years_old - 1)*7 +12 %>歳から<%= (my_dog.years_old - 1)*7 +19 %>歳ぐらい
                       <!--小型・中型犬で生後1ヶ月以下-->
-                      <% elsif my_dog.size != @big && months_old <= 1 %>
+                      <% elsif my_dog.size != @big && my_dog.months_old <= 1 %>
                         1歳未満
                       <!--小型・中型犬で生後3ヶ月以下-->
-                      <% elsif my_dog.size != @big && months_old <= 3 %>
+                      <% elsif my_dog.size != @big && my_dog.months_old <= 3 %>
                         1歳から5歳ぐらい
                       <!--小型・中型犬で生後6ヶ月以下-->
-                      <% elsif my_dog.size != @big && months_old <= 6 %>
+                      <% elsif my_dog.size != @big && my_dog.months_old <= 6 %>
                         5歳から9歳ぐらい
                       <!--小型・中型犬で生後9ヶ月以下-->
-                      <% elsif my_dog.size != @big && months_old <= 9 %>
+                      <% elsif my_dog.size != @big && my_dog.months_old <= 9 %>
                         9歳から13歳ぐらい
                       <!--小型・中型犬で1歳以下-->
-                      <% elsif my_dog.size != @big && years_old <= 1 %>
+                      <% elsif my_dog.size != @big &&my_dog. years_old <= 1 %>
                         13歳から17歳ぐらい
                       <!--小型・中型犬で1歳6ヶ月以下-->
-                      <% elsif my_dog.size != @big && months_old <= 18 %>
+                      <% elsif my_dog.size != @big && my_dog.months_old <= 18 %>
                         17歳から20歳ぐらい
                       <!--小型・中型犬で2歳以下-->
-                      <% elsif my_dog.size != @big && years_old <= 2 %>
+                      <% elsif my_dog.size != @big && my_dog.years_old <= 2 %>
                         20歳から24歳ぐらい
                       <!--小型・中型犬で3歳以上-->
                       <% else %>
-                        <%= (years_old - 2)*4 +24 %>歳から<%= (years_old - 2)*4 +28 %>歳ぐらい
+                        <%= (my_dog.years_old - 2)*4 +24 %>歳から<%= (my_dog.years_old - 2)*4 +28 %>歳ぐらい
                       <% end %>
                     </td>
                   </tr>

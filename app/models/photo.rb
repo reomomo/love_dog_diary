@@ -3,6 +3,12 @@ class Photo < ApplicationRecord
   belongs_to :diary
   belongs_to :my_dog
 
+  validates :user_id, presence: true
+  validates :diary_id, presence: true
+  validates :my_dog_id, presence: true
+  validates :title, presence: true
+  validates :image, presence: true
+
   has_one_attached :image
 
   def get_image(width, height)

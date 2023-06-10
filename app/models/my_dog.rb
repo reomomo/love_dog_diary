@@ -23,4 +23,12 @@ class MyDog < ApplicationRecord
     dog_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  def months_old
+    (Date.current - birthdate).to_i/30.416
+  end
+
+  def years_old
+    (Date.current.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i)/10000
+  end
+
 end

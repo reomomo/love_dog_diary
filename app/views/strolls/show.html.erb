@@ -37,11 +37,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
     <div class="row justify-content-md-center">
       <div class="box-8 mt-3 w-75 text-center" style="height: 30px;">
-        <% @total = 0 %>
-        <% @pins.each do |pin| %>
-          <% @total += pin.distance %>
-        <% end %>
-        <span class="mr-5 h4 font-weight-bold border-bottom border-pink-medium">お散歩距離 <%= @total.to_i %> m</span>
+        <span class="mr-5 h4 font-weight-bold border-bottom border-pink-medium">お散歩距離 <%= @pins.sum(:distance).to_i %> m</span>
         <span class="ml-5 btn btn-pink mr-2 font-weight-bold"><%= link_to "散歩ルートを削除する", pins_destroy_all_path(stroll_id: @stroll.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "text-success" %></span>
       </div>
     </div>
