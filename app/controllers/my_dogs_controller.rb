@@ -17,9 +17,9 @@ class MyDogsController < ApplicationController
 
   def edit
     @my_dog = MyDog.find(params[:id])
-  unless @my_dog.user_id == current_user.id
-    redirect_to my_page_path
-  end
+    unless @my_dog.user_id == current_user.id
+      redirect_to my_page_path
+    end
   end
 
   def update
@@ -31,7 +31,8 @@ class MyDogsController < ApplicationController
   end
 
   private
-    def my_dog_params
-      params.require(:my_dog).permit(:user_id, :name, :size, :birthdate, :age, :human_age, :dog_image)
-    end
+
+  def my_dog_params
+    params.require(:my_dog).permit(:user_id, :name, :size, :birthdate, :age, :human_age, :dog_image)
+  end
 end

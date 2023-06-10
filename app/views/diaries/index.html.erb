@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <!--愛犬ごとのカレンダー表示-->
+    <!--愛犬ごとのカレンダー表示（画面サイズ共通）-->
     <% @my_dogs.each do |my_dog| %>
       <div class="mb-4 border-top border-pink">
 
@@ -101,10 +101,7 @@
               <% @total_min = 0 %>
               <% diary.strolls.all.each do |stroll| %>
                 <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                <% @total_distance2 = 0 %>
-                <% stroll.pins.all.each do |pin| %>
-                  <% @total_distance2 += pin.distance %>
-                <% end %>
+                <% @total_distance2 = stroll.pins.sum(:distance) %>
                 <% @total_distance1 += @total_distance2 %>
                 <% @total_min += stroll.time_of_stroll %>
               <% end %>
@@ -185,18 +182,9 @@
               <%= link_to diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) do %>
                 <!--該当の日付と愛犬IDでデータ検索-->
                 <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
-                <!--一日トータルの散歩距離-->
-                <% @total_distance1 = 0 %>
-                <!--一日トータルの散歩時間-->
-                <% @total_min = 0 %>
                 <% diary.strolls.all.each do |stroll| %>
                   <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                  <% @total_distance2 = 0 %>
-                  <% stroll.pins.all.each do |pin| %>
-                    <% @total_distance2 += pin.distance %>
-                  <% end %>
-                  <% @total_distance1 += @total_distance2 %>
-                  <% @total_min += stroll.time_of_stroll %>
+                  <% @total_distance = stroll.pins.sum(:distance) %>
                 <% end %>
                 <span class="text-success"><%= date.day %></span><br>
                 <div class="row justify-content-center">
@@ -204,13 +192,17 @@
                   <div class="col-1 pl-0"><%= image_dookie %></div>
                 </div>
                 <div class="row justify-content-center">
-                  <% if @total_min != 0 %>
-                    <!--一日のトータル散歩時間が0分以外なら時間のアイコンを表示する-->
+                  <% if diary.strolls.present? %>
+                    <!--散歩時間の登録があればアイコンを表示する-->
                     <div class="col-1 pl-0 pr-3"><%= image_time %></div>
-                    <% if @total_distance1 != 0 %>
-                      <!--一日のトータルの散歩距離が0以外なら距離のアイコンを表示する-->
-                      <div class="col-1 pl-0"><%= image_distance %></div>
-                    <% end %>
+                  <% end %>
+                  <% diary.strolls.all.each do |stroll| %>
+                    <!--1回の散歩の散歩距離（複数のポリラインの合計距離）-->
+                    <% @total_distance = stroll.pins.sum(:distance) %>
+                  <% end %>
+                  <% if @total_distance != 0 %>
+                    <!--散歩距離が0でなければアイコンを表示する-->
+                    <div class="col-1 pl-0"><%= image_distance %></div>
                   <% end %>
                 </div>
               <% end %>

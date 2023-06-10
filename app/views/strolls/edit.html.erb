@@ -29,15 +29,15 @@
                 <th class="pl-4">散歩中の元気の良さ</th>
                 <td>
                   <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
-                  <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
+                  <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly], value: :slowly %><br />
                   <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
-                  <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly] %><br />
+                  <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly], value: :a_little_slowly %><br />
                   <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
-                  <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually] %><br />
+                  <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually], value: :usually %><br />
                   <%= f.radio_button :vitality_condition, @vitality_conditions.key(3) %>
-                  <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality] %><br />
+                  <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality], value: :a_little_vitality %><br />
                   <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
-                  <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
+                  <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality], value: :quite_vitality %><br />
                 </td>
               </tr>
               <tr>
@@ -71,15 +71,15 @@
             <div class="mt-4 mb-1 text-left font-weight-bold">散歩中の元気の良さ</div>
             <div class="mb-4 pl-5">
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
-              <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly] %><br />
+              <%= f.label :slowly, Stroll.vitality_conditions_i18n[:slowly], value: :slowly %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
-              <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly] %><br />
+              <%= f.label :a_little_slowly, Stroll.vitality_conditions_i18n[:a_little_slowly], value: :a_little_slowly %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
-              <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually] %><br />
+              <%= f.label :usually, Stroll.vitality_conditions_i18n[:usually], value: :usually %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(3) %>
-              <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality] %><br />
+              <%= f.label :a_little_vitality, Stroll.vitality_conditions_i18n[:a_little_vitality], value: :a_little_vitality %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
-              <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality] %><br />
+              <%= f.label :quite_vitality, Stroll.vitality_conditions_i18n[:quite_vitality], value: :quite_vitality %><br />
             </div>
             <div class="pl-4 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
           <% end %>

@@ -39,12 +39,8 @@
                       <% end %>
                     </th>
                     <td class="px-0 text-right">
-                      <% @total = 0 %>
                       <!--散歩距離の計算-->
-                      <% stroll.pins.where(title: title).each do |pin| %>
-                        <% @total += pin.distance %>
-                      <% end %>
-                      <%= @total.to_i %> m
+                      <%= stroll.pins.sum(:distance).to_i %> m
                     </td>
                   </tr>
                 <% end %>
@@ -97,12 +93,8 @@
                       <% end %>
                     </th>
                     <td class="pr-5 text-right">
-                      <% @total = 0 %>
                       <!--散歩距離の計算-->
-                      <% stroll.pins.where(title: title).each do |pin| %>
-                        <% @total += pin.distance %>
-                      <% end %>
-                      <%= @total.to_i %> m
+                      <%= stroll.pins.sum(:distance).to_i %> m
                     </td>
                   </tr>
                 <% end %>

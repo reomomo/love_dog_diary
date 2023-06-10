@@ -1,5 +1,6 @@
 class StrollsController < ApplicationController
   before_action :check_dog, only:[:new, :index, :show, :edit]
+  before_action :ensure_user, only:[:show, :edit, :update]
 
   def new
     @stroll = Stroll.new
@@ -11,9 +12,13 @@ class StrollsController < ApplicationController
   def create
     @stroll = Stroll.new(stroll_params)
     @stroll.user_id = current_user.id
-    @stroll.save
-    flash[:notice_stroll] = '散歩情報を登録しました。'
-    redirect_to diary_path(@stroll.diary.id)
+    if @stroll.save
+      flash[:notice_stroll] = '散歩情報を登録しました。'
+      redirect_to diary_path(@stroll.diary.id)
+    else
+      flash[:notice_stroll] = '時間と「元気の良さ」を設定してください。'
+      redirect_to diary_path(@stroll.diary.id)
+    end
   end
 
   def index
@@ -21,19 +26,11 @@ class StrollsController < ApplicationController
   end
 
   def show
-    @stroll = Stroll.find(params[:id])
-  unless @stroll.user_id == current_user.id
-    redirect_to strolls_path
-  end
     @pins = @stroll.pins.all
     @pin = @stroll.pins.order(updated_at: :desc).first
   end
 
   def edit
-    @stroll = Stroll.find(params[:id])
-  unless @stroll.user_id == current_user.id
-    redirect_to strolls_path
-  end
     @vitality_conditions = Stroll.vitality_conditions
   end
 
@@ -46,8 +43,16 @@ class StrollsController < ApplicationController
   end
 
   private
+
   def stroll_params
     params.require(:stroll).permit(:user_id, :diary_id, :my_dog_id, :start_time, :end_time, :vitality_condition, :memo)
+  end
+
+  def ensure_user
+    @stroll = Stroll.find(params[:id])
+    unless @stroll.user_id == current_user.id
+      redirect_to strolls_path
+    end
   end
 
   def check_dog

@@ -108,15 +108,15 @@
             <div class="row justify-content-center">
               <div class="col-10">
                 <!--それぞれの配列（コントローラに記述）からランダムに出力-->
-                <% food = @foods[random.rand(1..@foods.count-1)] %>
+                <% food = @foods[random.rand(0..@foods.count-1)] %>
                 <span class="text-dark"><%= image_tag('food.png') %> <%= food %></span><br>
-                <% dookie = @dookies[random.rand(1..@dookies.count-1)] %>
+                <% dookie = @dookies[random.rand(0..@dookies.count-1)] %>
                 <span class="text-dark"><%= image_tag('dookie.png') %> <%= dookie %></span><br>
-                <% time = @times[random.rand(1..@times.count-1)] %>
+                <% time = @times[random.rand(0..@times.count-1)] %>
                 <% if time != 0 %>
                   <!--一日トータルの散歩時間が0以外ならトータル時間、距離、スピードを表示する-->
                   <span class="text-dark"><%= image_tag('time.png') %> <%= time %> 分</span><br>
-                  <% distance = @distances[random.rand(1..@distances.count-1)] %>
+                  <% distance = @distances[random.rand(0..@distances.count-1)] %>
                   <span class="text-dark"><%= image_tag('distance.png') %> <%= distance %> m</span><br>
                   <% speed = distance / time %>
                   <span class="text-dark"><%= image_tag('speed.png') %> <%= speed %> m／分</span>

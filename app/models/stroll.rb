@@ -12,6 +12,13 @@ class Stroll < ApplicationRecord
   belongs_to :my_dog
   has_many :pins, dependent: :destroy
 
+  validates :user_id, presence: true
+  validates :diary_id, presence: true
+  validates :my_dog_id, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :vitality_condition, presence: true
+
   def time_of_stroll
     (end_time - start_time).floor / 60
   end
