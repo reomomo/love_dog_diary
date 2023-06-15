@@ -22,31 +22,13 @@
         <% end %>
       </div>
 
-      <!--画面幅 992px 以上-->
-      <div class="d-none d-lg-block">
-        <div class="row mt-3 justify-content-center">
-          <!--アイコン紹介-->
-          <span>
-            <%= image_food %>：食欲、
-            <%= image_dookie %>：排せつ、
-            <%= image_time %>：散歩時間、
-            <%= image_distance %>：散歩距離、
-            <%= image_speed %>：散歩のスピード
-          </span>
-        </div>
-      </div>
-
-      <!--画面幅 768px以上 992px 未満は散歩スピード非表示-->
-      <div class="d-none d-md-block d-lg-none">
-        <div class="row mt-3 justify-content-center">
-          <!--アイコン紹介-->
-          <span>
-            <%= image_food %>：食欲、
-            <%= image_dookie %>：排せつ、
-            <%= image_time %>：散歩時間、
-            <%= image_distance %>：散歩距離
-          </span>
-        </div>
+      <div class="row mt-3 justify-content-center">
+        <!--アイコン紹介-->
+        <%= image_food %>：食欲、
+        <%= image_dookie %>：排せつ、
+        <%= image_time %>：散歩時間、
+        <%= image_distance %>：散歩距離
+        <span class="d-none d-lg-block">、<%= image_speed %>：散歩のスピード</span><!--画面幅 992px 以上のみ表示-->
       </div>
     </div>
 
@@ -108,53 +90,26 @@
               <!--日付選択で登録済の日記ページへ遷移する-->
               <%= link_to diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) do %>
                 <span class="text-success"><%= date.day %></span><br>
-
-                <!--画面幅 992px 以上-->
-                <div class="d-none d-lg-block">
-                  <div class="row justify-content-center">
-                    <div class="col-10">
-                      <span class="text-dark"><%= image_food %> <%= diary.appetite_i18n %></span><br>
-                      <span class="text-dark"><%= image_dookie %> <%= diary.excreta_i18n %></span><br>
-                      <% if @total_min != 0 %>
-                        <!--一日のトータル散歩時間が0分以外ならトータル時間を表示する-->
-                        <span class="text-dark"><%= image_time %> <%= @total_min %> 分</span><br>
-                        <% if @total_distance1 != 0 %>
-                          <!--一日のトータルの散歩距離が0以外ならトータル距離、スピードを表示する-->
-                          <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span><br>
-                          <span class="text-dark">
-                            <%= image_speed %> <%= @total_distance1.to_i / @total_min %> m／分
-                          </span>
-                        <% end %>
-                      <% else %>
-                        <!--一日のトータル散歩時間が0分ならイメージと「散歩お休み」を表示する-->
-                        <div class="m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 80px;"></div>
-                        <div class="text-dark">散歩お休み</div>
+                <div class="row justify-content-center">
+                  <div class="col-10">
+                    <span class="text-dark"><%= image_food %> <%= diary.appetite_i18n %></span><br>
+                    <span class="text-dark"><%= image_dookie %> <%= diary.excreta_i18n %></span><br>
+                    <% if @total_min != 0 %>
+                      <!--一日のトータル散歩時間が0分以外ならトータル時間を表示する-->
+                      <span class="text-dark"><%= image_time %> <%= @total_min %> 分</span><br>
+                      <% if @total_distance1 != 0 %>
+                        <!--一日のトータルの散歩距離が0以外ならトータル距離、スピードを表示する-->
+                        <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span><br>
+                        <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0以外ならスピードを表示する-->
+                        <span class="text-dark d-none d-lg-block">
+                          <%= image_speed %> <%= @total_distance1.to_i / @total_min %> m／分
+                        </span>
                       <% end %>
-                    </div>
-                  </div>
-                </div>
-
-                <!--画面幅 768px以上 992px 未満は散歩スピード非表示-->
-                <div class="d-none d-md-block d-lg-none">
-                  <div class="row justify-content-center">
-                    <div class="col-10 pl-1 pr-0">
-                      <span class="text-dark"><%= image_food %> <%= diary.appetite_i18n %></span><br>
-                      <span class="text-dark"><%= image_dookie %> <%= diary.excreta_i18n %></span><br>
-                      <% if @total_min != 0 %>
-                        <!--一日のトータル散歩時間が0分以外ならトータル時間を表示する-->
-                        <span class="text-dark"><%= image_time %> <%= @total_min %> 分</span><br>
-                        <% if @total_distance1 != 0 %>
-                          <!--一日のトータルの散歩距離が0以外ならトータル距離を表示する-->
-                          <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span>
-                        <% end %>
-                      <% else %>
-                        <!--一日のトータル散歩時間が0分ならイメージと「散歩お休み」を表示する-->
-                        <div class="row">
-                          <div class="col-6 m-0 p-0 media diaries-image1 jumbotron" style="height: 60px;"></div>
-                          <div class="col-6 m-0 p-0 text-dark">散歩<br>お休み</div>
-                        </div>
-                      <% end %>
-                    </div>
+                    <% else %>
+                      <!--一日のトータル散歩時間が0分ならイメージ画像と「散歩お休み」を表示する-->
+                      <div class="m-0 p-0 media diaries-image1 jumbotron" style="width: 80px; height: 80px;"></div>
+                      <div class="text-dark">散歩お休み</div>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
@@ -201,7 +156,7 @@
                     <% @total_distance = stroll.pins.sum(:distance) %>
                   <% end %>
                   <% if @total_distance != 0 %>
-                    <!--散歩距離が0でなければアイコンを表示する-->
+                    <!--散歩距離が0の場合にアイコンを表示する-->
                     <div class="col-1 pl-0"><%= image_distance %></div>
                   <% end %>
                 </div>
