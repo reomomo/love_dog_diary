@@ -191,6 +191,7 @@
 }
 // トップ画面ここまで
 
+// aboutページの背景画像
 .about-image{
   background-image: url("../images/dog.jpg");
   background-size: cover;
@@ -198,6 +199,7 @@
   background-repeat: no-repeat;
 }
 
+// マイページの背景画像
 .mypage-image {
   background-image: url("../images/1393774.jpg");
   background-size: 50%;
@@ -205,6 +207,7 @@
   min-height: 600px;
 }
 
+// カレンダー画面の背景画像
 .diary-image {
   background-image: url("../images/prank.jpg");
   background-size: 50%;
@@ -268,21 +271,6 @@
     height: 100px;
   }
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {}
-
-  .past {}
-  .future {}
-
-  .start-date {}
-
   .prev-month {
     background: #EEEEEE;
   }
@@ -293,16 +281,17 @@
     background: #FFFFFF
   }
 
-  .has-events {}
 }
 // シンプルカレンダーここまで
 
+// 写真一覧のタイトルを省略表示
 .photo-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+// 日記画面の背景画像
 .diaries-image0 {
   background-image: url("../images/pad-gray.jpg");
   background-size: 50%;
@@ -310,6 +299,7 @@
   min-height: 600px;
 }
 
+// 紀州犬の画像
 .diaries-image1 {
   background-image: url("../images/kishuu.jpg");
   background-size: cover;
@@ -317,6 +307,7 @@
   background-repeat: no-repeat;
 }
 
+// ダックスフンドの画像
 .diaries-image2 {
   background-image: url("../images/dachshund.jpg");
   background-size: cover;
@@ -324,6 +315,7 @@
   background-repeat: no-repeat;
 }
 
+// 日記のメモのスクロールバー　ここから
 .diary-memo {
   overflow: scroll;
 }
@@ -340,7 +332,9 @@
 .diary-memo::-webkit-scrollbar-thumb {
   background-color: #F2CED1;
 }
+// 日記のメモのスクロールバー　ここまで
 
+// strolls/showページの背景画像
 .map-image {
   background-image: url("../images/pad.jpg");
   background-size: cover;
@@ -348,6 +342,7 @@
   min-height: 600px;
 }
 
+// その他のページの背景画像
 .other-images {
   background-image: url("../images/pad-plaid.jpg");
   background-size: cover;
