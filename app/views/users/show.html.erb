@@ -34,6 +34,49 @@
       </div>
     </div>
 
+<!--test-->
+<%# @my_dogs.each_with_index do |my_dog, index| %>
+  <!--<div class="wrap">-->
+  <!--  <ul id="tab-menu">-->
+      <%# if index == 0 %>
+  <!--      <li><a href="#tab1" class="active"><%#= my_dog.name %>ちゃん</a></li>-->
+      <%# else %>
+  <!--      <li><a href="#tab2" class=""><%#= my_dog.name %>ちゃん</a></li>-->
+      <%# end %>
+  <!--  </ul>-->
+  <!--  <div id="tab-contents">-->
+  <!--    <div id="tab1" class="tab">-->
+        <p><%#= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></p>
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</div>-->
+<%# end %>
+<div class="wrap">
+      <ul id="tab-menu">
+        <li><a href="#tab1" class="active">TAB1</a></li>
+        <li><a href="#tab2" class="">TAB2</a></li>
+        <li><a href="#tab3" class="">TAB3</a></li>
+        <li><a href="#tab4" class="">TAB4</a></li>
+      </ul>
+
+      <div id="tab-contents">
+        <div id="tab1" class="tab">
+          <p>Tab1のテキストが入ります。</p>
+        </div>
+        <div id="tab2" class="tab">
+          <p>Tab2のテキストが入ります。Tab2のテキストが入ります。</p>
+        </div>
+        <div id="tab3" class="tab">
+          <p>Tab3のテキストが入ります。Tab3のテキストが入ります。Tab3のテキストが入ります。</p>
+        </div>
+        <div id="tab4" class="tab">
+          <p>Tab4のテキストが入ります。Tab4のテキストが入ります。Tab4のテキストが入ります。Tab4のテキストが入ります。</p>
+        </div>
+      </div>
+    </div>
+
+<!--testここまで-->
+
     <!--各愛犬情報-->
     <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_dog] %></span>
     <% @my_dogs.each do |my_dog| %>

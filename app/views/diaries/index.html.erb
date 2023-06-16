@@ -98,9 +98,9 @@
                       <!--一日のトータル散歩時間が0分以外ならトータル時間を表示する-->
                       <span class="text-dark"><%= image_time %> <%= @total_min %> 分</span><br>
                       <% if @total_distance1 != 0 %>
-                        <!--一日のトータルの散歩距離が0以外ならトータル距離、スピードを表示する-->
+                        <!--一日のトータルの散歩距離が0m以外ならトータル距離、スピードを表示する-->
                         <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span><br>
-                        <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0以外ならスピードを表示する-->
+                        <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0m以外ならスピードを表示する-->
                         <span class="text-dark d-none d-lg-block">
                           <%= image_speed %> <%= @total_distance1.to_i / @total_min %> m／分
                         </span>

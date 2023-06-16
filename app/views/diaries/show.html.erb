@@ -1,5 +1,5 @@
 <div class="container_fuluid diaries-image0 jumbotron m-0">
-  <!--画面幅 576px 以上は以下の表示-->
+  <!--画面幅 576px 以上の場合-->
   <div class="d-none d-sm-block">
     <div class="row my-2 justify-content-center">
       <!--日記-->
@@ -229,7 +229,7 @@
     </div>
   </div>
 
-  <!--画面幅 576px 未満は以下の表示-->
+  <!--画面幅 576px 未満の場合-->
   <div class="d-block d-sm-none">
     <div class="box-8 mx-1">
       <h1 class="box-8 font-weight-bold"><%= @diary.diary_date %></h1>
@@ -421,7 +421,7 @@
             <td class="py-1 px-0"><%= @total_min %> 分</td>
           </tr>
           <% if @total_min > 0 %>
-            <!--一日の合計散歩時間が0より多い場合スピード表示-->
+            <!--一日の合計散歩時間が0分より多い場合スピード表示-->
             <tr>
               <th class="py-1 pr-5">スピード</th>
               <td class="py-1 px-0">
