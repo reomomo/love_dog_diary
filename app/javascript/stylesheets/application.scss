@@ -208,6 +208,58 @@
   min-height: 600px;
 }
 
+// 愛犬情報をタブメニューで表示
+.wrap {
+  width: 95%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#tab-menu {
+  display: flex;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 25%;
+}
+
+#tab-menu li a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  padding: 20px 0;
+  text-align: center;
+  background: #E9B4D0;
+  border: 1px solid #E9B4D0;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #E9B4D0;
+  border-top: none;
+}
+
+#tab-contents p {
+  color: #000;
+  line-height: 2.5;
+}
+// 愛犬情報をタブメニューで表示、ここまで
+
 // カレンダー画面の背景画像
 .diary-image {
   background-image: url("../images/prank.jpg");
@@ -372,55 +424,4 @@
 
 .footer-pink {
   background-color: #FFD4E4 !important;
-}
-
-
-// test
-.wrap {
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-#tab-menu {
-  display: flex;
-}
-
-#tab-menu li {
-  list-style-type: none;
-  width: 25%;
-}
-
-#tab-menu li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  border: 1px solid #000;
-  border-bottom: none;
-}
-
-#tab-menu .active {
-  background: #fff;
-  color: #000;
-}
-
-#tab-contents {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#tab-contents .tab {
-  width: 100%;
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none;
-}
-
-#tab-contents p {
-  color: #000;
-  line-height: 2.5;
 }
