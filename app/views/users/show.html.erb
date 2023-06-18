@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="row mx-3 justify-content-center">
-      <div class="col-lg-7 offset-lg-4 col-md-11 box-8 pt-0 pb-4 px-4 border border-green">
+      <div class="col-lg-7 col-md-11 box-8 pt-0 pb-4 px-4 border border-green">
         <span class="pl-5 font-weight-bold text-pink"><%= flash[:alert] %></span>
         <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-        <div class="row justify-content-end">
+        <div class="row justify-content-center">
           <div class="col-md-10 col-12 px-0">
             <table class="table table-borderless my-3">
               <tr>
@@ -27,106 +27,216 @@
             </table>
           </div>
           <div class="col-md-2 col-8 px-0">
-            <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
-            <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
+            <%= link_to "会員情報を変更する", information_edit_path(@user.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
+            <%= link_to "愛犬情報を追加する", new_my_dog_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
           </div>
         </div>
       </div>
     </div>
 
-    <!--各愛犬情報-->
+  <!--各愛犬情報-->
+  <!--画面幅 576px 以上は以下の表示-->
+  <div class="d-none d-md-block">
     <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_dog] %></span>
-    <% @my_dogs.each do |my_dog| %>
-      <div class="row my-4 mx-3 justify-content-center">
-        <div class="col-md-4 col-6">
-          <div class="row mb-3 justify-content-center">
-            <%= image_tag my_dog.get_dog_image(250,250), class: "border border-green" %>
-          </div>
-        </div>
-        <div class="col-md-7 col-11 box-8 p-4 border border-green">
-          <div class="row justify-content-end">
-            <div class="col-lg-10 col-md-9 col-12 px-0">
-              <table class="table table-borderless mt-0 mb-4 py-5">
-                <tr>
-                  <th colspan="2" class="h4 px-0 font-weight-bold text-left"><%= my_dog.name %>ちゃん</th>
-                </tr>
-                <% if my_dog.birthdate.present? %>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
-                    <td class="px-0"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
-                  </tr>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
-                    <td class="px-0"><%= my_dog.size_i18n %></td>
-                  </tr>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">年齢</th>
-                    <td class="px-0">
-                      <% if my_dog.months_old < 1 %>
-                        <p>生後1ヶ月未満</p>
-                      <% elsif my_dog.years_old < 1 %>
-                        <p>生後<%= my_dog.months_old.to_i %>ヶ月</p>
+    <div class="wrap my-5">
+      <ul id="tab-menu" class="mb-0">
+        <% @my_dogs.each_with_index do |my_dog, index| %>
+          <% if index == 0 %>
+            <li class="font-weight-bold"><a href="#tab<%=index + 1 %>" class="active"><%= my_dog.name %>ちゃん</a></li>
+          <% else %>
+            <li class="font-weight-bold"><a href="#tab<%=index + 1 %>"><%= my_dog.name %>ちゃん</a></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <div id="tab-contents">
+        <% @my_dogs.each_with_index do |my_dog, index| %>
+          <div id="tab<%=index +1 %>" class="tab">
+            <div class="row my-4 mx-3 justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="row mb-3 justify-content-center">
+                  <%= image_tag my_dog.get_dog_image(250,250) %>
+                </div>
+              </div>
+              <div class="col-md-7 col-11 p-4">
+                <div class="row justify-content-end">
+                  <div class="col-lg-10 col-md-9 col-12 px-0">
+                    <table class="table table-borderless mt-0 mb-4 py-5">
+                      <% if my_dog.birthdate.present? %>
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                          <td class="px-0"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
+                        </tr>
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
+                          <td class="px-0"><%= my_dog.size_i18n %></td>
+                        </tr>
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">年齢</th>
+                          <td class="px-0">
+                            <% if my_dog.months_old < 1 %>
+                              生後1ヶ月未満
+                            <% elsif my_dog.years_old < 1 %>
+                              生後<%= my_dog.months_old.to_i %>ヶ月
+                            <% else %>
+                              <%= my_dog.years_old %>歳
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">人間年齢</th>
+                          <td class="px-0">
+                            <!--大型犬で1歳未満-->
+                            <% if my_dog.size == @big && my_dog.years_old < 1 %>
+                              12歳未満
+                            <!--大型犬で1歳以上-->
+                            <% elsif my_dog.size == @big && my_dog.years_old >= 1 %>
+                              <%= (my_dog.years_old - 1)*7 +12 %>歳から<%= (my_dog.years_old - 1)*7 +19 %>歳ぐらい
+                            <!--小型・中型犬で生後1ヶ月以下-->
+                            <% elsif my_dog.size != @big && my_dog.months_old <= 1 %>
+                              1歳未満
+                            <!--小型・中型犬で生後3ヶ月以下-->
+                            <% elsif my_dog.size != @big && my_dog.months_old <= 3 %>
+                              1歳から5歳ぐらい
+                            <!--小型・中型犬で生後6ヶ月以下-->
+                            <% elsif my_dog.size != @big && my_dog.months_old <= 6 %>
+                              5歳から9歳ぐらい
+                            <!--小型・中型犬で生後9ヶ月以下-->
+                            <% elsif my_dog.size != @big && my_dog.months_old <= 9 %>
+                              9歳から13歳ぐらい
+                            <!--小型・中型犬で1歳以下-->
+                            <% elsif my_dog.size != @big &&my_dog. years_old <= 1 %>
+                              13歳から17歳ぐらい
+                            <!--小型・中型犬で1歳6ヶ月以下-->
+                            <% elsif my_dog.size != @big && my_dog.months_old <= 18 %>
+                              17歳から20歳ぐらい
+                            <!--小型・中型犬で2歳以下-->
+                            <% elsif my_dog.size != @big && my_dog.years_old <= 2 %>
+                              20歳から24歳ぐらい
+                            <!--小型・中型犬で3歳以上-->
+                            <% else %>
+                              <%= (my_dog.years_old - 2)*4 +24 %>歳から<%= (my_dog.years_old - 2)*4 +28 %>歳ぐらい
+                            <% end %>
+                          </td>
+                        </tr>
                       <% else %>
-                        <%= my_dog.years_old %>歳
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
+                          <td class="px-0"><%= my_dog.size_i18n %></td>
+                        </tr>
+                        <tr>
+                          <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                          <td class="px-0">未登録</td>
+                        </tr>
                       <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">人間年齢</th>
-                    <td class="px-0">
-                      <!--大型犬で1歳未満-->
-                      <% if my_dog.size == @big && my_dog.years_old < 1 %>
-                        12歳未満
-                      <!--大型犬で1歳以上-->
-                      <% elsif my_dog.size == @big && my_dog.years_old >= 1 %>
-                        <%= (my_dog.years_old - 1)*7 +12 %>歳から<%= (my_dog.years_old - 1)*7 +19 %>歳ぐらい
-                      <!--小型・中型犬で生後1ヶ月以下-->
-                      <% elsif my_dog.size != @big && my_dog.months_old <= 1 %>
-                        1歳未満
-                      <!--小型・中型犬で生後3ヶ月以下-->
-                      <% elsif my_dog.size != @big && my_dog.months_old <= 3 %>
-                        1歳から5歳ぐらい
-                      <!--小型・中型犬で生後6ヶ月以下-->
-                      <% elsif my_dog.size != @big && my_dog.months_old <= 6 %>
-                        5歳から9歳ぐらい
-                      <!--小型・中型犬で生後9ヶ月以下-->
-                      <% elsif my_dog.size != @big && my_dog.months_old <= 9 %>
-                        9歳から13歳ぐらい
-                      <!--小型・中型犬で1歳以下-->
-                      <% elsif my_dog.size != @big &&my_dog. years_old <= 1 %>
-                        13歳から17歳ぐらい
-                      <!--小型・中型犬で1歳6ヶ月以下-->
-                      <% elsif my_dog.size != @big && my_dog.months_old <= 18 %>
-                        17歳から20歳ぐらい
-                      <!--小型・中型犬で2歳以下-->
-                      <% elsif my_dog.size != @big && my_dog.years_old <= 2 %>
-                        20歳から24歳ぐらい
-                      <!--小型・中型犬で3歳以上-->
-                      <% else %>
-                        <%= (my_dog.years_old - 2)*4 +24 %>歳から<%= (my_dog.years_old - 2)*4 +28 %>歳ぐらい
-                      <% end %>
-                    </td>
-                  </tr>
-                <% else %>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
-                    <td class="px-0"><%= my_dog.size_i18n %></td>
-                  </tr>
-                  <tr>
-                    <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
-                    <td class="px-0">未登録</td>
-                  </tr>
-                <% end %>
-              </table>
-            </div>
-            <div class="col-lg-2 col-md-3 col-8 px-0">
-              <%= link_to "カレンダー", diaries_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
-              <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
+                    </table>
+                  </div>
+                  <div class="col-lg-2 col-md-3 col-8 px-0">
+                    <%= link_to "カレンダー", diaries_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
+                    <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+  </div>
+  <!--画面幅 576px 未満は以下の表示-->
+  <div class="d-block d-md-none">
+    <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_dog] %></span>
+      <% @my_dogs.each do |my_dog| %>
+        <div class="row my-4 mx-3 justify-content-center">
+          <div class="col-md-4 col-6">
+            <div class="row mb-3 justify-content-center">
+              <%= image_tag my_dog.get_dog_image(250,250), class: "border border-green" %>
+            </div>
+          </div>
+          <div class="col-md-7 col-11 box-8 p-4 border border-green">
+            <div class="row justify-content-end">
+              <div class="col-lg-10 col-md-9 col-12 px-0">
+                <table class="table table-borderless mt-0 mb-4 py-5">
+                  <tr>
+                    <th colspan="2" class="h4 px-0 font-weight-bold text-left"><%= my_dog.name %>ちゃん</th>
+                  </tr>
+                  <% if my_dog.birthdate.present? %>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                      <td class="px-0"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
+                    </tr>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
+                      <td class="px-0"><%= my_dog.size_i18n %></td>
+                    </tr>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">年齢</th>
+                      <td class="px-0">
+                        <% if my_dog.months_old < 1 %>
+                          生後1ヶ月未満
+                        <% elsif my_dog.years_old < 1 %>
+                          生後<%= my_dog.months_old.to_i %>ヶ月
+                        <% else %>
+                          <%= my_dog.years_old %>歳
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">人間年齢</th>
+                      <td class="px-0">
+                        <!--大型犬で1歳未満-->
+                        <% if my_dog.size == @big && my_dog.years_old < 1 %>
+                          12歳未満
+                        <!--大型犬で1歳以上-->
+                        <% elsif my_dog.size == @big && my_dog.years_old >= 1 %>
+                          <%= (my_dog.years_old - 1)*7 +12 %>歳から<%= (my_dog.years_old - 1)*7 +19 %>歳ぐらい
+                        <!--小型・中型犬で生後1ヶ月以下-->
+                        <% elsif my_dog.size != @big && my_dog.months_old <= 1 %>
+                          1歳未満
+                        <!--小型・中型犬で生後3ヶ月以下-->
+                        <% elsif my_dog.size != @big && my_dog.months_old <= 3 %>
+                          1歳から5歳ぐらい
+                        <!--小型・中型犬で生後6ヶ月以下-->
+                        <% elsif my_dog.size != @big && my_dog.months_old <= 6 %>
+                          5歳から9歳ぐらい
+                        <!--小型・中型犬で生後9ヶ月以下-->
+                        <% elsif my_dog.size != @big && my_dog.months_old <= 9 %>
+                          9歳から13歳ぐらい
+                        <!--小型・中型犬で1歳以下-->
+                        <% elsif my_dog.size != @big &&my_dog. years_old <= 1 %>
+                          13歳から17歳ぐらい
+                        <!--小型・中型犬で1歳6ヶ月以下-->
+                        <% elsif my_dog.size != @big && my_dog.months_old <= 18 %>
+                          17歳から20歳ぐらい
+                        <!--小型・中型犬で2歳以下-->
+                        <% elsif my_dog.size != @big && my_dog.years_old <= 2 %>
+                          20歳から24歳ぐらい
+                        <!--小型・中型犬で3歳以上-->
+                        <% else %>
+                          <%= (my_dog.years_old - 2)*4 +24 %>歳から<%= (my_dog.years_old - 2)*4 +28 %>歳ぐらい
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% else %>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
+                      <td class="px-0"><%= my_dog.size_i18n %></td>
+                    </tr>
+                    <tr>
+                      <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                      <td class="px-0">未登録</td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+              <div class="col-lg-2 col-md-3 col-8 px-0">
+                <%= link_to "カレンダー", diaries_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
+                <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
     <% if MyDog.where(user_id: @user.id).count >= 3 %>
       <div class="pr-3 text-center font-weight-bold">他の愛犬の表示はこちらから</div>
       <%= paginate @my_dogs %>

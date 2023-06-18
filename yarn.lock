@@ -3661,6 +3661,11 @@ ipaddr.js@1.9.1, ipaddr.js@^1.9.0:
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
 
+iquery@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/iquery/-/iquery-0.0.2.tgz#8642098bf773c1922979596006ee943f8f00826d"
+  integrity sha512-RMQJjjDkaitTDTK7mXsV6TE4Vr13j46XERHa9Dv0gqa7d8dhk9VLgN94G9B9B8t5K7r8afBuF7iRLVx4NvCJZQ==
+
 is-absolute-url@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-absolute-url/-/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"
