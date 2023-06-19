@@ -1,28 +1,28 @@
 <div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
-  <!--画面幅 576px 以上は以下の表示-->
-  <div class="d-none d-sm-block">
-    <div class="row justify-content-center">
-      <div class="col-xl-5 col-lg-6 col-md-7 col-sm-10 beige-box my-5">
-        <div class="row">
-          <div class="col-6 m-4">
-            <h3 class="text-center border-bottom border-green-10">お散歩ルート一覧</h3>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-8 col-md-8 col-sm-9 col-11 beige-box my-5">
+      <div class="row">
+        <div class="col-md-6 col-10 m-2">
+          <h3 class="text-center border-bottom border-green-10 mb-0">お散歩ルート一覧</h3>
+          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
         </div>
-        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-        <div class="row m-4">
-          <div class="col-lg-10 col-12">
-            <% if @strolls.present? %>
-              <!--お散歩ルートが1件以上の場合-->
-              <span>
-                ルート名をクリックすると、地図が確認できます<br>
-                お散歩ルートの追加は日記から可能です
-              </span>
-            <% else %>
-              <!--お散歩ルートが0件の場合-->
-              <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
-            <% end %>
-          </div>
+      </div>
+      <div class="row mx-0 justify-content-center">
+        <div class="col-lg-8 col-sm-10 col-12">
+          <% if @strolls.present? %>
+            <!--お散歩ルートが1件以上の場合-->
+            <span>
+              ルート名をクリックすると、地図が確認できます<br>
+              お散歩ルートの追加は日記から可能です
+            </span>
+          <% else %>
+            <!--お散歩ルートが0件の場合-->
+            <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
+          <% end %>
         </div>
+      </div>
+      <!--画面幅 576px 以上は以下の表示-->
+      <div class="d-none d-sm-block">
         <div class="row m-4 justify-content-center">
           <div class="col-7">
             <table class="table">
@@ -46,37 +46,12 @@
                 <% end %>
               <% end %>
             </table>
-            <%= paginate @strolls %>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!--画面幅 576px 未満は以下の表示-->
-  <div class="d-block d-sm-none">
-    <div class="row justify-content-center">
-      <div class="col-11 beige-box my-3">
-        <div class="row">
-          <div class="col-10 m-4">
-            <h3 class="text-center border-bottom border-green-10">お散歩ルート一覧</h3>
-          </div>
-        </div>
-        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-        <div class="row mx-1">
-          <div class="col-12">
-            <% if @strolls.present? %>
-              <!--お散歩ルートが1件以上の場合-->
-              <span>
-                ルート名をクリックすると、地図が確認できます<br>
-                お散歩ルートの追加は日記から可能です
-              </span>
-            <% else %>
-              <!--お散歩ルートが0件の場合-->
-              <span>日記からお散歩ルートを登録すると一覧に表示されます</span>
-            <% end %>
-          </div>
-        </div>
+      <!--画面幅 576px 未満は以下の表示-->
+      <div class="d-block d-sm-none">
         <div class="row mt-3 justify-content-center">
           <div class="col-11">
             <table class="table">
@@ -100,8 +75,8 @@
                 <% end %>
               <% end %>
             </table>
-            <%= paginate @strolls %>
           </div>
+          <%= paginate @strolls %>
         </div>
       </div>
     </div>
