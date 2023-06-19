@@ -1,13 +1,14 @@
 <div class="container_fuluid diary-image jumbotron m-0 p-0" style="width: 100%; min-height: 600px;">
   <div class="box-8">
-    <!--画面幅によって、写真サイズと横並びの数を変更。 1200px 以上は写真(大)、横並び(6個)-->
-    <div class="d-none d-xl-block">
-      <div class="row justify-content-center">
-        <div class="col-10 box-8 my-5">
-          <h1>写真一覧</h1>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-          <% if @user.photos.present? %>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
+    <div class="row justify-content-center">
+      <div class="col-10 box-8 my-5">
+        <h1>写真一覧</h1>
+        <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
+        <% if @user.photos.present? %>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+
+          <!--画面幅によって、写真サイズと横並びの数を変更。 1200px 以上は写真(大)、横並び(6個)-->
+          <div class="d-none d-xl-block">
             <div class="row mt-4">
               <% @photos.each do |photo| %>
                 <div class="col-2 px-0">
@@ -28,23 +29,10 @@
                 </div>
               <% end %>
             </div>
-          <% else %>
-            <p class="mt-5">写真がありません。</p>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
-          <% end %>
-          <%= paginate @photos %>
-        </div>
-      </div>
-    </div>
+          </div>
 
-    <!--画面幅 1200px 未満 992px 以上は写真(中)、横並び(6個)-->
-    <div class="d-none d-lg-block d-xl-none">
-      <div class="row justify-content-center">
-        <div class="col-10 box-8 my-5">
-          <h1>写真一覧</h1>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-          <% if @user.photos.present? %>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
+          <!--画面幅 1200px 未満 992px 以上は写真(中)、横並び(6個)-->
+          <div class="d-none d-lg-block d-xl-none">
             <div class="row mt-4">
               <% @photos.each do |photo| %>
                 <div class="col-2 px-0">
@@ -65,23 +53,10 @@
                 </div>
               <% end %>
             </div>
-          <% else %>
-            <p class="mt-5">写真がありません。</p>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
-          <% end %>
-          <%= paginate @photos %>
-        </div>
-      </div>
-    </div>
+          </div>
 
-    <!--画面幅 992px 未満 768px 以上は写真(中)、横並び(4個)-->
-    <div class="d-none d-md-block d-lg-none">
-      <div class="row justify-content-center">
-        <div class="col-10 box-8 my-5">
-          <h1>写真一覧</h1>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-          <% if @user.photos.present? %>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
+          <!--画面幅 992px 未満 768px 以上は写真(中)、横並び(4個)-->
+          <div class="d-none d-md-block d-lg-none">
             <div class="row mt-4">
               <% @photos.each do |photo| %>
                 <div class="col-3 text-left">
@@ -102,23 +77,10 @@
                 </div>
               <% end %>
             </div>
-          <% else %>
-            <p class="mt-5">写真がありません。</p>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
-          <% end %>
-          <%= paginate @photos %>
-        </div>
-      </div>
-    </div>
+          </div>
 
-    <!--画面幅 786px 未満 576px 以上は写真(中)、横並び(3個)-->
-    <div class="d-none d-sm-block d-md-none">
-      <div class="row justify-content-center">
-        <div class="col-10 box-8 my-5">
-          <h1>写真一覧</h1>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-          <% if @user.photos.present? %>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
+          <!--画面幅 786px 未満 576px 以上は写真(中)、横並び(3個)-->
+          <div class="d-none d-sm-block d-md-none">
             <div class="row mt-4">
               <% @photos.each do |photo| %>
                 <div class="col-4 px-0 text-left">
@@ -139,23 +101,10 @@
                 </div>
               <% end %>
             </div>
-          <% else %>
-            <p class="mt-5">写真がありません。</p>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
-          <% end %>
-          <%= paginate @photos %>
-        </div>
-      </div>
-    </div>
+          </div>
 
-    <!--画面幅 576px 未満は以下は写真(小)、横並び(3個)-->
-    <div class="d-block d-sm-none">
-      <div class="row justify-content-center">
-        <div class="col-10 box-8 my-5">
-          <h1>写真一覧</h1>
-          <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice] %></span>
-          <% if @user.photos.present? %>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
+          <!--画面幅 576px 未満は以下は写真(小)、横並び(3個)-->
+          <div class="d-block d-sm-none">
             <div class="row mt-4">
               <% @photos.each do |photo| %>
                 <div class="col-4 px-0 text-left">
@@ -176,12 +125,13 @@
                 </div>
               <% end %>
             </div>
-          <% else %>
-            <p class="mt-5">写真がありません。</p>
-            <p>写真の追加は、撮影日の日記から登録できます</p>
-          <% end %>
-          <%= paginate @photos %>
-        </div>
+          </div>
+
+        <% else %>
+          <p class="mt-5">写真がありません。</p>
+          <p>写真の追加は、撮影日の日記から登録できます</p>
+        <% end %>
+        <%= paginate @photos %>
       </div>
     </div>
   </div>
