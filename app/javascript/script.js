@@ -1,8 +1,8 @@
-$(document).ready(function() {
-  $('#tab-contents .tab[id != "tab1"]').hide();
-})
+$(document).on('turbolinks:load',function() {
+  $('#tab-contents .tab[id != "tab0"]').hide();
+});
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
   $('#tab-menu a').on('click', function(event){
     $("#tab-contents .tab").hide();
     $("#tab-menu .active").removeClass("active");
@@ -10,4 +10,4 @@ $(document).ready(function() {
     $($(this).attr("href")).show();
     event.preventDefault();
   });
-})
+});

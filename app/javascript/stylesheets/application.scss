@@ -223,6 +223,8 @@
 #tab-menu li {
   list-style-type: none;
   width: 25%;
+  position: relative;
+  top: 1px;
 }
 
 #tab-menu li a {
@@ -239,6 +241,7 @@
 #tab-menu .active {
   background: #fff;
   color: #000;
+  border-bottom: none;
 }
 
 #tab-contents {
@@ -251,12 +254,6 @@
   padding: 30px;
   background: #fff;
   border: 1px solid #E9B4D0;
-  border-top: none;
-}
-
-#tab-contents p {
-  color: #000;
-  line-height: 2.5;
 }
 // 愛犬情報をタブメニューで表示、ここまで
 
@@ -281,8 +278,7 @@
     border: 1px solid #FFD5EC;
     border-collapse: collapse;
     box-sizing: border-box;
-    max-width: 100%;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
   }
 
