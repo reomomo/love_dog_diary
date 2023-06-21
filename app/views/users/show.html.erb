@@ -42,15 +42,15 @@
       <ul id="tab-menu" class="mb-0">
         <% @my_dogs.each_with_index do |my_dog, index| %>
           <% if index == 0 %>
-            <li class="font-weight-bold"><a href="#tab<%=index + 1 %>" class="active"><%= my_dog.name %>ちゃん</a></li>
+            <li class="font-weight-bold"><a href="#tab<%= index %>" class="active"><%= my_dog.name %>ちゃん</a></li>
           <% else %>
-            <li class="font-weight-bold"><a href="#tab<%=index + 1 %>"><%= my_dog.name %>ちゃん</a></li>
+            <li class="font-weight-bold"><a href="#tab<%= index %>"><%= my_dog.name %>ちゃん</a></li>
           <% end %>
         <% end %>
       </ul>
       <div id="tab-contents">
         <% @my_dogs.each_with_index do |my_dog, index| %>
-          <div id="tab<%=index +1 %>" class="tab">
+          <div id="tab<%= index %>" class="tab">
             <div class="row my-4 mx-3 justify-content-center">
               <div class="col-md-4 col-6">
                 <div class="row mb-3 justify-content-center">
@@ -244,7 +244,7 @@
     <div class="row mt-5 mx-3 justify-content-end">
       <div class="col-lg-6 col-md-11 col-12 box-8">
         <span class="small text-right">愛犬年齢が1歳未満の場合、<br>
-          月齢の計算は365日を30.416日で割って1ヶ月としていますので誤差があります。<br>
+          月齢の計算は365日を12で割って1ヶ月(30.416日)としていますので誤差があります。<br>
           ご了承ください。<br>
           人間年齢は、「犬の年齢を人年齢に換算する計算式（引用：京都中央動物病院HP）」を参考にしています。
         </span>
