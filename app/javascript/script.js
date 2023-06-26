@@ -11,3 +11,11 @@ $(document).on('turbolinks:load',function() {
     event.preventDefault();
   });
 });
+
+$(document).on('turbolinks:load',function() {
+  $('#back a').on('click', function(event){
+    $('body,html').animate({
+      scrollTop:0
+    }, 800);
+  });
+});
