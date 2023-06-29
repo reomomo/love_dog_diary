@@ -1,3 +1,5 @@
+/* global $*/
+
 $(document).on('turbolinks:load',function() {
   $('#tab-contents .tab[id != "tab0"]').hide();
 });
