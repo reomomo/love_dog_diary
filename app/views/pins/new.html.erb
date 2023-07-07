@@ -1,5 +1,6 @@
 <div id='map'></div>
 <style>
+/*地図のサイズ設定*/
 #map {
   height: 600px;
   width: 1000px;
@@ -7,17 +8,19 @@
 </style>
 <script>
 // 初期マップの設定
-var map;
-var clickedLines;
+let map;
+let clickedLines;
 function initMap() {
-  // 東京駅中心に表示
+  // 東京駅を中心に地図を表示
   const center = {lat: 35.68143661184076, lng:139.7671569811205};
+  // 地図の縮尺の設定
   const options = {zoom: 15, scaleControl: true, center: center};
   map = new google.maps.Map(
     document.getElementById('map'), options);
+  // ポリラインの色、太さなど
   clickedLines = new google.maps.Polyline({
     geodesic: true,
-    strokeColor: "#3333FF",
+    strokeColor: "#EA3F98",
     strokeOpacity: 1.0,
     strokeWeight: 3
   });
@@ -28,44 +31,47 @@ function initMap() {
   });
 }
 
+// クリック時の動作詳細
 function drawOneLine(latLng) {
-  // クリック時の動作詳細
-  var path = clickedLines.getPath();
+  let path = clickedLines.getPath();
   if ( path.length == 0 ) {
     // 最初のクリック時
     createMarker(latLng);
-    // 緯度経度表示
+    // 緯度経度を画面に表示
     document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
     document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
-    // ２回目以降のクリック時、改行して緯度経度を表示
     let textlatlng_value = document.getElementById('txtLatLng').value;
+    // ２回目以降のクリック時、改行して緯度経度を表示
     document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
     document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
-
   }
 
   path.push(latLng);
-    clickedLines.setMap(map);
-    // ２回目以降のクリック時、距離を計算
-    if(path.length >= 2){
-      var distances = []
-      for (let i = 0; i < path.length - 1 ; i++){
-        var prev = path.g[i]
-        var current = path.g[i + 1]
-        var prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
-    	  var current_path = new google.maps.LatLng(current.lat(), current.lng());
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
-        distances.push(distance);
-      }
-      // 距離をカラムへ送る
-      document.getElementById('pin_distances').value = distances.join(':');
-      console.log(distance)
+  clickedLines.setMap(map);
+  // ２回目以降のクリック時、距離を計算
+  if(path.length >= 2){
+    let distances = []
+    for (let i = 0; i < path.length - 1 ; i++){
+      // クリックした位置の取得
+      let prev = path.g[i]
+      let current = path.g[i + 1]
+      // クリックした位置の緯度経度の取得
+      let prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
+  	  let current_path = new google.maps.LatLng(current.lat(), current.lng());
+      // 緯度経度間の距離を計算
+      let distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
+      // 距離を配列に入れる
+      distances.push(distance);
     }
+    // 距離をカラムへ送る
+    document.getElementById('pin_distances').value = distances.join(':');
+  }
 }
 
+// ピンの表示
 function createMarker(latLng) {
   marker = new google.maps.Marker({
   position: latLng,
@@ -73,8 +79,9 @@ function createMarker(latLng) {
   title: '最初の位置'
   });
 }
+// ポリラインと緯度経度を全て削除
 function deleteAllLines() {
-  var path = clickedLines.getPath();
+  let path = clickedLines.getPath();
   if ( path != undefined ) {
     if ( path.length >= 0 ){
       do {
@@ -83,13 +90,15 @@ function deleteAllLines() {
       } while(1);
     }
   }
+  // 同時に緯度経度も消去
   document.getElementById('txtLatLng').value = "";
-    if ( marker != undefined ) {
-      marker.setMap(null);
-    }
-    if ( clickedLines != undefined ) {
-      clickedLines.setMap(null);
-    }
+  // ピンも消去
+  if ( marker != undefined ) {
+    marker.setMap(null);
+  }
+  if ( clickedLines != undefined ) {
+    clickedLines.setMap(null);
+  }
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
@@ -100,12 +109,11 @@ function deleteAllLines() {
     <%= f.hidden_field :distances %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
     <p>タイトル</p>
-    <%= f.text_field :title, placeholder: "お散歩ルート識別の名前" %>
+    <%= f.text_field :title, placeholder: "お散歩ルートの名前" %>
     <%= f.submit "散歩ルートを登録" %>
   <% end %>
 </div>
 
-<div id="map_canvas"></div>
 <br />
 <textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="txtLatLng"></textarea>
 <br />
