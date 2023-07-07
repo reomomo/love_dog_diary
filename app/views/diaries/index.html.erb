@@ -127,6 +127,7 @@
                   <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>
               <% end %>
@@ -175,6 +176,7 @@
                 <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>
               <% end %>
