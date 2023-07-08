@@ -102,15 +102,21 @@
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
                       <div class="col-10">
-                        <span class="text-dark"><%= image_food %> <%= diary.appetite_i18n %></span><br>
-                        <span class="text-dark"><%= image_dookie %> <%= diary.excreta_i18n %></span><br>
+                        <!--「食欲」の登録があればアイコンと情報を表示する-->
+                        <% if diary.excreta.present? %>
+                          <span class="text-dark"><%= image_food %> <%= diary.appetite_i18n %></span><br>
+                        <% end %>
+                        <!--「排せつ」の登録があればアイコンと情報を表示する-->
+                        <% if diary.excreta.present? %>
+                          <span class="text-dark"><%= image_dookie %> <%= diary.excreta_i18n %></span><br>
+                        <% end %>
                         <% if @total_min != 0 %>
-                          <!--一日のトータル散歩時間が0分以外ならトータル時間を表示する-->
+                          <!--一日のトータル散歩時間が0分以外ならアイコンとトータル時間を表示する-->
                           <span class="text-dark"><%= image_time %> <%= @total_min %> 分</span><br>
                           <% if @total_distance1 != 0 %>
-                            <!--一日のトータルの散歩距離が0m以外ならトータル距離、スピードを表示する-->
+                            <!--一日のトータルの散歩距離が0m以外ならアイコンとトータル距離を表示する-->
                             <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span><br>
-                            <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0m以外ならスピードを表示する-->
+                            <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0m以外ならアイコンとスピードを表示する-->
                             <span class="text-dark d-none d-lg-block">
                               <%= image_speed %> <%= @total_distance1.to_i / @total_min %> m／分
                             </span>
@@ -127,6 +133,7 @@
                   <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>
               <% end %>
@@ -143,38 +150,47 @@
               <%= month_calendar do |date| %>
                 <!--カレンダーの日付に日記を記録済みの場合-->
                 <% if Diary.where(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id ).exists? %>
+                  <!--該当の日付と愛犬IDでデータ検索-->
+                  <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
+                  <!--一日トータルの散歩距離-->
+                  <% @total_distance1 = 0 %>
+                  <!--一日トータルの散歩時間-->
+                  <% @total_min = 0 %>
+                  <% diary.strolls.all.each do |stroll| %>
+                    <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
+                    <% @total_distance2 = stroll.pins.sum(:distance) %>
+                    <% @total_distance1 += @total_distance2 %>
+                    <% @total_min += stroll.time_of_stroll %>
+                  <% end %>
                   <!--日付選択で登録済の日記ページへ遷移する-->
                   <%= link_to diary_path(my_dog.diaries.find_by(diary_date: date.strftime("%Y年%-m月%-d日")).id) do %>
-                    <!--該当の日付と愛犬IDでデータ検索-->
-                    <% diary = Diary.find_by(diary_date: date.strftime("%Y年%-m月%-d日"), my_dog_id: my_dog.id) %>
-                    <% diary.strolls.all.each do |stroll| %>
-                      <!--1回の散歩ごとの散歩距離（複数のポリラインの合計距離）-->
-                      <% @total_distance = stroll.pins.sum(:distance) %>
-                    <% end %>
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
-                      <div class="col-1 pl-0 pr-3"><%= image_food %></div>
-                      <div class="col-1 pl-0"><%= image_dookie %></div>
+                      <!--「食欲」の登録があればアイコンを表示する-->
+                      <% if diary.appetite.present? %>
+                        <div class="col-1 pl-0 pr-3"><%= image_food %></div>
+                      <% end %>
+                      <!--「排せつ」の登録があればアイコンを表示する-->
+                      <% if diary.excreta.present? %>
+                        <div class="col-1 pl-0"><%= image_dookie %></div>
+                      <% end %>
                     </div>
                     <div class="row justify-content-center">
+                      <!--散歩時間の登録があればアイコンを表示する-->
                       <% if diary.strolls.present? %>
-                        <!--散歩時間の登録があればアイコンを表示する-->
                         <div class="col-1 pl-0 pr-3"><%= image_time %></div>
                       <% end %>
-                      <% diary.strolls.all.each do |stroll| %>
-                        <!--1回の散歩の散歩距離（複数のポリラインの合計距離）-->
-                        <% @total_distance = stroll.pins.sum(:distance) %>
-                      <% end %>
-                      <% if @total_distance != 0 %>
-                        <!--散歩距離が0の場合にアイコンを表示する-->
+                      <!--散歩距離が0の場合にアイコンを表示する-->
+                      <% if @total_distance1 != 0 %>
                         <div class="col-1 pl-0"><%= image_distance %></div>
                       <% end %>
                     </div>
                   <% end %>
                 <% else %>
-                <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
+                <!--日記の記録が無ければ日記の新規登録ページへ遷��する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: date.strftime("%Y年%-m月%-d日"), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>
               <% end %>
