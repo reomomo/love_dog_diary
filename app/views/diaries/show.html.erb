@@ -186,7 +186,7 @@
                 <tr>
                   <th class="col-3 py-1 px-0"></th>
                   <td class="row mb-3 py-1 px-5 justify-content-end">
-                    <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                    <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), data: {"turbolinks"=>false}, class: "btn btn-lightpink font-weight-bold text-success" %>
                   </td>
                 </tr>
               <% else %>
@@ -196,7 +196,7 @@
                 <tr>
                   <th class="col-3 py-1 px-0"></th>
                   <td class="row mb-3 py-1 px-5 justify-content-end">
-                    <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                    <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), data: {"turbolinks"=>false}, class: "btn btn-lightpink font-weight-bold text-success" %>
                   </td>
                 </tr>
               <% end %>
@@ -391,7 +391,7 @@
               </tr>
               <tr>
                 <th colspan="2" class="mb-3 py-1 px-0 text-right">
-                  <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  <%= link_to "お散歩ルートを地図で確認する", stroll_path(stroll.id), data: {"turbolinks"=>false}, class: "btn btn-lightpink font-weight-bold text-success" %>
                 </th>
               </tr>
             <% else %>
@@ -400,7 +400,7 @@
               </tr>
               <tr>
                 <th colspan="2" class="mb-3 py-1 px-0 text-right">
-                  <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), class: "btn btn-lightpink font-weight-bold text-success" %>
+                  <%= link_to "お散歩ルートを登録する", new_pin_path(stroll_id: stroll.id), data: {"turbolinks"=>false}, class: "btn btn-lightpink font-weight-bold text-success" %>
                 </th>
               </tr>
             <% end %>

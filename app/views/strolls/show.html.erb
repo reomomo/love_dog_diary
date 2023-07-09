@@ -2,33 +2,33 @@
   <div class="box-8 p-5" style="width: 100%; height: 100%;">
     <style>
        /* 地図のサイズ */
-      #map {
+      #map_show {
         height: 550px;
         width: 100%;
        }
     </style>
 
     <!--地図とメッセージの要素 -->
-    <div id="map"></div>
+    <div id="map_show"></div>
     <div id="msg"></div>
     <script>
       // 初期マップの設定
-      var map;
+      var map_show;
       function initMap() {
         // 地図の中心地
         const center = {lat: <%= @pin.latitude %>, lng:<%= @pin.longitude %> };
         const options = {zoom: 15, scaleControl: true, center: center};
-        map = new google.maps.Map(
-            document.getElementById('map'), options);
+        map_show = new google.maps.Map(
+            document.getElementById('map_show'), options);
         // マーカーの位置
         let road_pin = []
         let mk = []
         <% @pins.each_with_index do |pin,index| %>
           road_pin[<%= index %>] = {lat: <%= pin.latitude %>, lng: <%= pin.longitude %>};
-          mk[<%= index %>] = new google.maps.Marker({position: road_pin[0], map: map});
+          mk[<%= index %>] = new google.maps.Marker({position: road_pin[0], map: map_show});
           <% if index != 0 %>
           // ポリラインの描画
-            new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map});
+            new google.maps.Polyline({path: [road_pin[<%= index %>], road_pin[<%= index - 1 %>]], map: map_show});
           <% end %>
         <% end %>
 
