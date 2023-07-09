@@ -30,7 +30,6 @@ function initMap() {
     drawOneLine(event.latLng);
   });
 }
-
 // クリック時の動作詳細
 function drawOneLine(latLng) {
   let path = clickedLines.getPath();
@@ -38,15 +37,15 @@ function drawOneLine(latLng) {
     // 最初のクリック時
     createMarker(latLng);
     // 緯度経度を画面に表示
-    document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    document.getElementById('textLatLng').value = latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_textLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
-    let textlatlng_value = document.getElementById('txtLatLng').value;
+    let textlatlng_value = document.getElementById('textLatLng').value;
     // ２回目以降のクリック時、改行して緯度経度を表示
-    document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('textLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_textLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
   }
 
   path.push(latLng);
@@ -91,7 +90,7 @@ function deleteAllLines() {
     }
   }
   // 同時に緯度経度も消去
-  document.getElementById('txtLatLng').value = "";
+  document.getElementById('textLatLng').value = "";
   // ピンも消去
   if ( marker != undefined ) {
     marker.setMap(null);
@@ -100,12 +99,27 @@ function deleteAllLines() {
     clickedLines.setMap(null);
   }
 }
+// 最後のポリラインだけを削除
+function deleteOneLine() {
+  let path = clickedLines.getPath();
+  if ( path != undefined ) {
+    if ( path.length >= 0 ){
+      path.pop();
+    }
+  }
+  // 同時に最後の緯度経度も消去
+  var element = $("#textLatLng").val().split(/\n/);
+  element.pop();
+  result = element.join("\n")
+  $("#textLatLng").val(result)
+}
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 
 <div>
   <%= form_with model: @pin do |f| %>
-    <%= f.hidden_field :txtLatLng %>
+    <%= f.hidden_field :textLatLng %>
     <%= f.hidden_field :distances %>
     <%= f.hidden_field :stroll_id, :value => @stroll_id %>
     <p>タイトル</p>
@@ -115,6 +129,7 @@ function deleteAllLines() {
 </div>
 
 <br />
-<textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="txtLatLng"></textarea>
+<textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="textLatLng"></textarea>
 <br />
 <input type="button" value="線を消す"  onclick="deleteAllLines();" style="margin-left:20px;"/>
+<input type="button" value="最後の線を消す"  onclick="deleteOneLine();" style="margin-left:20px;"/>
