@@ -1,4 +1,3 @@
-<div id='map'></div>
 <style>
 /*地図のサイズ設定*/
 #map {
@@ -30,29 +29,28 @@ function initMap() {
     drawOneLine(event.latLng);
   });
 }
-
 // クリック時の動作詳細
 function drawOneLine(latLng) {
   let path = clickedLines.getPath();
-  if ( path.length == 0 ) {
+  if(path.length == 0) {
     // 最初のクリック時
     createMarker(latLng);
     // 緯度経度を画面に表示
-    document.getElementById('txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    document.getElementById('textLatLng').value = latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_textLatLng').value = latLng.lat() + "," + latLng.lng();
   } else {
-    let textlatlng_value = document.getElementById('txtLatLng').value;
+    let textlatlng_value = document.getElementById('textLatLng').value;
     // ２回目以降のクリック時、改行して緯度経度を表示
-    document.getElementById('txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('textLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     // 緯度経度をカラムへ送る
-    document.getElementById('pin_txtLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
+    document.getElementById('pin_textLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
   }
 
   path.push(latLng);
   clickedLines.setMap(map);
   // ２回目以降のクリック時、距離を計算
-  if(path.length >= 2){
+  if(path.length >= 2) {
     let distances = []
     for (let i = 0; i < path.length - 1 ; i++){
       // クリックした位置の取得
@@ -82,39 +80,67 @@ function createMarker(latLng) {
 // ポリラインと緯度経度を全て削除
 function deleteAllLines() {
   let path = clickedLines.getPath();
-  if ( path != undefined ) {
-    if ( path.length >= 0 ){
+  if(path != undefined) {
+    if(path.length >= 0) {
       do {
-        if ( path.length == 0 ) break;
+        if(path.length == 0) break;
         path.pop();
       } while(1);
     }
   }
   // 同時に緯度経度も消去
-  document.getElementById('txtLatLng').value = "";
+  document.getElementById('textLatLng').value = "";
   // ピンも消去
-  if ( marker != undefined ) {
+  if(marker != undefined) {
     marker.setMap(null);
   }
-  if ( clickedLines != undefined ) {
+  if(clickedLines != undefined) {
     clickedLines.setMap(null);
   }
 }
+// 最後のポリラインを削除
+function deleteOneLine() {
+  let path = clickedLines.getPath();
+  if(path != undefined) {
+    if(path.length >= 0){
+      path.pop();
+    }
+  }
+  // 同時に緯度経度も消去
+  var element = $("#textLatLng").val().split(/\n/);
+  element.pop();
+  result = element.join("\n")
+  $("#textLatLng").val(result)
+  // ピンも消去
+  if(result.indexOf(result[result.length]) === result.length - 1) {
+    marker.setMap(null);
+  }
+}
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 
-<div>
-  <%= form_with model: @pin do |f| %>
-    <%= f.hidden_field :txtLatLng %>
-    <%= f.hidden_field :distances %>
-    <%= f.hidden_field :stroll_id, :value => @stroll_id %>
-    <p>タイトル</p>
-    <%= f.text_field :title, placeholder: "お散歩ルートの名前" %>
-    <%= f.submit "散歩ルートを登録" %>
-  <% end %>
+<div class="container_fuluid map-image m-0" style="width: 100%; height: 100%;">
+  <div class="box-8">
+    <div class="row justify-content-center">
+      <div id='map'></div>
+    </div>
+    <div class="row my-3 justify-content-center">
+      <%= form_with model: @pin do |f| %>
+        <%= f.hidden_field :textLatLng %>
+        <%= f.hidden_field :distances %>
+        <%= f.hidden_field :stroll_id, :value => @stroll_id %>
+        <div>タイトル</div>
+        <%= f.text_field :title, placeholder: "お散歩ルートの名前" %>
+        <%= f.submit "散歩ルートを登録" %>
+      <% end %>
+    </div>
+    <div class="row justify-content-center">
+      <input type="button" value="全ての線を消す"  onclick="deleteAllLines();" style="margin-left:20px;"/>
+      <input type="button" value="ひとつ前に戻す"  onclick="deleteOneLine();" style="margin-left:20px;"/>
+    </div>
+    <div class="row mt-3 justify-content-center">
+      <textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="textLatLng"></textarea>
+    </div>
+  </div>
 </div>
-
-<br />
-<textarea style="height:10%;width:80%;margin-left:20px;margin-bottom:10px;" id="txtLatLng"></textarea>
-<br />
-<input type="button" value="線を消す"  onclick="deleteAllLines();" style="margin-left:20px;"/>

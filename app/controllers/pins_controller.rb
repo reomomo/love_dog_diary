@@ -8,7 +8,7 @@ class PinsController < ApplicationController
   end
 
   def create
-    latlngs = params[:pin][:txtLatLng].split("\r\n")
+    latlngs = params[:pin][:textLatLng].split("\r\n")
     distance = params[:pin][:distances].split(":")
     pin = Pin.new
     latlngs.each_with_index do |latlng, index|
