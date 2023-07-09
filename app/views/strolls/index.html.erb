@@ -34,7 +34,7 @@
                 <% stroll.pins.pluck(:title).uniq.each do |title| %>
                   <tr>
                     <th class="px-0 text-left">
-                      <%= link_to stroll_path(stroll.id) do %>
+                      <%= link_to stroll_path(stroll.id), data: {"turbolinks"=>false} do %>
                         <div class="scroll" style="width: 150px; max-height: 40px;"><%= title %></div>
                       <% end %>
                     </th>
@@ -63,7 +63,7 @@
                 <% stroll.pins.pluck(:title).uniq.each do |title| %>
                   <tr>
                     <th class="px-3 text-left">
-                      <%= link_to stroll_path(stroll.id) do %>
+                      <%= link_to stroll_path(stroll.id), data: {"turbolinks"=>false} do %>
                         <div class="scroll pr-0 pl-2" style="width: 100%; max-height: 40px;"><%= title %></div>
                       <% end %>
                     </th>
