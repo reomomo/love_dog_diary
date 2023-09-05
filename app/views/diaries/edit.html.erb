@@ -1,4 +1,4 @@
-<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+<div class="container_fuluid other-images jumbotron m-0">
   <div class="d-none d-sm-block">
     <div class="row mx-0auto justify-content-center">
       <div class="col-xl-10 col-lg-7 col-md-9 col-sm-11 beige-box my-5">
@@ -98,7 +98,7 @@
               <%= f.radio_button :excreta, @excreta.key(3) %>
               <%= f.label :excreta, Diary.excreta_i18n[:good], value: :good %><br />
               <%= f.radio_button :excreta, @excreta.key(4) %>
-              <%= f.label :excreta, Diary.excreta_i18n[:excellent], value: :excellent %></th>
+              <%= f.label :excreta, Diary.excreta_i18n[:excellent], value: :excellent %>
             </div>
             <div class="m-4 text-right"><%= f.submit "変更する", class: "btn btn-green font-weight-bold text-lightpink" %></div>
           <% end %>

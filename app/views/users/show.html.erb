@@ -64,7 +64,7 @@
                       <% if my_dog.birthdate.present? %>
                         <tr>
                           <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
-                          <td class="px-0"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
+                          <td class="px-0"><%= format_date(my_dog.birthdate) %></td>
                         </tr>
                         <tr>
                           <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>
@@ -162,7 +162,7 @@
                   <% if my_dog.birthdate.present? %>
                     <tr>
                       <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
-                      <td class="px-0"><%= my_dog.birthdate.strftime("%Y年%-m月%-d日") %></td>
+                      <td class="px-0"><%= format_date(my_dog.birthdate) %></td>
                     </tr>
                     <tr>
                       <th class="pl-4 pr-2" style="width: 33%;">サイズ</th>

@@ -1,4 +1,4 @@
-<div class="container_fuluid other-images jumbotron m-0" style="width: 100%; min-height: 600px;">
+<div class="container_fuluid other-images jumbotron m-0">
   <!--画面幅 768px 以上は以下の表示-->
   <div class="d-none d-md-block">
     <div class="row mx-0auto justify-content-center">
@@ -72,8 +72,11 @@
             <div class="pl-5"><%= f.text_area :memo, style: "width: 90%; min-height: 70px;" %></div>
             <div class="mt-4 mb-1 text-left font-weight-bold">散歩中の元気の良さ</div>
             <div class="mb-4 pl-5">
+              <label>
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(0) %>
-              <%= f.label :vitality_condition, Stroll.vitality_conditions_i18n[:slowly], value: :slowly %><br />
+
+              <%= f.label :vitality_condition, Stroll.vitality_conditions_i18n[:slowly], value: :slowly, style: "cursor: pointer;" %><br />
+
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(1) %>
               <%= f.label :vitality_condition, Stroll.vitality_conditions_i18n[:a_little_slowly], value: :a_little_slowly %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(2) %>
@@ -82,6 +85,7 @@
               <%= f.label :vitality_condition, Stroll.vitality_conditions_i18n[:a_little_vitality], value: :a_little_vitality %><br />
               <%= f.radio_button :vitality_condition, @vitality_conditions.key(4) %>
               <%= f.label :vitality_condition, Stroll.vitality_conditions_i18n[:quite_vitality], value: :quite_vitality %><br />
+            </label>
             </div>
             <%= f.hidden_field :diary_id, :value => @diary_id %>
             <%= f.hidden_field :my_dog_id, :value => @dog_id %>
