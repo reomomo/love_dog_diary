@@ -144,11 +144,11 @@
               </tr>
               <tr>
                 <th class="col-3 py-1 px-0">開始時間</th>
-                <td class="py-1 px-0"><%= stroll.start_time.strftime("%H:%M") %></td>
+                <td class="py-1 px-0"><%= format_time(stroll.start_time) %></td>
               </tr>
               <tr>
                 <th class="col-3 py-1 px-0">終了時間</th>
-                <td class="py-1 px-0"><%= stroll.end_time.strftime("%H:%M") %></td>
+                <td class="py-1 px-0"><%= format_time(stroll.end_time) %></td>
               </tr>
               <tr>
                 <th class="col-3 py-1 px-0"></th>
@@ -352,11 +352,11 @@
             </tr>
             <tr>
               <th class="py-1 px-0">開始時間</th>
-              <td class="py-1 px-0"><%= stroll.start_time.strftime("%H:%M") %></td>
+              <td class="py-1 px-0"><%= format_time(stroll.start_time) %></td>
             </tr>
             <tr>
               <th class="py-1 px-0">終了時間</th>
-              <td class="py-1 px-0"><%= stroll.end_time.strftime("%H:%M") %></td>
+              <td class="py-1 px-0"><%= format_time(stroll.end_time) %></td>
             </tr>
             <tr>
               <th colspan="2" class="mb-3 py-1 px-0 text-right">
