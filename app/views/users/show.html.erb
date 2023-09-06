@@ -64,6 +64,7 @@
                       <% if my_dog.birthdate.present? %>
                         <tr>
                           <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                          <!--format_time()はhelpers/application_helper.rb参照-->
                           <td class="px-0"><%= format_date(my_dog.birthdate) %></td>
                         </tr>
                         <tr>
@@ -162,6 +163,7 @@
                   <% if my_dog.birthdate.present? %>
                     <tr>
                       <th class="pl-4 pr-2" style="width: 33%;">誕生日</th>
+                      <!--format_time()はhelpers/application_helper.rb参照-->
                       <td class="px-0"><%= format_date(my_dog.birthdate) %></td>
                     </tr>
                     <tr>
