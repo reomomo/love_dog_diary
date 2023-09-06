@@ -84,6 +84,7 @@
               </div>
               <%= month_calendar do |date| %>
                 <!--カレンダーの日付に日記を記録済みの場合-->
+                <!--format_date()はhelpers/application_helper.rb参照-->
                 <% if Diary.where(diary_date: format_date(date), my_dog_id: my_dog.id ).exists? %>
                   <!--該当の日付と愛犬IDでデータ検索-->
                   <% diary = Diary.find_by(diary_date: format_date(date), my_dog_id: my_dog.id) %>
@@ -98,7 +99,7 @@
                     <% @total_min += stroll.time_of_stroll %>
                   <% end %>
                   <!--日付選択で登録済の日記ページへ遷移する-->
-                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date)).id) do %>
+                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date))) do %>
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
                       <div class="col-10">
@@ -118,7 +119,7 @@
                             <span class="text-dark"><%= image_distance %> <%= @total_distance1.to_i %> m</span><br>
                             <!--画面幅 992px 以上、かつ一日のトータルの散歩距離が0m以外ならアイコンとスピードを表示する-->
                             <span class="text-dark d-none d-lg-block">
-                              <%= image_speed %> <%= @total_distance1.to_i / @total_min %> m／分
+                              <%= image_speed %> <%= diary.speed(@total_distance1, @total_min) %> m／分
                             </span>
                           <% end %>
                         <% else %>
@@ -133,6 +134,7 @@
                   <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: format_date(date), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <!--空白を選択してもリンク先へ遷移するように-->
                     <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>
@@ -149,6 +151,7 @@
               </div>
               <%= month_calendar do |date| %>
                 <!--カレンダーの日付に日記を記録済みの場合-->
+                <!--format_date()はhelpers/application_helper.rb参照-->
                 <% if Diary.where(diary_date: format_date(date), my_dog_id: my_dog.id ).exists? %>
                   <!--該当の日付と愛犬IDでデータ検索-->
                   <% diary = Diary.find_by(diary_date: format_date(date), my_dog_id: my_dog.id) %>
@@ -163,33 +166,26 @@
                     <% @total_min += stroll.time_of_stroll %>
                   <% end %>
                   <!--日付選択で登録済の日記ページへ遷移する-->
-                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date)).id) do %>
+                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date))) do %>
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
                       <!--「食欲」の登録があればアイコンを表示する-->
-                      <% if diary.appetite.present? %>
-                        <div class="col-1 pl-0 pr-3"><%= image_food %></div>
-                      <% end %>
+                      <div class="col-1 pl-0 pr-3"><%= image_food if diary.appetite.present? %></div>
                       <!--「排せつ」の登録があればアイコンを表示する-->
-                      <% if diary.excreta.present? %>
-                        <div class="col-1 pl-0"><%= image_dookie %></div>
-                      <% end %>
+                      <div class="col-1 pl-0"><%= image_dookie if diary.excreta.present? %></div>
                     </div>
                     <div class="row justify-content-center">
                       <!--散歩時間の登録があればアイコンを表示する-->
-                      <% if diary.strolls.present? %>
-                        <div class="col-1 pl-0 pr-3"><%= image_time %></div>
-                      <% end %>
+                      <div class="col-1 pl-0 pr-3"><%= image_time if diary.strolls.present? %></div>
                       <!--散歩距離が0の場合にアイコンを表示する-->
-                      <% if @total_distance1 != 0 %>
-                        <div class="col-1 pl-0"><%= image_distance %></div>
-                      <% end %>
+                      <div class="col-1 pl-0"><%= image_distance if @total_distance1 != 0 %></div>
                     </div>
                   <% end %>
                 <% else %>
                 <!--日記の記録が無ければ日記の新規登録ページへ遷��する（カレンダーで選択した日付データも送信する）-->
                   <%= link_to new_diary_path(date: format_date(date), dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
+                    <!--空白を選択してもリンク先へ遷移するように-->
                     <div style="width: 100%; height: 100%"></div>
                   <% end %>
                 <% end %>

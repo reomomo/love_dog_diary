@@ -143,6 +143,7 @@
                 </td>
               </tr>
               <tr>
+                <!--format_date()はhelpers/application_helper.rb参照-->
                 <th class="col-3 py-1 px-0">開始時間</th>
                 <td class="py-1 px-0"><%= format_time(stroll.start_time) %></td>
               </tr>
@@ -180,7 +181,7 @@
                 <tr>
                   <th class="col-3 py-1 px-0">スピード</th>
                   <td class="py-1 px-0">
-                    <%= total.to_i / stroll.time_of_stroll %> m／分
+                    <%= @diary.speed(total, stroll.time_of_stroll) %> m／分
                   </td>
                 </tr>
                 <tr>
@@ -219,7 +220,7 @@
               <tr>
                 <th class="col-3 py-1 px-0">スピード</th>
                 <td class="py-1 px-0">
-                  <%= @total_distances.to_i / @total_min %> m／分
+                  <%= @diary.speed(@total_distances, @total_min) %> m／分
                 </td>
               </tr>
             <% end %>
@@ -352,6 +353,7 @@
             </tr>
             <tr>
               <th class="py-1 px-0">開始時間</th>
+              <!--format_date()はhelpers/application_helper.rb参照-->
               <td class="py-1 px-0"><%= format_time(stroll.start_time) %></td>
             </tr>
             <tr>
@@ -386,7 +388,7 @@
               <tr>
                 <th class="py-1 px-0">スピード</th>
                 <td class="py-1 px-0">
-                  <%= total.to_i / stroll.time_of_stroll %> m／分
+                  <%= @diary.speed(total, stroll.time_of_stroll) %> m／分
                 </td>
               </tr>
               <tr>
@@ -425,7 +427,7 @@
             <tr>
               <th class="py-1 pr-5">スピード</th>
               <td class="py-1 px-0">
-                <%= @total_distances.to_i / @total_min %> m／分
+                <%= @diary.speed(@total_distances, @total_min) %> m／分
               </td>
             </tr>
           <% end %>

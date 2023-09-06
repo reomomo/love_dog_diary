@@ -21,4 +21,7 @@ class Diary < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :strolls, dependent: :destroy
 
+  def speed(distance, min)
+    (distance / min).round
+  end
 end
