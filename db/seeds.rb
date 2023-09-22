@@ -53,28 +53,28 @@ diaries = Diary.create!(
     {
       user_id: users[0].id,
       my_dog_id: my_dogs[0].id,
-      diary_date: '2023年5月8日',
+      diary_date: '2023-05-08',
       memo: 'あと2ヶ月でレオの誕生日。そろそろ誕生日プレゼントを買っておこうかな。お菓子かな、、おもちゃかな、、、',
       appetite: 'usually',
       excreta: 'excellent'
     },{
       user_id: users[0].id,
       my_dog_id: my_dogs[0].id,
-      diary_date: '2023年5月9日',
+      diary_date: '2023-05-09',
       memo: '今日は雨で外に出られない。でもレオは機能の疲れでぐったりだからちょうどいいかな。',
       appetite: 'usually',
       excreta: 'usually'
     },{
       user_id: users[0].id,
       my_dog_id: my_dogs[1].id,
-      diary_date: '2023年5月9日',
+      diary_date: '2023-05-09',
       memo: '今日は雨で外に出られない。リンちゃんは欲求不満で家の中かけまわってる。怪我しないでね！',
       appetite: 'usually',
       excreta: 'usually'
     },{
       user_id: users[1].id,
       my_dog_id: my_dogs[2].id,
-      diary_date: '2023年5月6日',
+      diary_date: '2023-05-06',
       memo: '今日はこたのおはようで目が覚めた・・・休みはもう少し寝たいけど、お散歩たくさんしに行こう！',
       appetite: 'excellent',
       excreta: 'usually'

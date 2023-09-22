@@ -37,6 +37,8 @@ class DiariesController < ApplicationController
       # 一日合計の散歩時間
       @total_min += stroll.time_of_stroll
     end
+    @next_day = Diary.find_by(diary_date: @diary.diary_date + 1)
+    @previous_day = Diary.find_by(diary_date: @diary.diary_date - 1)
   end
 
   def edit
