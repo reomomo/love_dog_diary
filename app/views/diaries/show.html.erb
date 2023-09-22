@@ -3,8 +3,20 @@
   <div class="d-none d-sm-block">
     <div class="row my-2 justify-content-center">
       <!--日記-->
-      <h1 class="box-8 font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= @diary.diary_date %>の日記</h1>
+      <h1 class="box-8 font-weight-bold"><%= @diary.my_dog.name %>ちゃんの<%= format_date(@diary.diary_date) %>の日記</h1>
       <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
+    </div>
+    <div class="row mt-2 justify-content-center">
+      <% if @previous_day %>
+        <button class="border border-pink-medium mr-4 py-1 px-2"><%= link_to "前日", diary_path(@previous_day.id), class: "text-success" %></button>
+      <% else %>
+        <button class="border border-pink-medium ml-4 py-1 px-2"><%= link_to "前日", new_diary_path(date: @diary.diary_date - 1, dog_id: @diary.my_dog.id) , class: "text-success" %></button>
+      <% end %>
+      <% if @next_day %>
+        <button class="border border-pink-medium ml-4 py-1 px-2"><%= link_to "翌日", diary_path(@next_day.id), class: "text-success" %></button>
+      <% else %>
+        <button class="border border-pink-medium ml-4 py-1 px-2"><%= link_to "翌日", new_diary_path(date: @diary.diary_date + 1, dog_id: @diary.my_dog.id) , class: "text-success" %></button>
+      <% end %>
     </div>
     <span class="pl-5 font-weight-bold text-pink"><%= flash[:notice_diary] %></span>
     <div class="row justify-content-center">
@@ -233,7 +245,7 @@
   <!--画面幅 576px 未満の場合-->
   <div class="d-block d-sm-none">
     <div class="box-8 mx-1">
-      <h1 class="box-8 font-weight-bold"><%= @diary.diary_date %></h1>
+      <h1 class="box-8 font-weight-bold"><%= format_date(@diary.diary_date) %></h1>
       <div class="row justify-content-center">
         <%= image_tag @diary.my_dog.get_dog_image(80,80) %>
       </div>

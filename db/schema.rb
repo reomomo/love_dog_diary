@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2023_04_13_045412) do
   create_table "diaries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "my_dog_id", null: false
-    t.string "diary_date", null: false
+    t.date "diary_date", null: false
     t.string "memo"
     t.integer "appetite"
     t.integer "excreta"

@@ -84,10 +84,9 @@
               </div>
               <%= month_calendar do |date| %>
                 <!--カレンダーの日付に日記を記録済みの場合-->
-                <!--format_date()はhelpers/application_helper.rb参照-->
-                <% if Diary.where(diary_date: format_date(date), my_dog_id: my_dog.id ).exists? %>
+                <% if Diary.where(diary_date: date, my_dog_id: my_dog.id ).exists? %>
                   <!--該当の日付と愛犬IDでデータ検索-->
-                  <% diary = Diary.find_by(diary_date: format_date(date), my_dog_id: my_dog.id) %>
+                  <% diary = Diary.find_by(diary_date: date, my_dog_id: my_dog.id) %>
                   <!--一日トータルの散歩距離-->
                   <% @total_distance1 = 0 %>
                   <!--一日トータルの散歩時間-->
@@ -99,7 +98,7 @@
                     <% @total_min += stroll.time_of_stroll %>
                   <% end %>
                   <!--日付選択で登録済の日記ページへ遷移する-->
-                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date))) do %>
+                  <%= link_to diary_path(diary.id) do %>
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
                       <div class="col-10">
@@ -132,7 +131,7 @@
                   <% end %>
                 <% else %>
                   <!--日記の記録が無ければ日記の新規登録ページへ遷移する（カレンダーで選択した日付データも送信する）-->
-                  <%= link_to new_diary_path(date: format_date(date), dog_id: my_dog.id) do %>
+                  <%= link_to new_diary_path(date: date, dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
                     <!--空白を選択してもリンク先へ遷移するように-->
                     <div style="width: 100%; height: 100%"></div>
@@ -151,10 +150,9 @@
               </div>
               <%= month_calendar do |date| %>
                 <!--カレンダーの日付に日記を記録済みの場合-->
-                <!--format_date()はhelpers/application_helper.rb参照-->
-                <% if Diary.where(diary_date: format_date(date), my_dog_id: my_dog.id ).exists? %>
+                <% if Diary.where(diary_date: date, my_dog_id: my_dog.id ).exists? %>
                   <!--該当の日付と愛犬IDでデータ検索-->
-                  <% diary = Diary.find_by(diary_date: format_date(date), my_dog_id: my_dog.id) %>
+                  <% diary = Diary.find_by(diary_date: date, my_dog_id: my_dog.id) %>
                   <!--一日トータルの散歩距離-->
                   <% @total_distance1 = 0 %>
                   <!--一日トータルの散歩時間-->
@@ -166,7 +164,7 @@
                     <% @total_min += stroll.time_of_stroll %>
                   <% end %>
                   <!--日付選択で登録済の日記ページへ遷移する-->
-                  <%= link_to diary_path(my_dog.diaries.find_by(diary_date: format_date(date))) do %>
+                  <%= link_to diary_path(diary.id) do %>
                     <span class="text-success"><%= date.day %></span><br>
                     <div class="row justify-content-center">
                       <!--「食欲」の登録があればアイコンを表示する-->
@@ -183,7 +181,7 @@
                   <% end %>
                 <% else %>
                 <!--日記の記録が無ければ日記の新規登録ページへ遷��する（カレンダーで選択した日付データも送信する）-->
-                  <%= link_to new_diary_path(date: format_date(date), dog_id: my_dog.id) do %>
+                  <%= link_to new_diary_path(date: date, dog_id: my_dog.id) do %>
                     <span class="text-success"><%= date.day %></span>
                     <!--空白を選択してもリンク先へ遷移するように-->
                     <div style="width: 100%; height: 100%"></div>
