@@ -6,4 +6,11 @@ class Pin < ApplicationRecord
   validates :longitude, presence: true
   validates :title, presence: true
 
+
+  # test
+  # def pins_title
+  #   self.title
+  # end
+  # test
+
 end

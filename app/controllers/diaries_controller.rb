@@ -39,6 +39,19 @@ class DiariesController < ApplicationController
     end
     @next_day = Diary.find_by(diary_date: @diary.diary_date + 1)
     @previous_day = Diary.find_by(diary_date: @diary.diary_date - 1)
+
+    # test
+    # @pins = Pin.where(user_id: current_user.id)
+    # array = []
+    # Pin.where(user_id: current_user.id).each do |pin|
+    #   array << pin.title unless array.include?(pin.title)
+    # end
+    # @pins = []
+    # array.each do |array|
+    #   @pins << Pin.find_by(title: array)
+    # end
+    # te
+
   end
 
   def edit

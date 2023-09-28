@@ -21,3 +21,4 @@ $(document).on('turbolinks:load',function() {
     }, 800);
   });
 });
+
