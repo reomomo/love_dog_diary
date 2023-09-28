@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def index
     @user = current_user
-    @photos = @user.photos.all.includes(:diary).order("diaries.diary_date").page(params[:page]).per(12)
+    @photos = @user.photos.all.includes(:diary).order("diaries.diary_date DESC").page(params[:page]).per(12)
   end
 
   def create
