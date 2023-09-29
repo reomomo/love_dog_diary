@@ -132,7 +132,8 @@
                     </table>
                   </div>
                   <div class="col-lg-2 col-md-3 col-8 px-0">
-                    <%= link_to "カレンダー", diaries_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
+                    <!--個々の愛犬のカレンダーへのリンク-->
+                    <%= link_to "カレンダー", diaries_path(path_id: 1, my_dog_id: my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
                     <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-dark" %>
                   </div>
                 </div>
@@ -231,7 +232,8 @@
                 </table>
               </div>
               <div class="col-lg-2 col-md-3 col-8 px-0">
-                <%= link_to "カレンダー", diaries_path, class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
+                <!--個々の愛犬のカレンダーへのリンク-->
+                <%= link_to "カレンダー", diaries_path(path_id: 1, my_dog_id: my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
                 <%= link_to "愛犬情報を変更する", edit_my_dog_path(my_dog.id), class: "btn btn-pink mb-2 p-1 border border-green font-weight-bold text-success" %>
               </div>
             </div>

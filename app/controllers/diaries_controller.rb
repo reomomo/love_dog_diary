@@ -20,6 +20,13 @@ class DiariesController < ApplicationController
   end
 
   def index
+    # ヘッダーからのリンク時はすべての愛犬のカレンダーを表示、@path_id = 0
+    # マイページの個々の愛犬画面からのリンク時は個々のカレンダーを表示、@path_id = 1
+    @path_id = params[:path_id].to_i
+    if @path_id == 1
+      # 個々の愛犬のカレンダーのみ表示させる
+      @my_dog = MyDog.find(params[:my_dog_id])
+    end
     @user = current_user
     @my_dogs = @user.my_dogs.page(params[:page]).per(5)
   end
@@ -50,7 +57,7 @@ class DiariesController < ApplicationController
     # array.each do |array|
     #   @pins << Pin.find_by(title: array)
     # end
-    # te
+    # test
 
   end
 
