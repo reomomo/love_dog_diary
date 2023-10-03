@@ -34,8 +34,8 @@ class PinsController < ApplicationController
     stroll.user_id = current_user.id
     pins = stroll.pins.all
     pins.destroy_all
-    flash[:notice] = '散歩ルートを削除しました。'
-    redirect_to strolls_path
+    flash[:notice_pin] = '散歩ルートを削除しました。'
+    redirect_to diary_path(stroll.diary.id)
   end
 
 
