@@ -79,16 +79,16 @@
       // 緯度経度をカラムへ送る
       document.getElementById('pin_textLatLng').value = textlatlng_value + "\n" + latLng.lat() + "," + latLng.lng();
     }
-
     path.push(latLng);
+    console.log(path);
     clickedLines.setMap(map);
     // ２回目以降のクリック時、距離を計算
     if (path.length >= 2) {
       let distances = []
       for (let i = 0; i < path.length - 1 ; i++){
         // クリックした位置の取得
-        let prev = path.g[i]
-        let current = path.g[i + 1]
+        let prev = path.Fg[i]
+        let current = path.Fg[i + 1]
         // クリックした位置の緯度経度の取得
         let prev_path = new google.maps.LatLng(prev.lat(), prev.lng());
     	  let current_path = new google.maps.LatLng(current.lat(), current.lng());
@@ -96,6 +96,7 @@
         let distance = google.maps.geometry.spherical.computeDistanceBetween(prev_path, current_path);
         // 距離を配列に入れる
         distances.push(distance);
+        console.log(distance);
       }
       // 距離をカラムへ送る
       document.getElementById('pin_distances').value = distances.join(':');
